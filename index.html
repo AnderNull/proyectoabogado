@@ -1,0 +1,2733 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Martínez & Asociados - MÁS Abogados | Firma jurídica en Medellín con atención en Colombia.">
+    <title>Martínez & Asociados - MÁS Abogados | Firma Jurídica en Medellín</title>
+
+    <!-- Bilingual: alternates para SEO -->
+    <link rel="alternate" hreflang="es-co" href="https://masabogados.com.co/">
+    <link rel="alternate" hreflang="en" href="https://masabogados.com.co/en/">
+    <link rel="alternate" hreflang="x-default" href="https://masabogados.com.co/">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0A192F;
+            --primary-light: #172A45;
+            --accent: #C5A059;
+            --accent-hover: #B08C45;
+            --text-dark: #1E293B;
+            --text-muted: #64748B;
+            --bg-light: #F8FAFC;
+            --bg-white: #FFFFFF;
+            --border-color: #E2E8F0;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+            --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 20px 30px -10px rgba(10, 25, 47, 0.12);
+            --radius: 8px;
+            --transition: all 0.3s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--bg-white);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, .brand-font {
+            font-family: 'Cinzel', serif;
+            letter-spacing: -0.02em;
+        }
+
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        ul { list-style: none; }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header / Navbar */
+        header {
+            background-color: var(--bg-white);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .navbar {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 42px 0 18px 0;
+            gap: 18px;
+            flex-wrap: nowrap;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            color: var(--accent);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            border: 1px solid var(--accent);
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .logo-icon img { width: 100%; height: 100%; object-fit: contain; }
+
+        .logo-text h2 {
+            font-size: 1.25rem;
+            color: var(--primary);
+            line-height: 1.1;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .logo-text span {
+            font-size: 0.75rem;
+            color: var(--accent);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+            display: block;
+            white-space: nowrap;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            flex-wrap: nowrap;
+            margin: 0 auto;
+            min-width: 0;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--primary-light);
+            position: relative;
+            white-space: nowrap;
+            line-height: 1.3;
+            padding: 4px 0;
+            flex-shrink: 0;
+        }
+
+        .nav-links a:hover { color: var(--accent); }
+
+        .navbar > .btn {
+            flex-shrink: 0;
+            white-space: nowrap;
+            padding: 12px 20px;
+            font-size: 0.9rem;
+        }
+
+        .lang-switch {
+            position: absolute;
+            top: 8px;
+            right: 0;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: .78rem;
+            font-weight: 700;
+            border: 1px solid var(--border-color);
+            border-radius: 999px;
+            padding: 4px 6px;
+            color: var(--text-muted);
+            background: var(--bg-white);
+            z-index: 2;
+            white-space: nowrap;
+        }
+
+        .lang-switch a {
+            padding: 2px 8px;
+            border-radius: 999px;
+            color: var(--text-muted);
+            white-space: nowrap;
+        }
+
+        .lang-switch a.active {
+            background: var(--primary);
+            color: var(--accent);
+        }
+
+        .lang-switch a:hover { color: var(--accent); }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 24px;
+            font-weight: 600;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.95rem;
+            border: none;
+            white-space: nowrap;
+        }
+
+        .btn-accent { background-color: var(--accent); color: #ffffff; }
+        .btn-accent:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        .btn-outline:hover { background: var(--primary); color: #ffffff; }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(10,25,47,0.94) 0%, rgba(23,42,69,0.88) 100%), 
+                        url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80') center/cover;
+            color: #ffffff;
+            padding: 90px 0 110px 0;
+            position: relative;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(197, 160, 89, 0.2);
+            border: 1px solid var(--accent);
+            color: #F3E5AB;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            margin-bottom: 20px;
+        }
+
+        .hero-title {
+            font-size: 2.8rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: #FFFFFF;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 35px;
+            font-weight: 300;
+        }
+
+        .hero-cta { display: flex; gap: 15px; flex-wrap: wrap; }
+
+        .hero-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 30px;
+            border-radius: var(--radius);
+        }
+
+        .hero-card h3 { color: var(--accent); font-size: 1.3rem; margin-bottom: 15px; }
+
+        .hero-feature-list { display: flex; flex-direction: column; gap: 12px; }
+
+        .hero-feature-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .hero-feature-list li svg {
+            color: var(--accent);
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+
+        /* Section Titles */
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 50px auto;
+        }
+
+        .section-tag {
+            color: var(--accent);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .section-title { font-size: 2.2rem; color: var(--primary); margin-bottom: 15px; }
+        .section-subtitle { color: var(--text-muted); font-size: 1.05rem; }
+
+        /* Trust & Key Features */
+        .features-section { padding: 80px 0; background-color: var(--bg-light); }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--bg-white);
+            padding: 30px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--accent);
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(197, 160, 89, 0.12);
+            color: var(--accent);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+        }
+
+        .feature-card h3 { font-size: 1.15rem; color: var(--primary); margin-bottom: 10px; }
+        .feature-card p { font-size: 0.92rem; color: var(--text-muted); }
+
+        /* Practice Areas */
+        .services-section { padding: 90px 0; }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--bg-white);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-card:hover { box-shadow: var(--shadow-lg); border-color: var(--accent); }
+
+        .service-header { background: var(--primary); color: #ffffff; padding: 25px 20px; }
+        .service-header h3 { font-size: 1.25rem; color: var(--accent); }
+
+        .service-body {
+            padding: 25px 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .service-list { margin-bottom: 20px; }
+
+        .service-list li {
+            padding: 6px 0;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            border-bottom: 1px dashed var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .service-list li:last-child { border-bottom: none; }
+
+        .service-link {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Team Section */
+        .team-section { padding: 90px 0; background-color: var(--bg-light); }
+
+        .team-card {
+            background: var(--bg-white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .team-card:hover { box-shadow: var(--shadow-md); }
+
+        .tp-badge {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            background: rgba(10, 25, 47, 0.85);
+            color: #F3E5AB;
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            border-radius: 4px;
+            border: 1px solid var(--accent);
+        }
+
+        .team-info { padding: 25px; }
+        .team-name { font-size: 1.3rem; color: var(--primary); margin-bottom: 4px; }
+        .team-role { color: var(--accent); font-weight: 600; font-size: 0.88rem; margin-bottom: 12px; display: block; }
+        .team-desc { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 15px; }
+
+        .team-credentials {
+            background: var(--bg-light);
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.82rem;
+            color: var(--text-dark);
+            border-left: 3px solid var(--accent);
+        }
+
+        /* Real Metrics & Reviews */
+        .stats-reviews-section { padding: 80px 0; background: var(--primary); color: #ffffff; }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .stat-item h3 { font-size: 2.8rem; color: var(--accent); line-height: 1; margin-bottom: 8px; }
+        .stat-item p { font-size: 0.95rem; color: rgba(255, 255, 255, 0.8); }
+
+        .google-reviews-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(197, 160, 89, 0.4);
+            border-radius: var(--radius);
+            padding: 35px;
+        }
+
+        .google-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .stars { color: #F59E0B; font-size: 1.2rem; letter-spacing: 2px; }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .review-card {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 20px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+
+        .review-author { font-weight: 600; color: var(--accent); margin-top: 10px; font-size: 0.85rem; }
+
+        /* Fee Transparency Section */
+        .fees-section { padding: 80px 0; background-color: var(--bg-white); }
+
+        .fee-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .fee-step-card {
+            border: 1px solid var(--border-color);
+            padding: 30px;
+            border-radius: var(--radius);
+            position: relative;
+            background: var(--bg-light);
+        }
+
+        .step-num {
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: var(--accent);
+            color: #fff;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .fee-step-card h3 { margin-top: 10px; margin-bottom: 10px; color: var(--primary); font-size: 1.15rem; }
+        .fee-step-card p { font-size: .9rem; color: var(--text-dark); }
+
+        /* Blog Section */
+        .blog-section { padding: 90px 0; background-color: var(--bg-light); }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .blog-card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            background: var(--bg-white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .blog-img {
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .blog-content { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+
+        .blog-meta {
+            font-size: 0.78rem;
+            color: var(--accent);
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .blog-title { font-size: 1.1rem; color: var(--primary); margin-bottom: 10px; line-height: 1.4; }
+        .blog-excerpt { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 15px; }
+
+        .blog-card-actions { display: flex; gap: 8px; margin-top: auto; padding-top: 8px; }
+
+        .blog-read-btn {
+            border: 0;
+            cursor: pointer;
+            background: transparent;
+            padding: 0;
+            font: inherit;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        /* Contact & Map */
+        .contact-section { padding: 90px 0; background-color: var(--bg-white); }
+
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+
+        .contact-form {
+            background: var(--bg-light);
+            padding: 35px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+        }
+
+        .form-group { margin-bottom: 20px; }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.15);
+        }
+
+        .map-container {
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            height: 100%;
+            min-height: 400px;
+        }
+
+        .map-container iframe { width: 100%; height: 100%; border: 0; }
+
+        /* FAQ */
+        .faq-section { padding: 80px 0; background-color: var(--bg-light); }
+
+        .faq-accordion {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .faq-item {
+            background: var(--bg-white);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px;
+            font-weight: 600;
+            color: var(--primary);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .faq-answer {
+            padding: 0 20px 20px 20px;
+            font-size: 0.92rem;
+            color: var(--text-dark);
+            display: none;
+            line-height: 1.7;
+        }
+
+        .faq-item.active .faq-answer { display: block; }
+        .faq-item.active .faq-toggle { transform: rotate(180deg); }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 70px 0 30px 0;
+            font-size: 0.9rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-col h4 {
+            color: #ffffff;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 30px;
+            height: 2px;
+            background: var(--accent);
+        }
+
+        .footer-links li { margin-bottom: 10px; }
+        .footer-links a:hover { color: var(--accent); }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            font-size: 0.82rem;
+        }
+
+        /* Team carousel */
+        .team-carousel-wrap { position: relative; }
+
+        .team-carousel {
+            display: flex;
+            gap: 24px;
+            overflow-x: auto;
+            padding: 8px 4px 18px;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+        }
+
+        .team-carousel::-webkit-scrollbar { height: 8px; }
+        .team-carousel::-webkit-scrollbar-thumb {
+            background: rgba(197, 160, 89, 0.5);
+            border-radius: 999px;
+        }
+
+        .team-card {
+            flex: 0 0 min(360px, 82vw);
+            scroll-snap-align: start;
+            display: flex;
+            flex-direction: column;
+            min-height: 100%;
+        }
+
+        .team-photo-wrap {
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            background: linear-gradient(135deg, #172A45 0%, #0A192F 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+        }
+
+        .team-fallback {
+            display: none;
+            position: absolute;
+            inset: 0;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cinzel', serif;
+            font-size: 4rem;
+            letter-spacing: 0.08em;
+            color: var(--accent);
+            background: radial-gradient(circle at 50% 35%, rgba(197,160,89,.16), transparent 38%), linear-gradient(135deg,#172A45 0%,#0A192F 100%);
+        }
+
+        .team-photo-wrap.image-fallback .team-fallback { display: flex; }
+
+        .carousel-control {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            border: 1px solid rgba(197,160,89,.75);
+            background: rgba(10,25,47,.92);
+            color: var(--accent);
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 4;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+        }
+
+        .carousel-control:hover {
+            background: var(--accent);
+            color: var(--primary);
+            transform: translateY(-50%) scale(1.06);
+        }
+
+        .carousel-control.prev { left: -22px; }
+        .carousel-control.next { right: -22px; }
+
+        .carousel-hint {
+            text-align: center;
+            margin-top: 12px;
+            font-size: .82rem;
+            color: var(--text-muted);
+        }
+
+        /* Blog admin */
+        .blog-toolbar { display: flex; justify-content: flex-end; margin: -22px 0 28px; }
+
+        .admin-btn {
+            font-size: .82rem;
+            padding: 9px 14px;
+            background: transparent;
+            color: var(--text-muted);
+            border: 1px dashed var(--border-color);
+            border-radius: 999px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .admin-btn:hover {
+            color: var(--primary);
+            border-color: var(--accent);
+            background: rgba(197,160,89,.08);
+        }
+
+        .blog-modal, .article-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(2, 12, 27, .72);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 2000;
+        }
+
+        .blog-modal.open, .article-modal.open { display: flex; }
+
+        .modal-dialog {
+            width: min(760px, 100%);
+            max-height: 90vh;
+            overflow: auto;
+            background: var(--bg-white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .modal-header {
+            padding: 24px 28px 12px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .modal-header h3 { color: var(--primary); margin: 0; }
+
+        .modal-close {
+            border: 0;
+            background: transparent;
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            cursor: pointer;
+        }
+
+        .modal-body { padding: 24px 28px 30px; }
+
+        .admin-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .admin-form-grid .full { grid-column: 1 / -1; }
+
+        .image-preview {
+            margin-top: 10px;
+            width: 100%;
+            height: 180px;
+            border: 1px dashed var(--border-color);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            color: var(--text-muted);
+            background: var(--bg-light);
+            font-size: .85rem;
+        }
+
+        .image-preview img { width: 100%; height: 100%; object-fit: cover; }
+
+        .article-content h2, .article-content h3 { margin: 18px 0 10px; color: var(--primary); }
+        .article-content p { margin-bottom: 14px; color: var(--text-dark); }
+
+        .article-date { color: var(--accent); font-size: .85rem; font-weight: 600; margin-bottom: 14px; }
+
+        .empty-state {
+            grid-column: 1 / -1;
+            padding: 30px;
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        .blog-admin-shell { display: grid; gap: 22px; }
+
+        .editor-section {
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            background: var(--bg-white);
+            padding: 18px;
+        }
+
+        .editor-section h4 { color: var(--primary); font-size: 1rem; margin-bottom: 14px; }
+
+        .editor-section-subtitle { color: var(--text-muted); font-size: .82rem; margin: -6px 0 14px; }
+
+        .rich-toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            padding: 8px;
+            border: 1px solid var(--border-color);
+            border-bottom: 0;
+            border-radius: 6px 6px 0 0;
+            background: var(--bg-light);
+        }
+
+        .rich-toolbar button {
+            border: 1px solid var(--border-color);
+            background: #fff;
+            color: var(--primary);
+            border-radius: 5px;
+            min-width: 34px;
+            height: 32px;
+            cursor: pointer;
+            font: 600 .8rem 'Inter', sans-serif;
+        }
+
+        .rich-toolbar button:hover { border-color: var(--accent); color: var(--accent); }
+
+        .rich-editor {
+            width: 100%;
+            min-height: 260px;
+            padding: 14px;
+            border: 1px solid var(--border-color);
+            border-radius: 0 0 6px 6px;
+            background: #fff;
+            color: var(--text-dark);
+            font: 0.95rem/1.7 'Inter', sans-serif;
+            outline: none;
+            overflow: auto;
+        }
+
+        .rich-editor:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(197,160,89,.15); }
+
+        .rich-editor p { margin: 0 0 14px; }
+        .rich-editor h2, .rich-editor h3 { margin: 18px 0 10px; color: var(--primary); }
+        .rich-editor ul, .rich-editor ol { margin: 0 0 14px 20px; }
+
+        .seo-panel { background: linear-gradient(180deg, rgba(10,25,47,.025), rgba(197,160,89,.04)); }
+
+        .seo-layout {
+            display: grid;
+            grid-template-columns: minmax(0,1.1fr) minmax(300px,.9fr);
+            gap: 20px;
+            align-items: start;
+        }
+
+        .seo-field-note {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            margin-top: 6px;
+            font-size: .77rem;
+            color: var(--text-muted);
+        }
+
+        .seo-counter { font-weight: 700; }
+
+        .google-preview {
+            border: 1px solid #d9dee7;
+            border-radius: 8px;
+            background: #fff;
+            padding: 16px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .google-preview-label {
+            font-size: .75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .snippet-title { color: #1a0dab; font-size: 1.1rem; line-height: 1.35; margin-bottom: 3px; font-weight: 500; }
+        .snippet-url { color: #188038; font-size: .82rem; line-height: 1.4; margin-bottom: 5px; overflow-wrap: anywhere; }
+        .snippet-description { color: #4d5156; font-size: .86rem; line-height: 1.55; }
+
+        .seo-score { display: flex; align-items: center; gap: 9px; margin: 14px 0 10px; font-weight: 700; color: var(--primary); }
+
+        .seo-light { width: 14px; height: 14px; border-radius: 50%; background: #94a3b8; box-shadow: 0 0 0 4px rgba(148,163,184,.12); }
+        .seo-light.red { background: #dc2626; box-shadow: 0 0 0 4px rgba(220,38,38,.12); }
+        .seo-light.yellow { background: #f59e0b; box-shadow: 0 0 0 4px rgba(245,158,11,.12); }
+        .seo-light.green { background: #16a34a; box-shadow: 0 0 0 4px rgba(22,163,74,.12); }
+
+        .seo-checks { display: grid; gap: 8px; }
+
+        .seo-check {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 10px;
+            border-radius: 6px;
+            background: var(--bg-light);
+            font-size: .82rem;
+            color: var(--text-dark);
+        }
+
+        .seo-check .dot { width: 9px; height: 9px; border-radius: 50%; background: #94a3b8; flex: 0 0 auto; }
+        .seo-check.ok .dot { background: #16a34a; }
+        .seo-check.fail .dot { background: #dc2626; }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 3px 8px;
+            border-radius: 999px;
+            font-size: .72rem;
+            font-weight: 700;
+            border: 1px solid var(--border-color);
+        }
+
+        .status-badge.published { color: #166534; background: #f0fdf4; border-color: #bbf7d0; }
+        .status-badge.draft { color: #92400e; background: #fffbeb; border-color: #fde68a; }
+
+        .admin-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .admin-row:last-child { border-bottom: 0; }
+        .admin-row-info { min-width: 0; }
+        .admin-row-title { font-weight: 700; color: var(--primary); overflow-wrap: anywhere; }
+        .admin-row-meta { font-size: .78rem; color: var(--text-muted); margin-top: 3px; }
+        .admin-row-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+
+        .admin-mini-btn {
+            border: 1px solid var(--border-color);
+            background: #fff;
+            color: var(--primary);
+            border-radius: 6px;
+            padding: 7px 10px;
+            cursor: pointer;
+            font-size: .78rem;
+            font-weight: 600;
+        }
+
+        .admin-mini-btn:hover { border-color: var(--accent); color: var(--accent); }
+        .admin-mini-btn.danger { color: #b91c1c; }
+
+        #blogLoginModal .modal-dialog { width: min(420px, 100%); }
+
+        .login-error {
+            display: none;
+            color: #b91c1c;
+            font-size: .85rem;
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            padding: 10px 12px;
+            border-radius: 6px;
+            margin-bottom: 14px;
+        }
+
+        .login-error.show { display: block; }
+
+        .article-content-wrap { display: grid; gap: 16px; }
+        .article-content-wrap .article-featured {
+            width: 100%;
+            max-height: 390px;
+            object-fit: cover;
+            object-position: center top;
+            border-radius: 8px;
+        }
+
+        .article-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+
+        .article-tag {
+            display: inline-flex;
+            padding: 4px 8px;
+            border-radius: 999px;
+            background: rgba(197,160,89,.1);
+            color: var(--primary);
+            font-size: .74rem;
+            border: 1px solid rgba(197,160,89,.25);
+        }
+
+        .article-body-rich p { margin: 0 0 14px; }
+        .article-body-rich h2, .article-body-rich h3 { margin: 22px 0 10px; color: var(--primary); }
+        .article-body-rich ul, .article-body-rich ol { margin: 0 0 16px 22px; }
+        .article-body-rich a { color: var(--accent); text-decoration: underline; }
+
+        @media (max-width: 1100px) {
+            .nav-links { gap: 14px; }
+            .nav-links a { font-size: 0.85rem; }
+            .navbar > .btn { padding: 10px 16px; font-size: 0.85rem; }
+        }
+
+        @media (max-width: 992px) {
+            .hero-grid, .contact-grid, .footer-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .hero-title { font-size: 2.2rem; }
+            .carousel-control.prev { left: 6px; }
+            .carousel-control.next { right: 6px; }
+            .navbar { padding-top: 46px; }
+        }
+
+        @media (max-width: 900px) { .seo-layout { grid-template-columns: 1fr; } }
+
+        @media (max-width: 640px) {
+            .team-card { flex-basis: 88vw; }
+            .admin-form-grid { grid-template-columns: 1fr; }
+            .admin-form-grid .full { grid-column: auto; }
+            .modal-header, .modal-body { padding-left: 18px; padding-right: 18px; }
+            .blog-toolbar { justify-content: center; margin-top: -14px; }
+            .logo-text h2 { font-size: 1rem; }
+            .logo-text span { font-size: 0.65rem; letter-spacing: 1px; }
+            .logo-icon { width: 48px; height: 48px; }
+        }
+    </style>
+
+    <!-- FAQPage structured data for SEO/GEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Puedo realizar un proceso legal en Colombia si vivo en el exterior o soy extranjero?",
+          "acceptedAnswer": {"@type": "Answer", "text": "Sí, 100% remoto. Representamos a ciudadanos extranjeros y colombianos residentes en el exterior (EE. UU., Europa, Latinoamérica) sin necesidad de que viajen a Colombia. Mediante poderes especiales otorgados ante consulados o apostillados, e implementando las normas de justicia digital (Ley 2213 de 2022), gestionamos trámites notariales, audiencias virtuales y pleitos judiciales en todo el territorio colombiano."}
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo es la modalidad de la primera consulta jurídica?",
+          "acceptedAnswer": {"@type": "Answer", "text": "Ofrecemos consultas presenciales en nuestra sede principal ubicada en El Poblado (Calle 10 #42-45, Medellín) y consultas virtuales vía videollamada para clientes en cualquier ciudad de Colombia o en el extranjero. En esta sesión analítica evaluamos la documentación previa y trazamos la hoja de ruta estratégica del caso."}
+        },
+        {
+          "@type": "Question",
+          "name": "¿En qué ciudades y regiones representan casos judiciales?",
+          "acceptedAnswer": {"@type": "Answer", "text": "Asumimos representación judicial en toda Colombia. Nuestra sede principal se encuentra en Medellín (con presencia constante en el Valle de Aburrá y Oriente Antioqueño), y mediante litigio digital y apoderamiento operamos directamente ante juzgados, tribunales de todo el país."}
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo se maneja la Restitución Internacional de Menores bajo el Convenio de La Haya?",
+          "acceptedAnswer": {"@type": "Answer", "text": "La sustracción o retención ilícita de un menor exige actuación inmediata. Aplicamos el Convenio de La Haya de 1980 en coordinación con el Instituto Colombiano de Bienestar Familiar (ICBF) y los Juzgados de Familia para procurar el retorno seguro del menor a su país de residencia habitual, analizando de forma rigurosa las excepciones legales previstas en el mismo convenio (tales como riesgo grave, integración o negativa fundamentada del menor)."}
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuánto tiempo demora la resolución de un proceso legal en Colombia?",
+          "acceptedAnswer": {"@type": "Answer", "text": "Los tiempos varían según la vía e instancia legal: los trámites notariales por mutuo acuerdo (divorcios o sucesiones) suelen resolverse en un promedio de 15 a 45 días hábiles, dependiendo de la carga de trabajo y tiempos de respuesta de la notaría asignada. Los litigios contenciosos ante Jueces de la República dependen de la carga procesal del juzgado, la práctica de pruebas y el desarrollo de audiencias del Código General del Proceso."}
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué blindaje legal ofrecen para la compra de propiedades e inversión inmobiliaria?",
+          "acceptedAnswer": {"@type": "Answer", "text": "Realizamos estudios minuciosos de títulos de tradición (20 años), verificación de gravámenes, embargos o limitaciones al dominio, y redactamos o auditamos la promesa de compraventa. Protegemos el capital de compradores e inversionistas antes de que realicen cualquier desembolso o firma de escritura pública."}
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo se estructuran los honorarios y qué facilidades de pago ofrecen?",
+          "acceptedAnswer": {"@type": "Answer", "text": "Operamos bajo una Política de Honorarios Transparentes y Cero Costos Ocultos. Entregamos cotizaciones por escrito con tarifas fijas o esquema de cuota de litis (porcentaje sobre resultados en los casos que legalmente aplique). Aceptamos transferencias bancarias locales y giros internacionales para clientes en el exterior."}
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué garantía tengo de que mi caso es viable antes de iniciar una demanda?",
+          "acceptedAnswer": {"@type": "Answer", "text": "En el Diagnóstico Estratégico Inicial evaluamos los antecedentes y la jurisprudencia aplicable. Si su caso carece de viabilidad jurídica o los riesgos económicos superan los beneficios, se lo indicaremos con absoluta honestidad ética antes de que incurra en gastos judiciales o contractuales."}
+        },
+        {
+          "@type": "Question",
+          "name": "¿Brindan asesoría jurídica permanente a empresas en Colombia?",
+          "acceptedAnswer": {"@type": "Answer", "text": "Sí. Ofrecemos asesoría permanente a empresas en Colombia en asuntos laborales, contractuales, societarios y corporativos. Acompañamos el cumplimiento normativo diario, redacción de contratos mercantiles, estructuración de acuerdos de socios y representación en litigios ante la jurisdicción ordinaria y la Superintendencia de Sociedades."}
+        }
+      ]
+    }
+    </script>
+</head>
+<body>
+
+    <!-- HEADER / NAVIGATION -->
+    <header>
+        <div class="container navbar">
+            <a href="#" class="logo-container">
+                <div class="logo-icon">
+                    <img src="https://masabogados.com.co/wp-content/uploads/2025/01/logo-e1736541582609.webp"
+                         width="100" height="45"
+                         alt="MÁS Abogados - Martínez & Asociados">
+                </div>
+                <div class="logo-text">
+                    <h2>MARTÍNEZ & ASOCIADOS</h2>
+                    <span>MÁS ABOGADOS S.A.S.</span>
+                </div>
+            </a>
+
+            <nav class="nav-links" aria-label="Navegación principal">
+                <a href="#inicio">Inicio</a>
+                <a href="#nosotros">Nosotros</a>
+                <a href="#equipo">Equipo Legal</a>
+                <a href="#servicios">Áreas de Práctica</a>
+                <a href="#honorarios">Honorarios</a>
+                <a href="#blog">Blog</a>
+                <a href="#contacto">Contacto</a>
+            </nav>
+
+            <a href="#contacto" class="btn btn-accent">Solicitar Consulta</a>
+
+            <!-- Selector de idioma reubicado en la esquina superior derecha -->
+            <div class="lang-switch" role="group" aria-label="Cambiar idioma">
+                <a href="#" class="active" hreflang="es" aria-current="true">ES</a>
+                <a href="/en/" hreflang="en">EN</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="inicio">
+        <div class="container hero-grid">
+            <div>
+                <div class="hero-badge">
+                    <span>✓ Abogados con Tarjeta Profesional vigente ante el Consejo Superior de la Judicatura</span>
+                </div>
+                <h1 class="hero-title">Firma de Abogados en Medellín | Especialistas en Derecho Civil, Derecho de Familia, Derecho Penal.</h1>
+                <p class="hero-subtitle">
+                    En Martínez & Asociados - MÁS ABOGADOS transformamos sus conflictos en tranquilidad jurídica. Más de 16 años de experiencia liderando procesos en Derecho de Familia, Civil, Penal, Corporativo (Societario) y Minero en Medellín y Colombia.
+                </p>
+                <div class="hero-cta">
+                    <a href="https://wa.me/573041207516" target="_blank" rel="noopener" class="btn btn-accent">💬 Agendar Asesoría Legal por WhatsApp</a>
+                    <a href="#equipo" class="btn btn-outline" style="color:#ffffff; border-color:#ffffff;">Ver Nuestro Equipo</a>
+                </div>
+            </div>
+            <div class="hero-card">
+                <h3>Garantía de Respaldo Profesional</h3>
+                <ul class="hero-feature-list">
+                    <li>
+                        <svg width="18" height="18" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+                        <span>Equipo de Abogados Titulados con Tarjeta Profesional Vigente</span>
+                    </li>
+                    <li>
+                        <svg width="18" height="18" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+                        <span>Transparencia Total en Honorarios y Viabilidad Real de su Caso</span>
+                    </li>
+                    <li>
+                        <svg width="18" height="18" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+                        <span>Respuesta y Atención Personalizada en Menos de 24 Horas Hábiles</span>
+                    </li>
+                    <li>
+                        <svg width="18" height="18" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+                        <span>Atención Presencial en El Poblado (Medellín) o Virtual en Toda Colombia</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- KEY FEATURES SECTION -->
+    <section class="features-section" id="nosotros">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Por Qué Elegirnos</span>
+                <h2 class="section-title">Compromiso Ético y Rigor Jurídico</h2>
+                <p class="section-subtitle">Diseñamos estrategias a la medida de sus necesidades particulares o empresariales.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Rigor Investigativo</h3>
+                    <p>Profundizamos en los antecedentes y elementos probatorios de cada caso para construir conceptos y defensas jurídicas sólidas.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤝</div>
+                    <h3>Atención Personalizada</h3>
+                    <p>Su proceso no se delega en personal sin experiencia. Es gestionado directamente por abogados especialistas dedicados.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Honorarios Transparentes</h3>
+                    <p>Cotizaciones claras y por escrito desde el primer día. Facilidad de pagos por etapas del proceso procesal.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Comunicación Constante</h3>
+                    <p>Le mantenemos informado del estado de sus actuaciones notariales y judiciales de forma continua y oportuna.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRACTICE AREAS -->
+    <section class="services-section" id="servicios">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Nuestra Especialización</span>
+                <h2 class="section-title">Áreas de Práctica Jurídica</h2>
+                <p class="section-subtitle">Defendemos su patrimonio, su empresa y el bienestar de su familia con total cobertura legal.</p>
+            </div>
+            <div class="services-grid">
+
+                <div class="service-card">
+                    <div class="service-header"><h3>Derecho de Familia</h3></div>
+                    <div class="service-body">
+                        <ul class="service-list">
+                            <li>✓ Divorcios notariales y judiciales</li>
+                            <li>✓ Liquidación de sociedad conyugal</li>
+                            <li>✓ Custodia y régimen de visitas</li>
+                            <li>✓ Fijación y aumento de alimentos</li>
+                            <li>✓ Procesos de sucesión y herencias</li>
+                        </ul>
+                        <a href="#contacto" class="service-link">Consultar caso de familia →</a>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-header"><h3>Derecho Civil</h3></div>
+                    <div class="service-body">
+                        <ul class="service-list">
+                            <li>✓ Elaboración y revisión de contratos</li>
+                            <li>✓ Responsabilidad civil contractual</li>
+                            <li>✓ Cobro persuasivo y coactivo de cartera</li>
+                            <li>✓ Procesos ejecutivos y de restitución</li>
+                            <li>✓ Indemnización de perjuicios</li>
+                        </ul>
+                        <a href="#contacto" class="service-link">Consultar caso civil →</a>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-header"><h3>Derecho Inmobiliario</h3></div>
+                    <div class="service-body">
+                        <ul class="service-list">
+                            <li>✓ Estudio técnico de títulos</li>
+                            <li>✓ Promesas de compraventa seguras</li>
+                            <li>✓ Asesoría en arrendamientos urbanos</li>
+                            <li>✓ Saneamiento de propiedades</li>
+                            <li>✓ Acompañamiento en notaría</li>
+                        </ul>
+                        <a href="#contacto" class="service-link">Consultar caso inmobiliario →</a>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-header"><h3>Consultoría Empresarial</h3></div>
+                    <div class="service-body">
+                        <ul class="service-list">
+                            <li>✓ Constitución de sociedades (S.A.S.)</li>
+                            <li>✓ Asesoría laboral patronal preventiva</li>
+                            <li>✓ Registro de marcas y propiedad intelectual</li>
+                            <li>✓ Gobierno corporativo y pacto de socios</li>
+                            <li>✓ Reorganización e insolvencia</li>
+                        </ul>
+                        <a href="#contacto" class="service-link">Consultar caso empresarial →</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- TEAM SECTION -->
+    <section class="team-section" id="equipo">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Respaldos Verificables</span>
+                <h2 class="section-title">Nuestro Equipo Legal</h2>
+                <p class="section-subtitle">10 abogados con perfiles especializados para acompañar asuntos civiles, familiares, penales, corporativos, inmobiliarios, laborales y minero-ambientales.</p>
+            </div>
+
+            <div class="team-carousel-wrap">
+                <button class="carousel-control prev" type="button" aria-label="Abogados anteriores">‹</button>
+                <div class="team-carousel" id="teamCarousel">
+
+                    <article class="team-card">
+                        <div class="team-photo-wrap">
+                            <img class="team-photo" src="Andres_Martinez.jpg" alt="Dr. Andres Felipe Martínez Arredondo" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('image-fallback');">
+                            <span class="team-fallback">AM</span>
+                            <span class="tp-badge">T.P. vigente · C.S.J.</span>
+                        </div>
+                        <div class="team-info">
+                            <h3 class="team-name">Dr. Andres Felipe Martínez Arredondo</h3>
+                            <span class="team-role">Socio Director - Abogado</span>
+                            <p class="team-desc">Especialista en Derecho Procesal y Técnicas de Litigación – Derecho de Familia – Derecho Civil.</p>
+                            <div class="team-credentials">⚖️ Procesal · Familia · Civil</div>
+                        </div>
+                    </article>
+
+                    <article class="team-card">
+                        <div class="team-photo-wrap">
+                            <img class="team-photo" src="Patricia_Montoya.jpg" alt="Dra. Patricia Montoya Ruiz" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('image-fallback');">
+                            <span class="team-fallback">PM</span>
+                            <span class="tp-badge">T.P. vigente · C.S.J.</span>
+                        </div>
+                        <div class="team-info">
+                            <h3 class="team-name">Dra. Patricia Montoya Ruiz</h3>
+                            <span class="team-role">Asociada Senior</span>
+                            <p class="team-desc">Especialista en Derecho Societario y Derecho Corporativo.</p>
+                            <div class="team-credentials">🏢 Societario · Corporativo</div>
+                        </div>
+                    </article>
+
+                    <article class="team-card">
+                        <div class="team-photo-wrap">
+                            <img class="team-photo" src="Feerney_Montoya.jpg" alt="Dr. Ferney Montoya" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('image-fallback');">
+                            <span class="team-fallback">FM</span>
+                            <span class="tp-badge">T.P. vigente · C.S.J.</span>
+                        </div>
+                        <div class="team-info">
+                            <h3 class="team-name">Dr. Ferney Montoya</h3>
+                            <span class="team-role">Asociado</span>
+                            <p class="team-desc">Especialista en Derecho Procesal Penal y Técnicas de Litigación.</p>
+                            <div class="team-credentials">⚖️ Penal · Litigación</div>
+                        </div>
+                    </article>
+
+                    <article class="team-card">
+                        <div class="team-photo-wrap">
+                            <img class="team-photo" src="Alberto Zapata.jpg" alt="Dr. Alberto Zapata" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('image-fallback');">
+                            <span class="team-fallback">AZ</span>
+                            <span class="tp-badge">T.P. vigente · C.S.J.</span>
+                        </div>
+                        <div class="team-info">
+                            <h3 class="team-name">Dr. Alberto Zapata</h3>
+                            <span class="team-role">Asociado</span>
+                            <p class="team-desc">Especialista en Derecho de Familia – Psicólogo Forense.</p>
+                            <div class="team-credentials">👨‍👩‍👧 Familia · Psicología Forense</div>
+                        </div>
+                    </article>
+
+                    <article class="team-card">
+                        <div class="team-photo-wrap">
+                            <img class="team-photo" src="Valentina_Hernandez.jpg" alt="Dra. Valentina Hernández" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('image-fallback');">
+                            <span class="team-fallback">VH</span>
+                            <span class="tp-badge">T.P. vigente · C.S.J.</span>
+                        </div>
+                        <div class="team-info">
+                            <h3 class="team-name">Dra. Valentina Hernández</h3>
+                            <span class="team-role">Asociada</span>
+                            <p class="team-desc">Especialista en Derecho Minero Ambiental – Derecho de Seguros.</p>
+                            <div class="team-credentials">⛏️ Minero Ambiental · Seguros</div>
+                        </div>
+                    </article>
+
+                    <article class="team-card">
+                        <div class="team-photo-wrap">
+                            <img class="team-photo" src="santiago_sierra.jpg" alt="Dr. Santiago Sierra Echavarría" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('image-fallback');">
+                            <span class="team-fallback">SS</span>
+                            <span class="tp-badge">T.P. vigente · C.S.J.</span>
+                        </div>
+                        <div class="team-info">
+                            <h3 class="team-name">Dr. Santiago Sierra Echavarría</h3>
+                            <span class="team-role">Socio</span>
+                            <p class="team-desc">Especialista en Derecho Inmobiliario, Notarial y Estudio de Títulos.</p>
+                            <div class="team-credentials">🏠 Inmobiliario · Notarial · Títulos</div>
+                        </div>
+                    </article>
+
+                    <article class="team-card">
+                        <div class="team-photo-wrap">
+                            <img class="team-photo" src="maria_camila_londono.jpg" alt="Dra. María Camila Londoño Gutiérrez" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('image-fallback');">
+                            <span class="team-fallback">ML</span>
+                            <span class="tp-badge">T.P. vigente · C.S.J.</span>
+                        </div>
+                        <div class="team-info">
+                            <h3 class="team-name">Dra. María Camila Londoño Gutiérrez</h3>
+                            <span class="team-role">Asociada Senior</span>
+                            <p class="team-desc">Especialista en Derecho de Familia y Restitución Internacional de Menores (Convenio de La Haya).</p>
+                            <div class="team-credentials">🌎 Familia · Restitución Internacional</div>
+                        </div>
+                    </article>
+
+                    <article class="team-card">
+                        <div class="team-photo-wrap">
+                            <img class="team-photo" src="mateo_uribe.jpg" alt="Dr. Mateo Uribe Villegas" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('image-fallback');">
+                            <span class="team-fallback">MU</span>
+                            <span class="tp-badge">T.P. vigente · C.S.J.</span>
+                        </div>
+                        <div class="team-info">
+                            <h3 class="team-name">Dr. Mateo Uribe Villegas</h3>
+                            <span class="team-role">Asociado</span>
+                            <p class="team-desc">Especialista en Derecho Laboral.</p>
+                            <div class="team-credentials">👔 Laboral</div>
+                        </div>
+                    </article>
+
+                    <article class="team-card">
+                        <div class="team-photo-wrap">
+                            <img class="team-photo" src="daniela_gaviria.jpg" alt="Dra. Daniela Gaviria Vélez" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('image-fallback');">
+                            <span class="team-fallback">DG</span>
+                            <span class="tp-badge">T.P. vigente · C.S.J.</span>
+                        </div>
+                        <div class="team-info">
+                            <h3 class="team-name">Dra. Daniela Gaviria Vélez</h3>
+                            <span class="team-role">Asociada</span>
+                            <p class="team-desc">Especialista en Penal Económico y Corporativo (Ley 906 de 2004).</p>
+                            <div class="team-credentials">⚖️ Penal Económico · Corporativo</div>
+                        </div>
+                    </article>
+
+                    <article class="team-card">
+                        <div class="team-photo-wrap">
+                            <img class="team-photo" src="alejandro_jaramillo.jpg" alt="Dr. Alejandro Jaramillo Correa" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('image-fallback');">
+                            <span class="team-fallback">AJ</span>
+                            <span class="tp-badge">T.P. vigente · C.S.J.</span>
+                        </div>
+                        <div class="team-info">
+                            <h3 class="team-name">Dr. Alejandro Jaramillo Correa</h3>
+                            <span class="team-role">Asociado Senior</span>
+                            <p class="team-desc">Especialista en Reorganización Empresarial, Insolvencia (Ley 1116) y Contratación Mercantil.</p>
+                            <div class="team-credentials">🏢 Reorganización · Insolvencia · Mercantil</div>
+                        </div>
+                    </article>
+
+                </div>
+                <button class="carousel-control next" type="button" aria-label="Siguientes abogados">›</button>
+            </div>
+            <p class="carousel-hint">Deslice para explorar el equipo · También puede usar las flechas laterales.</p>
+        </div>
+    </section>
+
+    <!-- METRICS & GOOGLE REVIEWS -->
+    <section class="stats-reviews-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>16+</h3>
+                    <p>Años de Experiencia en Medellín</p>
+                </div>
+                <div class="stat-item">
+                    <h3>+850</h3>
+                    <p>Procesos Judiciales y Notariales Exitosos</p>
+                </div>
+                <div class="stat-item">
+                    <h3>+90%</h3>
+                    <p>Satisfacción de Nuestros Clientes</p>
+                </div>
+                <div class="stat-item">
+                    <h3>&lt; 24h</h3>
+                    <p>Tiempo de Respuesta Inicial</p>
+                </div>
+            </div>
+
+            <div class="google-reviews-box">
+                <div class="google-header">
+                    <div>
+                        <h3 style="font-size: 1.4rem; color: #fff;">Opiniones Reales de Nuestros Clientes</h3>
+                        <p style="font-size: 0.9rem; color: rgba(255,255,255,0.8);">
+                            Calificación verificada en Google My Business ·
+                            <a href="https://share.google/EwWkTajS1k0AuGkxu" target="_blank" rel="noopener" style="color:var(--accent); text-decoration:underline;">Ver ficha oficial en Google</a>
+                        </p>
+                    </div>
+                    <div style="text-align: right;">
+                        <span class="stars">★★★★★</span>
+                        <span style="display: block; font-size: 0.9rem; color: var(--accent);">4.9 / 5.0 (Más de 150 reseñas)</span>
+                    </div>
+                </div>
+                <div class="reviews-grid">
+                    <div class="review-card">
+                        <p>"Excelente servicio en la revisión de la compra de mi apartamento en El Poblado. El estudio de títulos fue impecable y nos evitaron una estafa."</p>
+                        <div class="review-author">— Mauricio G. (Cliente Inmobiliario)</div>
+                    </div>
+                    <div class="review-card">
+                        <p>"Manejo de mi proceso de divorcio notarial de manera humana y súper ágil. Todo quedó resuelto con claridad de honorarios desde el día uno."</p>
+                        <div class="review-author">— Patricia R. (Cliente Derecho de Familia)</div>
+                    </div>
+                    <div class="review-card">
+                        <p>"Asesoría constante para nuestra empresa en contratos laborales y marcas. Respuestas oportunas y un trato verdaderamente profesional."</p>
+                        <div class="review-author">— Innova Tech S.A.S. (Consultoría Empresarial)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEE TRANSPARENCY SECTION -->
+    <section class="fees-section" id="honorarios">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Claridad Financiera</span>
+                <h2 class="section-title">Nuestra Política de Honorarios Transparentes</h2>
+                <p class="section-subtitle">Sin cobros sorpresa ni letras pequeñas. Trabajamos con tarifas estructuradas y planes adaptados.</p>
+            </div>
+            <div class="fee-steps">
+                <div class="fee-step-card">
+                    <div class="step-num">1</div>
+                    <h3>Diagnóstico Estratégico de Viabilidad</h3>
+                    <p>Analizamos los antecedentes documentales y normativos de su caso. Le entregamos un concepto jurídico honesto sobre la viabilidad real del proceso antes de que realice cualquier inversión económica.</p>
+                </div>
+                <div class="fee-step-card">
+                    <div class="step-num">2</div>
+                    <h3>Propuesta Económica Clara (Fija o Cuota de Litis)</h3>
+                    <p>Reciba una cotización por escrito con tarifas fijas claras o bajo la modalidad de cuota de litis (porcentaje sobre el valor recuperado o ganado en los procesos que legalmente aplique).</p>
+                </div>
+                <div class="fee-step-card">
+                    <div class="step-num">3</div>
+                    <h3>Contrato Escrito y Desglose de Expensas</h3>
+                    <p>Suscribimos un Contrato de Prestación de Servicios Jurídicos donde se diferencian claramente los honorarios de los abogados y los términos y condiciones para ambas partes.</p>
+                </div>
+                <div class="fee-step-card">
+                    <div class="step-num">4</div>
+                    <h3>Planes de Pagos por Hitos Procesales</h3>
+                    <p>Ofrecemos facilidades de pago diferidas según el avance efectivo de cada etapa del trámite (radicación, audiencias, fallos judiciales o escrituración notarial).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BLOG SECTION -->
+    <section class="blog-section" id="blog">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Actualidad Jurídica</span>
+                <h2 class="section-title">Blog Legal y Guías Prácticas</h2>
+                <p class="section-subtitle">Manténgase informado sobre las leyes y normativas en Colombia.</p>
+            </div>
+            <div class="blog-toolbar">
+                <button class="admin-btn" id="openBlogAdmin" type="button">🛠️ Administrar Blog</button>
+            </div>
+            <div class="blog-grid" id="blogGrid" aria-live="polite"></div>
+        </div>
+    </section>
+
+    <!-- LOGIN MODAL -->
+    <div class="blog-modal" id="blogLoginModal" role="dialog" aria-modal="true" aria-labelledby="blogLoginTitle">
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <div>
+                    <h3 id="blogLoginTitle">Acceso al Panel de Administración</h3>
+                    <p style="font-size:.78rem;color:var(--text-muted);margin-top:4px;">Ingresa tus credenciales para gestionar el blog.</p>
+                </div>
+                <button class="modal-close" id="closeBlogLogin" type="button" aria-label="Cerrar">×</button>
+            </div>
+            <div class="modal-body">
+                <form id="blogLoginForm" novalidate>
+                    <div class="form-group">
+                        <label for="loginUser">Usuario</label>
+                        <input type="text" id="loginUser" class="form-control" autocomplete="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPass">Contraseña</label>
+                        <input type="password" id="loginPass" class="form-control" autocomplete="current-password" required>
+                    </div>
+                    <div class="login-error" id="loginError" role="alert"></div>
+                    <button type="submit" class="btn btn-accent" style="width:100%;">Iniciar Sesión</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- BLOG ADMIN MODAL -->
+    <div class="blog-modal" id="blogAdminModal" role="dialog" aria-modal="true" aria-labelledby="blogAdminTitle">
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <div>
+                    <h3 id="blogAdminTitle">Editor de Blog · WordPress + SEO</h3>
+                    <p style="font-size:.78rem;color:var(--text-muted);margin-top:4px;">Gestiona entradas, estados y señales SEO sin depender de librerías externas.</p>
+                </div>
+                <div style="display:flex;align-items:center;gap:8px;">
+                    <button class="admin-mini-btn" id="logoutAdminBtn" type="button" title="Cerrar sesión de administración">Cerrar sesión</button>
+                    <button class="modal-close" id="closeBlogAdmin" type="button" aria-label="Cerrar">×</button>
+                </div>
+            </div>
+            <div class="modal-body">
+                <form id="blogForm" novalidate>
+                    <div class="blog-admin-shell">
+                        <section class="editor-section">
+                            <h4>1. Contenido y publicación</h4>
+                            <div class="admin-form-grid">
+                                <div class="form-group">
+                                    <label for="blogTitle">Título del artículo *</label>
+                                    <input id="blogTitle" class="form-control" type="text" maxlength="140" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="blogSlug">URL / Slug personalizado *</label>
+                                    <input id="blogSlug" class="form-control" type="text" maxlength="160" placeholder="derecho-familia-custodia-medellin" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="blogCategory">Categoría *</label>
+                                    <select id="blogCategory" class="form-control" required>
+                                        <option>Derecho de Familia</option>
+                                        <option>Derecho Civil</option>
+                                        <option>Derecho Inmobiliario</option>
+                                        <option>Derecho Penal</option>
+                                        <option>Derecho Empresarial</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="blogTags">Etiquetas (separadas por coma)</label>
+                                    <input id="blogTags" class="form-control" type="text" placeholder="custodia, Medellín, familia">
+                                </div>
+                                <div class="form-group">
+                                    <label for="blogStatus">Estado de la entrada *</label>
+                                    <select id="blogStatus" class="form-control">
+                                        <option value="published">Publicado</option>
+                                        <option value="draft">Borrador</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="blogDate">Fecha de publicación *</label>
+                                    <input id="blogDate" class="form-control" type="date" required>
+                                </div>
+                                <div class="form-group full">
+                                    <label for="blogExcerpt">Resumen / Extracto *</label>
+                                    <textarea id="blogExcerpt" class="form-control" rows="3" maxlength="280" required></textarea>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="editor-section">
+                            <h4>2. Imagen destacada</h4>
+                            <div class="admin-form-grid">
+                                <div class="form-group">
+                                    <label for="blogImageUrl">URL de la imagen</label>
+                                    <input id="blogImageUrl" class="form-control" type="url" placeholder="https://...">
+                                </div>
+                                <div class="form-group">
+                                    <label for="blogImageFile">O seleccionar imagen local</label>
+                                    <input id="blogImageFile" class="form-control" type="file" accept="image/*">
+                                </div>
+                                <div class="form-group full">
+                                    <label for="blogImageAlt">Texto alternativo (Alt Text) *</label>
+                                    <input id="blogImageAlt" class="form-control" type="text" maxlength="180" placeholder="Abogado asesorando sobre custodia en Medellín" required>
+                                </div>
+                                <div class="form-group full">
+                                    <div class="image-preview" id="blogImagePreview">Vista previa de la imagen destacada</div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="editor-section">
+                            <h4>3. Contenido del artículo</h4>
+                            <p class="editor-section-subtitle">Usa el editor visual o pega HTML simple. Se conservan solo etiquetas seguras de contenido.</p>
+                            <div class="rich-toolbar" role="toolbar" aria-label="Formato del artículo">
+                                <button type="button" data-command="bold" title="Negrita"><strong>B</strong></button>
+                                <button type="button" data-command="italic" title="Cursiva"><em>I</em></button>
+                                <button type="button" data-command="formatBlock" data-value="p" title="Párrafo">P</button>
+                                <button type="button" data-command="formatBlock" data-value="h2" title="Título 2">H2</button>
+                                <button type="button" data-command="formatBlock" data-value="h3" title="Título 3">H3</button>
+                                <button type="button" data-command="insertUnorderedList" title="Lista">• Lista</button>
+                                <button type="button" data-command="insertOrderedList" title="Lista numerada">1. Lista</button>
+                                <button type="button" id="richLinkBtn" title="Insertar enlace">🔗</button>
+                                <button type="button" id="richHtmlBtn" title="Ver / editar HTML">HTML</button>
+                            </div>
+                            <div id="blogContentEditor" class="rich-editor" contenteditable="true" data-placeholder="Escribe el contenido del artículo..."></div>
+                            <textarea id="blogContentHtml" class="form-control" rows="8" style="display:none;margin-top:10px;" aria-label="HTML del artículo"></textarea>
+                        </section>
+
+                        <section class="editor-section seo-panel">
+                            <h4>4. Optimización SEO · Yoast / RankMath style</h4>
+                            <div class="seo-layout">
+                                <div>
+                                    <div class="form-group">
+                                        <label for="blogFocusKeyword">Palabra Clave Objetivo (Focus Keyword)</label>
+                                        <input id="blogFocusKeyword" class="form-control" type="text" maxlength="80" placeholder="derecho de familia Medellín">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="blogMetaDescription">Meta Descripción</label>
+                                        <textarea id="blogMetaDescription" class="form-control" rows="4" maxlength="160" placeholder="Descripción clara y atractiva para buscadores..."></textarea>
+                                        <div class="seo-field-note">
+                                            <span>Máximo recomendado: 160 caracteres.</span>
+                                            <span class="seo-counter" id="metaCounter">0 / 160</span>
+                                        </div>
+                                    </div>
+                                    <div class="seo-score">
+                                        <span class="seo-light" id="seoTrafficLight" aria-hidden="true"></span>
+                                        <span id="seoOverallText">SEO pendiente de analizar</span>
+                                    </div>
+                                    <div class="seo-checks" id="seoChecks">
+                                        <div class="seo-check"><span class="dot"></span><span>La keyword aparece en el título.</span></div>
+                                        <div class="seo-check"><span class="dot"></span><span>La keyword aparece en la meta descripción.</span></div>
+                                        <div class="seo-check"><span class="dot"></span><span>La keyword aparece en el primer párrafo.</span></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="google-preview" aria-live="polite">
+                                        <div class="google-preview-label">Google Preview</div>
+                                        <div class="snippet-title" id="snippetTitle">Título del artículo</div>
+                                        <div class="snippet-url" id="snippetUrl">masabogados.com.co/blog/slug-del-articulo</div>
+                                        <div class="snippet-description" id="snippetDescription">Aquí aparecerá la meta descripción del artículo.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="editor-section">
+                            <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">
+                                <div>
+                                    <h4 style="margin-bottom:4px;">5. Artículos gestionados</h4>
+                                    <p class="editor-section-subtitle" style="margin-bottom:0;">Edita, publica u oculta, o elimina cualquier artículo. Los cambios se reflejan al instante en el blog público.</p>
+                                </div>
+                                <button class="admin-mini-btn" id="newArticleBtn" type="button">＋ Nuevo artículo</button>
+                            </div>
+                            <div id="adminArticleList" style="margin-top:12px;"></div>
+                        </section>
+
+                        <div style="display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap;">
+                            <button class="btn btn-outline" id="resetBlogForm" type="button">Limpiar</button>
+                            <button class="btn btn-accent" id="blogSubmitBtn" type="submit">Publicar Artículo</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ARTICLE READER MODAL -->
+    <div class="article-modal" id="articleModal" role="dialog" aria-modal="true" aria-labelledby="articleModalTitle">
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <h3 id="articleModalTitle">Artículo</h3>
+                <button class="modal-close" id="closeArticle" type="button" aria-label="Cerrar">×</button>
+            </div>
+            <div class="modal-body article-content" id="articleModalBody"></div>
+        </div>
+    </div>
+
+    <!-- FAQ SECTION -->
+    <section class="faq-section" id="faq">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Resolvamos sus Dudas</span>
+                <h2 class="section-title">Preguntas Frecuentes</h2>
+                <p class="section-subtitle">Información práctica sobre atención, cobertura, tiempos, honorarios y áreas especializadas.</p>
+            </div>
+            <div class="faq-accordion">
+
+                <div class="faq-item active">
+                    <div class="faq-question">¿Puedo realizar un proceso legal en Colombia si vivo en el exterior o soy extranjero?<span class="faq-toggle">▼</span></div>
+                    <div class="faq-answer">Sí, <strong>100% remoto</strong>. Representamos a ciudadanos extranjeros y colombianos residentes en el exterior (EE. UU., Europa, Latinoamérica) sin necesidad de que viajen a Colombia. Mediante poderes especiales otorgados ante consulados o apostillados, e implementando las normas de justicia digital (Ley 2213 de 2022), gestionamos trámites notariales, audiencias virtuales y pleitos judiciales en todo el territorio colombiano.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">¿Cómo es la modalidad de la primera consulta jurídica?<span class="faq-toggle">▼</span></div>
+                    <div class="faq-answer">Ofrecemos <strong>consultas presenciales</strong> en nuestra sede principal ubicada en <strong>El Poblado (Calle 10 #42-45, Medellín)</strong> y <strong>consultas virtuales</strong> vía videollamada para clientes en cualquier ciudad de Colombia o en el extranjero. En esta sesión analítica evaluamos la documentación previa y trazamos la hoja de ruta estratégica del caso.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">¿En qué ciudades y regiones representan casos judiciales?<span class="faq-toggle">▼</span></div>
+                    <div class="faq-answer">Asumimos <strong>representación judicial en toda Colombia</strong>. Nuestra sede principal se encuentra en Medellín (con presencia constante en el Valle de Aburrá y Oriente Antioqueño), y mediante litigio digital y apoderamiento operamos directamente ante juzgados, tribunales de todo el país.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">¿Cómo se maneja la Restitución Internacional de Menores bajo el Convenio de La Haya?<span class="faq-toggle">▼</span></div>
+                    <div class="faq-answer">La sustracción o retención ilícita de un menor exige actuación inmediata. Aplicamos el <strong>Convenio de La Haya de 1980</strong> en coordinación con el Instituto Colombiano de Bienestar Familiar (ICBF) y los Juzgados de Familia para procurar el retorno seguro del menor a su país de residencia habitual, analizando de forma rigurosa las <strong>excepciones legales previstas en el mismo convenio</strong> (tales como riesgo grave, integración o negativa fundamentada del menor).</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">¿Cuánto tiempo demora la resolución de un proceso legal en Colombia?<span class="faq-toggle">▼</span></div>
+                    <div class="faq-answer">Los tiempos varían según la vía e instancia legal: los trámites notariales por mutuo acuerdo (divorcios o sucesiones) suelen resolverse en un promedio de <strong>15 a 45 días hábiles</strong>, dependiendo de la carga de trabajo y tiempos de respuesta de la notaría asignada. Los litigios contenciosos ante Jueces de la República dependen de la carga procesal del juzgado, la práctica de pruebas y el desarrollo de audiencias del Código General del Proceso.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">¿Qué blindaje legal ofrecen para la compra de propiedades e inversión inmobiliaria?<span class="faq-toggle">▼</span></div>
+                    <div class="faq-answer">Realizamos <strong>estudios minuciosos de títulos de tradición (20 años)</strong>, verificación de gravámenes, embargos o limitaciones al dominio, y redactamos o auditamos la promesa de compraventa. Protegemos el capital de compradores e inversionistas antes de que realicen cualquier desembolso o firma de escritura pública.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">¿Cómo se estructuran los honorarios y qué facilidades de pago ofrecen?<span class="faq-toggle">▼</span></div>
+                    <div class="faq-answer">Operamos bajo una <strong>Política de Honorarios Transparentes y Cero Costos Ocultos</strong>. Entregamos cotizaciones por escrito con tarifas fijas o esquema de cuota de litis (porcentaje sobre resultados en los casos que legalmente aplique). Aceptamos transferencias bancarias locales y giros internacionales para clientes en el exterior.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">¿Qué garantía tengo de que mi caso es viable antes de iniciar una demanda?<span class="faq-toggle">▼</span></div>
+                    <div class="faq-answer">En el <strong>Diagnóstico Estratégico Inicial</strong> evaluamos los antecedentes y la jurisprudencia aplicable. Si su caso carece de viabilidad jurídica o los riesgos económicos superan los beneficios, se lo indicaremos con absoluta honestidad ética antes de que incurra en gastos judiciales o contractuales.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">¿Brindan asesoría jurídica permanente a empresas en Colombia?<span class="faq-toggle">▼</span></div>
+                    <div class="faq-answer">Sí. Ofrecemos <strong>asesoría permanente a empresas en Colombia en asuntos laborales, contractuales, societarios y corporativos</strong>. Acompañamos el cumplimiento normativo diario, redacción de contratos mercantiles, estructuración de acuerdos de socios y representación en litigios ante la jurisdicción ordinaria y la Superintendencia de Sociedades.</div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT & MAP SECTION -->
+    <section class="contact-section" id="contacto">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Atención Directa</span>
+                <h2 class="section-title">Agende su Asesoría Jurídica</h2>
+                <p class="section-subtitle">Déjenos sus datos y un abogado especialista se pondrá en contacto en menos de 24 horas.</p>
+            </div>
+            <div class="contact-grid">
+                <form class="contact-form" id="contactForm" novalidate>
+                    <div class="form-group">
+                        <label for="name">Nombre Completo *</label>
+                        <input type="text" id="name" class="form-control" placeholder="Ej. Juan Pérez" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Correo Electrónico *</label>
+                        <input type="email" id="email" class="form-control" placeholder="ejemplo@correo.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Teléfono / WhatsApp *</label>
+                        <input type="tel" id="phone" class="form-control" placeholder="+57 300 000 0000" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="service">Área de Interés</label>
+                        <select id="service" class="form-control">
+                            <option>Derecho de Familia</option>
+                            <option>Derecho Civil</option>
+                            <option>Derecho Inmobiliario</option>
+                            <option>Consultoría Empresarial</option>
+                            <option>Otro trámite legal</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Resumen breve de su consulta *</label>
+                        <textarea id="message" rows="4" class="form-control" placeholder="Describa brevemente su situación..." required></textarea>
+                    </div>
+                    <!-- Ley 1581 de 2012: consentimiento informado -->
+                    <div class="form-group" style="display:flex; gap:10px; align-items:flex-start; font-size:.82rem; color:var(--text-muted);">
+                        <input type="checkbox" id="habeasData" required style="margin-top:4px;">
+                        <label for="habeasData" style="font-weight:400; margin:0;">
+                            Autorizo el tratamiento de mis datos personales conforme a la
+                            <a href="https://docs.google.com/document/d/18vjhK38A49uP90uQ-BWY-uw8-VIGz9_Qj391ckv9K44/edit?usp=sharing"
+                               target="_blank" rel="noopener"
+                               style="color:var(--accent); text-decoration:underline;">Política de Tratamiento de Datos Personales</a>
+                            (Ley 1581 de 2012).
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-accent" style="width: 100%;">Enviar Consulta Confidencial</button>
+                    <p style="font-size:.75rem;color:var(--text-muted);margin-top:10px;text-align:center;">
+                        📧 Los envíos llegarán a los correos receptores definidos por la firma.
+                    </p>
+                </form>
+
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.4026250172915!2d-75.57264260748039!3d6.210509487737422!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e4429fb4b779a4b%3A0xcce5ce9afb84a305!2sMAS%20ABOGADOS%20-%20Mart%C3%ADnez%20%26%20Asociados%20Abogados!5e0!3m2!1ses!2sco!4v1789099339952!5m2!1ses!2sco" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4 class="brand-font">MARTÍNEZ & ASOCIADOS</h4>
+                    <p style="margin-bottom: 15px;">Firma de abogados especializada en brindar soluciones integrales en Medellín con ética, rigor investigativo y transparencia.</p>
+                    <p><strong>Dirección:</strong> Calle 10 # 42-45, Oficina 123, Edificio La Plaza del Poblado - Medellín</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Navegación</h4>
+                    <ul class="footer-links">
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#nosotros">Nosotros</a></li>
+                        <li><a href="#equipo">Equipo Legal</a></li>
+                        <li><a href="#servicios">Áreas de Práctica</a></li>
+                        <li><a href="#honorarios">Honorarios</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Áreas Legales</h4>
+                    <ul class="footer-links">
+                        <li><a href="#servicios">Derecho de Familia</a></li>
+                        <li><a href="#servicios">Derecho Civil</a></li>
+                        <li><a href="#servicios">Derecho Inmobiliario</a></li>
+                        <li><a href="#servicios">Derecho Comercial</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contacto Directo</h4>
+                    <p style="margin-bottom: 8px;"><strong>Línea Móvil / WA:</strong> +57 304 120 7516</p>
+                    <p style="margin-bottom: 8px;"><strong>Correo:</strong> info@masabogados.com.co</p>
+                    <p><strong>Horario:</strong> Lunes a Viernes: 9:00 AM - 6:00 PM | Sábados: 9:00 AM – 12:00 M</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div>
+                    © 2026 Martínez & Asociados - MÁS Abogados S.A.S. Todos los derechos reservados.
+                </div>
+                <div>
+                    <a href="#" style="margin-right: 15px;">Política de Privacidad</a>
+                    <a href="https://docs.google.com/document/d/18vjhK38A49uP90uQ-BWY-uw8-VIGz9_Qj391ckv9K44/edit?usp=sharing" target="_blank" rel="noopener">Tratamiento de Datos Personales</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE SCRIPT -->
+    <script>
+        (function () {
+            'use strict';
+
+            // FAQ Accordion
+            document.querySelectorAll('.faq-question').forEach(function (item) {
+                item.addEventListener('click', function () {
+                    item.parentElement.classList.toggle('active');
+                });
+            });
+
+            // Team carousel
+            var carousel = document.getElementById('teamCarousel');
+            var prevBtn = document.querySelector('.carousel-control.prev');
+            var nextBtn = document.querySelector('.carousel-control.next');
+
+            function getScrollAmount() {
+                var card = carousel ? carousel.querySelector('.team-card') : null;
+                if (!card) return 360;
+                var gap = parseFloat(getComputedStyle(carousel).gap) || 24;
+                return card.getBoundingClientRect().width + gap;
+            }
+
+            if (carousel && prevBtn && nextBtn) {
+                prevBtn.addEventListener('click', function () {
+                    carousel.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+                });
+                nextBtn.addEventListener('click', function () {
+                    carousel.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+                });
+
+                var isDragging = false, startX = 0, startScroll = 0, moved = false;
+
+                carousel.addEventListener('pointerdown', function (e) {
+                    isDragging = true; moved = false;
+                    startX = e.clientX; startScroll = carousel.scrollLeft;
+                    try { carousel.setPointerCapture(e.pointerId); } catch (err) {}
+                });
+
+                carousel.addEventListener('pointermove', function (e) {
+                    if (!isDragging) return;
+                    var delta = e.clientX - startX;
+                    if (Math.abs(delta) > 4) moved = true;
+                    carousel.scrollLeft = startScroll - delta;
+                });
+
+                function endDrag(e) {
+                    if (!isDragging) return;
+                    isDragging = false;
+                    if (e && e.pointerId !== undefined) {
+                        try { carousel.releasePointerCapture(e.pointerId); } catch (err) {}
+                    }
+                }
+
+                carousel.addEventListener('pointerup', endDrag);
+                carousel.addEventListener('pointercancel', endDrag);
+                carousel.addEventListener('pointerleave', function () { isDragging = false; });
+
+                carousel.addEventListener('click', function (e) {
+                    if (moved) { e.preventDefault(); e.stopPropagation(); }
+                }, true);
+            }
+
+            // ============ Blog ============
+            var STORAGE_KEY = 'masAbogadosBlogArticlesV2';
+            var LEGACY_KEY  = 'masAbogadosBlogArticlesV1';
+            var INIT_KEY    = 'masAbogadosBlogInitializedV3';
+            var SESSION_KEY = 'masAbogadosAdminSessionV1';
+
+            var ADMIN_USER = 'adminblogmasabogados';
+            var ADMIN_PASS = 'MasAbogados90&';
+
+            var isAdminAuthenticated = false;
+            var BASE_SITE_TITLE = document.title;
+            var BASE_META_DESCRIPTION = (document.querySelector('meta[name="description"]') || {}).content || 'Martínez & Asociados - MÁS Abogados';
+            var dynamicSchemaId = 'dynamicArticleSchema';
+            var editingId = null;
+            var currentImageData = '';
+            var htmlEditingMode = false;
+
+            var defaultArticles = [
+                {
+                    id: 'default-1',
+                    title: 'Guía Completa para el Estudio de Títulos en la Compra de Inmuebles en Medellín',
+                    slug: 'guia-estudio-titulos-compra-inmuebles-medellin',
+                    category: 'Derecho Inmobiliario',
+                    tags: ['estudio de títulos', 'inmobiliario', 'Medellín'],
+                    excerpt: 'Evite riesgos jurídicos antes de firmar una promesa de compraventa. Puntos clave para verificar la tradición de la propiedad.',
+                    content: '<p>Antes de comprar un inmueble es importante revisar la situación jurídica del bien, su tradición, gravámenes y demás antecedentes relevantes.</p><p>Un estudio de títulos permite identificar alertas y documentar con mayor claridad las condiciones del negocio.</p>',
+                    image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=900&q=80',
+                    alt: 'Estudio de títulos para compra de inmueble en Medellín',
+                    date: '2026-08-15', status: 'published',
+                    focusKeyword: 'estudio de títulos Medellín',
+                    metaDescription: 'Guía práctica para revisar títulos, tradición y riesgos jurídicos antes de comprar un inmueble en Medellín.',
+                    default: true
+                },
+                {
+                    id: 'default-2',
+                    title: 'Custodia Compartida y Régimen de Visitas: Lo que Todo Padre Debe Saber',
+                    slug: 'custodia-compartida-regimen-visitas-medellin',
+                    category: 'Derecho de Familia',
+                    tags: ['custodia', 'visitas', 'familia', 'Medellín'],
+                    excerpt: 'Explicación práctica sobre cómo se fijan los acuerdos de regulación de visitas y cuota alimentaria.',
+                    content: '<p>Los acuerdos sobre custodia, visitas y alimentos deben considerar las circunstancias concretas de la familia y el bienestar de los niños, niñas y adolescentes.</p><p>La orientación jurídica permite ordenar la documentación, revisar las opciones disponibles y definir la ruta adecuada según el caso.</p>',
+                    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=900&q=80',
+                    alt: 'Asesoría jurídica en custodia y régimen de visitas',
+                    date: '2026-07-15', status: 'published',
+                    focusKeyword: 'custodia compartida Medellín',
+                    metaDescription: 'Conozca los aspectos jurídicos de la custodia compartida, visitas y alimentos en procesos de familia en Medellín.',
+                    default: true
+                },
+                {
+                    id: 'default-3',
+                    title: 'Cómo Prevenir Conflictos entre Socios en una Empresa S.A.S.',
+                    slug: 'prevenir-conflictos-socios-empresa-sas',
+                    category: 'Derecho Empresarial',
+                    tags: ['socios', 'S.A.S.', 'corporativo', 'empresas'],
+                    excerpt: 'El acuerdo de accionistas como herramienta para ordenar las relaciones entre socios y anticipar escenarios de conflicto.',
+                    content: '<p>La prevención jurídica en una sociedad puede incluir reglas claras sobre toma de decisiones, administración, participación y mecanismos para atender desacuerdos.</p><p>La asesoría corporativa busca que estos acuerdos queden documentados de forma coherente con la actividad de la empresa y sus necesidades.</p>',
+                    image: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=900&q=80',
+                    alt: 'Reunión empresarial para acuerdos entre socios',
+                    date: '2026-06-15', status: 'published',
+                    focusKeyword: 'conflictos entre socios',
+                    metaDescription: 'Cómo prevenir conflictos entre socios de una S.A.S. con acuerdos, reglas de decisión y asesoría corporativa.',
+                    default: true
+                }
+            ];
+
+            // -------- Utils --------
+            function escapeHtml(v) {
+                return String(v == null ? '' : v).replace(/[&<>"']/g, function (c) {
+                    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[c];
+                });
+            }
+            function slugify(v) {
+                return String(v || '').toLowerCase()
+                    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+                    .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 160);
+            }
+            function parseTags(v) {
+                var s = Array.isArray(v) ? v.join(',') : String(v || '');
+                return s.split(',').map(function (t) { return t.trim(); }).filter(Boolean).slice(0, 15);
+            }
+            function escapeCssUrl(url) {
+                return String(url || '').replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\)/g, '\\)');
+            }
+            function formatDate(d) {
+                try {
+                    return new Intl.DateTimeFormat('es-CO', { year: 'numeric', month: 'long', day: 'numeric' })
+                        .format(new Date(d + 'T12:00:00'));
+                } catch (e) { return d || ''; }
+            }
+            function normalizeStoredArticle(item) {
+                var a = Object.assign({}, item || {});
+                a.slug = a.slug || slugify(a.title || '');
+                a.tags = parseTags(a.tags || '');
+                a.alt = a.alt || a.title || '';
+                a.status = a.status === 'draft' ? 'draft' : 'published';
+                a.focusKeyword = a.focusKeyword || '';
+                a.metaDescription = (a.metaDescription || a.excerpt || '').slice(0, 160);
+                return a;
+            }
+
+            function safeStorageGet() {
+                try {
+                    var p = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+                    return Array.isArray(p) ? p.map(normalizeStoredArticle) : [];
+                } catch (e) { return []; }
+            }
+            function safeStorageSet(items) {
+                try {
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+                    return true;
+                } catch (e) {
+                    alert('No fue posible guardar los cambios. La imagen local puede superar el límite de almacenamiento del navegador.');
+                    return false;
+                }
+            }
+            function migrateLegacyStorage() {
+                try {
+                    var current = localStorage.getItem(STORAGE_KEY);
+                    if (current) {
+                        var parsedCurrent = JSON.parse(current || '[]');
+                        if (Array.isArray(parsedCurrent) && parsedCurrent.length > 0) return;
+                    }
+                    var legacy = JSON.parse(localStorage.getItem(LEGACY_KEY) || '[]');
+                    if (!Array.isArray(legacy) || !legacy.length) return;
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(legacy.map(normalizeStoredArticle)));
+                } catch (e) {}
+            }
+            function initializeStorage() {
+                try {
+                    if (localStorage.getItem(INIT_KEY)) return;
+                    var existing = safeStorageGet();
+                    var ids = {};
+                    existing.forEach(function (a) { if (a && a.id) ids[a.id] = true; });
+                    var seeded = defaultArticles.filter(function (d) { return !ids[d.id]; })
+                        .map(function (d) { return normalizeStoredArticle(Object.assign({}, d)); });
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(seeded.concat(existing)));
+                    localStorage.setItem(INIT_KEY, '1');
+                } catch (e) {}
+            }
+            function getAllArticles() {
+                return safeStorageGet().sort(function (a, b) {
+                    return new Date(b.date || '1900-01-01') - new Date(a.date || '1900-01-01');
+                });
+            }
+            function getPublishedArticles() {
+                return getAllArticles().filter(function (a) { return a.status === 'published'; });
+            }
+
+            function sanitizeHtml(html) {
+                var parser = new DOMParser();
+                var doc = parser.parseFromString(String(html || ''), 'text/html');
+                var allowed = { P: 1, BR: 1, STRONG: 1, B: 1, EM: 1, I: 1, H2: 1, H3: 1, UL: 1, OL: 1, LI: 1, BLOCKQUOTE: 1, A: 1 };
+                Array.from(doc.body.querySelectorAll('*')).forEach(function (el) {
+                    if (!allowed[el.tagName]) { el.replaceWith.apply(el, Array.from(el.childNodes)); return; }
+                    Array.from(el.attributes).forEach(function (attr) {
+                        var name = attr.name.toLowerCase();
+                        if (el.tagName === 'A' && (name === 'href' || name === 'target' || name === 'rel')) return;
+                        el.removeAttribute(attr.name);
+                    });
+                    if (el.tagName === 'A') {
+                        var href = el.getAttribute('href') || '';
+                        if (!/^(https?:|mailto:|#)/i.test(href)) el.removeAttribute('href');
+                        else { el.setAttribute('rel', 'noopener noreferrer'); el.setAttribute('target', '_blank'); }
+                    }
+                });
+                return doc.body.innerHTML.trim();
+            }
+            function firstParagraphText(html) {
+                var doc = new DOMParser().parseFromString(String(html || ''), 'text/html');
+                var p = doc.body.querySelector('p');
+                if (p) return (p.textContent || '').replace(/\s+/g, ' ').trim();
+                return (doc.body.textContent || '').split(/\n+/)[0].replace(/\s+/g, ' ').trim();
+            }
+            function containsKeyword(src, kw) {
+                if (!kw) return false;
+                return String(src || '').toLocaleLowerCase('es').indexOf(String(kw).toLocaleLowerCase('es')) !== -1;
+            }
+            function analyzeSEO(values) {
+                var kw = String(values.focusKeyword || '').trim();
+                var checks = [
+                    containsKeyword(values.title, kw),
+                    containsKeyword(values.metaDescription, kw),
+                    containsKeyword(firstParagraphText(values.content), kw)
+                ];
+                var count = checks.filter(Boolean).length;
+                var level = !kw ? 'neutral' : count === 3 ? 'green' : count >= 2 ? 'yellow' : 'red';
+                return { checks: checks, count: count, level: level };
+            }
+            function tagsHtml(article) {
+                var tags = parseTags(article.tags);
+                if (!tags.length) return '';
+                return '<div class="article-tags">' + tags.map(function (t) {
+                    return '<span class="article-tag">' + escapeHtml(t) + '</span>';
+                }).join('') + '</div>';
+            }
+
+            function renderBlog() {
+                var grid = document.getElementById('blogGrid');
+                if (!grid) return;
+                var articles = getPublishedArticles();
+                if (!articles.length) {
+                    grid.innerHTML = '<div class="empty-state">Aún no hay artículos publicados.</div>';
+                    return;
+                }
+                grid.innerHTML = articles.map(function (article) {
+                    var image = article.image ?
+                        'background-image: linear-gradient(rgba(0,0,0,.34), rgba(0,0,0,.34)), url("' + escapeCssUrl(article.image) + '");' :
+                        'background-image: linear-gradient(135deg,#172A45,#0A192F);';
+                    return '<article class="blog-card">' +
+                        '<div class="blog-img" style="' + image + ' color:#fff; font-weight:600;" role="img" aria-label="' + escapeHtml(article.alt || article.title) + '">' + escapeHtml(article.category) + '</div>' +
+                        '<div class="blog-content">' +
+                            '<div class="blog-meta"><span>' + escapeHtml(article.category) + '</span><span>' + escapeHtml(formatDate(article.date)) + '</span></div>' +
+                            '<h3 class="blog-title">' + escapeHtml(article.title) + '</h3>' +
+                            '<p class="blog-excerpt">' + escapeHtml(article.excerpt) + '</p>' +
+                            '<div class="blog-card-actions">' +
+                                '<button class="blog-read-btn" type="button" data-read-id="' + escapeHtml(article.id) + '">Leer artículo completo →</button>' +
+                            '</div>' +
+                        '</div>' +
+                    '</article>';
+                }).join('');
+            }
+
+            function renderAdminList() {
+                var box = document.getElementById('adminArticleList');
+                if (!box) return;
+                var all = getAllArticles();
+                if (!all.length) {
+                    box.innerHTML = '<p style="color:var(--text-muted);font-size:.88rem;">No hay artículos. Crea uno nuevo con el botón "＋ Nuevo artículo".</p>';
+                    return;
+                }
+                box.innerHTML = all.map(function (article) {
+                    var seo = analyzeSEO(article);
+                    var isDraft = article.status === 'draft';
+                    var statusClass = isDraft ? 'draft' : 'published';
+                    var statusText = isDraft ? 'Borrador / Oculto' : 'Publicado';
+                    var seoText = seo.level === 'green' ? 'SEO sólido' :
+                                  seo.level === 'yellow' ? 'SEO parcial' :
+                                  seo.level === 'neutral' ? 'SEO pendiente' : 'SEO por mejorar';
+                    var toggleText = isDraft ? 'Publicar' : 'Ocultar';
+                    return '<div class="admin-row">' +
+                        '<div class="admin-row-info">' +
+                            '<div class="admin-row-title">' + escapeHtml(article.title) + '</div>' +
+                            '<div class="admin-row-meta">' + escapeHtml(article.category) + ' · ' + escapeHtml(formatDate(article.date)) +
+                            ' · <span class="status-badge ' + statusClass + '">' + statusText + '</span> · ' + seoText + '</div>' +
+                        '</div>' +
+                        '<div class="admin-row-actions">' +
+                            '<button class="admin-mini-btn" type="button" data-admin-edit-id="' + escapeHtml(article.id) + '">Editar</button>' +
+                            '<button class="admin-mini-btn" type="button" data-admin-toggle-id="' + escapeHtml(article.id) + '">' + toggleText + '</button>' +
+                            '<button class="admin-mini-btn danger" type="button" data-admin-delete-id="' + escapeHtml(article.id) + '">Eliminar</button>' +
+                        '</div>' +
+                    '</div>';
+                }).join('');
+            }
+
+            function ensureMeta(name, content, isProperty) {
+                var selector = isProperty ? 'meta[property="' + name + '"]' : 'meta[name="' + name + '"]';
+                var el = document.querySelector(selector);
+                if (!el) {
+                    el = document.createElement('meta');
+                    if (isProperty) el.setAttribute('property', name); else el.setAttribute('name', name);
+                    document.head.appendChild(el);
+                }
+                el.setAttribute('content', content || '');
+            }
+            function setDynamicArticleSEO(article) {
+                if (!article || article.status === 'draft') return;
+                var description = article.metaDescription || article.excerpt || '';
+                document.title = (article.title || BASE_SITE_TITLE) + ' | MÁS Abogados';
+                ensureMeta('description', description, false);
+                ensureMeta('keywords', parseTags(article.tags).concat(article.focusKeyword || []).join(', '), false);
+                ensureMeta('og:title', article.title || BASE_SITE_TITLE, true);
+                ensureMeta('og:description', description, true);
+                ensureMeta('og:type', 'article', true);
+                if (article.image) ensureMeta('og:image', article.image, true);
+            }
+            function clearDynamicArticleSEO() {
+                document.title = BASE_SITE_TITLE;
+                ensureMeta('description', BASE_META_DESCRIPTION, false);
+                var kw = document.querySelector('meta[name="keywords"]'); if (kw) kw.remove();
+                ['og:title','og:description','og:type','og:image'].forEach(function (p) {
+                    var el = document.querySelector('meta[property="' + p + '"]'); if (el) el.remove();
+                });
+            }
+            function updateSeoUI() {
+                var values = {
+                    title: document.getElementById('blogTitle').value.trim(),
+                    focusKeyword: document.getElementById('blogFocusKeyword').value.trim(),
+                    metaDescription: document.getElementById('blogMetaDescription').value.trim(),
+                    content: document.getElementById('blogContentEditor').innerHTML
+                };
+                var result = analyzeSEO(values);
+                var light = document.getElementById('seoTrafficLight');
+                var overall = document.getElementById('seoOverallText');
+                var checks = document.getElementById('seoChecks').querySelectorAll('.seo-check');
+                var counter = document.getElementById('metaCounter');
+                var title = values.title || 'Título del artículo';
+                var slug = document.getElementById('blogSlug').value.trim() || slugify(title) || 'slug-del-articulo';
+                var meta = values.metaDescription || 'Aquí aparecerá la meta descripción del artículo.';
+                light.className = 'seo-light ' + result.level;
+                overall.textContent = !values.focusKeyword
+                    ? 'SEO pendiente de analizar'
+                    : result.count + '/3 señales SEO principales detectadas';
+                Array.from(checks).forEach(function (item, i) {
+                    item.classList.toggle('ok', result.checks[i]);
+                    item.classList.toggle('fail', !!values.focusKeyword && !result.checks[i]);
+                });
+                counter.textContent = values.metaDescription.length + ' / 160';
+                document.getElementById('snippetTitle').textContent = title.slice(0, 70);
+                document.getElementById('snippetUrl').textContent = 'masabogados.com.co/blog/' + slug;
+                document.getElementById('snippetDescription').textContent = meta.slice(0, 160);
+            }
+
+            function syncHtmlEditorFromSource() {
+                var s = document.getElementById('blogContentHtml');
+                var e = document.getElementById('blogContentEditor');
+                if (s && e) e.innerHTML = sanitizeHtml(s.value);
+            }
+            function syncSourceFromEditor() {
+                var s = document.getElementById('blogContentHtml');
+                var e = document.getElementById('blogContentEditor');
+                if (s && e) s.value = sanitizeHtml(e.innerHTML);
+            }
+            function clearArticleForm() {
+                editingId = null; currentImageData = ''; htmlEditingMode = false;
+                var form = document.getElementById('blogForm'); if (form) form.reset();
+                document.getElementById('blogDate').value = new Date().toISOString().slice(0, 10);
+                document.getElementById('blogStatus').value = 'published';
+                document.getElementById('blogSlug').value = '';
+                document.getElementById('blogContentEditor').innerHTML = '<p></p>';
+                document.getElementById('blogContentHtml').value = '';
+                document.getElementById('blogSubmitBtn').textContent = 'Publicar Artículo';
+                document.getElementById('blogImagePreview').textContent = 'Vista previa de la imagen destacada';
+                updateSeoUI();
+            }
+            function populateArticleForm(article) {
+                editingId = article.id; htmlEditingMode = false;
+                document.getElementById('blogTitle').value = article.title || '';
+                document.getElementById('blogSlug').value = article.slug || slugify(article.title || '');
+                document.getElementById('blogCategory').value = article.category || 'Derecho de Familia';
+                document.getElementById('blogTags').value = parseTags(article.tags).join(', ');
+                document.getElementById('blogStatus').value = article.status === 'draft' ? 'draft' : 'published';
+                document.getElementById('blogDate').value = article.date || new Date().toISOString().slice(0, 10);
+                document.getElementById('blogExcerpt').value = article.excerpt || '';
+                document.getElementById('blogImageUrl').value = article.image && /^https?:/i.test(article.image) ? article.image : '';
+                document.getElementById('blogImageAlt').value = article.alt || '';
+                document.getElementById('blogFocusKeyword').value = article.focusKeyword || '';
+                document.getElementById('blogMetaDescription').value = article.metaDescription || '';
+                currentImageData = article.image && !/^https?:/i.test(article.image) ? article.image : '';
+                document.getElementById('blogContentEditor').innerHTML = sanitizeHtml(article.content || '<p></p>');
+                document.getElementById('blogContentHtml').value = sanitizeHtml(article.content || '');
+                document.getElementById('blogSubmitBtn').textContent = 'Guardar cambios';
+                updateImagePreview(currentImageData || document.getElementById('blogImageUrl').value.trim());
+                updateSeoUI();
+            }
+
+            var blogGrid = document.getElementById('blogGrid');
+            if (blogGrid) {
+                blogGrid.addEventListener('click', function (e) {
+                    var id = e.target.getAttribute('data-read-id');
+                    if (id) {
+                        var a = getPublishedArticles().find(function (i) { return i.id === id; });
+                        if (a) openArticle(a);
+                    }
+                });
+            }
+
+            var adminModal = document.getElementById('blogAdminModal');
+            var openAdmin = document.getElementById('openBlogAdmin');
+            var closeAdmin = document.getElementById('closeBlogAdmin');
+            var blogForm = document.getElementById('blogForm');
+            var imageUrlInput = document.getElementById('blogImageUrl');
+            var imageFileInput = document.getElementById('blogImageFile');
+            var imagePreview = document.getElementById('blogImagePreview');
+
+            var loginModal = document.getElementById('blogLoginModal');
+            var loginForm = document.getElementById('blogLoginForm');
+            var closeLogin = document.getElementById('closeBlogLogin');
+            var loginError = document.getElementById('loginError');
+
+            var articleModal = document.getElementById('articleModal');
+            var closeArticleBtn = document.getElementById('closeArticle');
+            var articleTitle = document.getElementById('articleModalTitle');
+            var articleBody = document.getElementById('articleModalBody');
+
+            function openAdminModal() {
+                adminModal.classList.add('open');
+                renderAdminList();
+                updateSeoUI();
+            }
+            function closeAdminModal() { adminModal.classList.remove('open'); }
+
+            function openLoginModal() {
+                loginModal.classList.add('open');
+                loginForm.reset();
+                loginError.textContent = '';
+                loginError.classList.remove('show');
+                setTimeout(function () {
+                    var i = document.getElementById('loginUser'); if (i) i.focus();
+                }, 60);
+            }
+            function closeLoginModal() {
+                loginModal.classList.remove('open');
+                loginError.textContent = ''; loginError.classList.remove('show');
+            }
+
+            function openArticle(article) {
+                if (!article || article.status === 'draft') return;
+                setDynamicArticleSEO(article);
+                articleTitle.textContent = article.title;
+                articleBody.innerHTML =
+                    '<article class="article-content-wrap">' +
+                        (article.image ? '<img class="article-featured" src="' + escapeHtml(article.image) + '" alt="' + escapeHtml(article.alt || article.title) + '">' : '') +
+                        '<div class="article-date">' + escapeHtml(article.category) + ' · ' + escapeHtml(formatDate(article.date)) + '</div>' +
+                        '<div class="article-body-rich">' + sanitizeHtml(article.content) + '</div>' +
+                        tagsHtml(article) +
+                    '</article>';
+                articleModal.classList.add('open');
+            }
+            function closeArticleModal() {
+                articleModal.classList.remove('open');
+                clearDynamicArticleSEO();
+            }
+
+            function hasActiveSession() {
+                if (isAdminAuthenticated) return true;
+                try {
+                    if (sessionStorage.getItem(SESSION_KEY) === '1') { isAdminAuthenticated = true; return true; }
+                } catch (e) {}
+                return false;
+            }
+            function startSession() {
+                isAdminAuthenticated = true;
+                try { sessionStorage.setItem(SESSION_KEY, '1'); } catch (e) {}
+            }
+            function endSession() {
+                isAdminAuthenticated = false;
+                try { sessionStorage.removeItem(SESSION_KEY); } catch (e) {}
+            }
+
+            if (openAdmin) {
+                openAdmin.addEventListener('click', function () {
+                    if (hasActiveSession()) openAdminModal();
+                    else openLoginModal();
+                });
+            }
+            if (closeAdmin) closeAdmin.addEventListener('click', closeAdminModal);
+            if (adminModal) adminModal.addEventListener('click', function (e) { if (e.target === adminModal) closeAdminModal(); });
+            if (closeLogin) closeLogin.addEventListener('click', closeLoginModal);
+            if (loginModal) loginModal.addEventListener('click', function (e) { if (e.target === loginModal) closeLoginModal(); });
+
+            if (loginForm) {
+                loginForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    var user = document.getElementById('loginUser').value.trim();
+                    var pass = document.getElementById('loginPass').value;
+                    if (user === ADMIN_USER && pass === ADMIN_PASS) {
+                        startSession();
+                        closeLoginModal();
+                        openAdminModal();
+                    } else {
+                        loginError.textContent = 'Usuario o contraseña incorrectos. Verifica tus credenciales e inténtalo de nuevo.';
+                        loginError.classList.add('show');
+                    }
+                });
+            }
+
+            var logoutBtn = document.getElementById('logoutAdminBtn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', function () {
+                    endSession();
+                    closeAdminModal();
+                    alert('Sesión cerrada correctamente.');
+                });
+            }
+
+            if (closeArticleBtn) closeArticleBtn.addEventListener('click', closeArticleModal);
+            if (articleModal) articleModal.addEventListener('click', function (e) { if (e.target === articleModal) closeArticleModal(); });
+
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') {
+                    if (loginModal && loginModal.classList.contains('open')) closeLoginModal();
+                    if (adminModal && adminModal.classList.contains('open')) closeAdminModal();
+                    if (articleModal && articleModal.classList.contains('open')) closeArticleModal();
+                }
+            });
+
+            function updateImagePreview(source) {
+                currentImageData = source || currentImageData || '';
+                if (!imagePreview) return;
+                imagePreview.innerHTML = source
+                    ? '<img src="' + escapeHtml(source) + '" alt="' + escapeHtml(document.getElementById('blogImageAlt').value || 'Vista previa') + '">'
+                    : 'Vista previa de la imagen destacada';
+            }
+
+            if (imageUrlInput) imageUrlInput.addEventListener('input', function () {
+                if (!imageFileInput.files.length) updateImagePreview(imageUrlInput.value.trim());
+            });
+            if (imageFileInput) imageFileInput.addEventListener('change', function () {
+                var f = imageFileInput.files && imageFileInput.files[0];
+                if (!f) return;
+                var r = new FileReader();
+                r.onload = function (ev) { currentImageData = ev.target.result; updateImagePreview(currentImageData); };
+                r.readAsDataURL(f);
+            });
+
+            document.querySelectorAll('.rich-toolbar [data-command]').forEach(function (button) {
+                button.addEventListener('click', function () {
+                    var cmd = button.getAttribute('data-command');
+                    var val = button.getAttribute('data-value') || null;
+                    document.getElementById('blogContentEditor').focus();
+                    try { document.execCommand(cmd, false, val); } catch (e) {}
+                    syncSourceFromEditor(); updateSeoUI();
+                });
+            });
+
+            var richLinkBtn = document.getElementById('richLinkBtn');
+            if (richLinkBtn) richLinkBtn.addEventListener('click', function () {
+                var editor = document.getElementById('blogContentEditor');
+                editor.focus();
+                var url = prompt('URL del enlace:');
+                if (!url) return;
+                try { document.execCommand('createLink', false, url); } catch (e) {}
+                syncSourceFromEditor(); updateSeoUI();
+            });
+
+            var richHtmlBtn = document.getElementById('richHtmlBtn');
+            if (richHtmlBtn) richHtmlBtn.addEventListener('click', function () {
+                var editor = document.getElementById('blogContentEditor');
+                var source = document.getElementById('blogContentHtml');
+                htmlEditingMode = !htmlEditingMode;
+                if (htmlEditingMode) {
+                    syncSourceFromEditor();
+                    source.style.display = 'block'; editor.style.display = 'none';
+                    richHtmlBtn.textContent = 'Visual';
+                } else {
+                    syncHtmlEditorFromSource();
+                    source.style.display = 'none'; editor.style.display = 'block';
+                    richHtmlBtn.textContent = 'HTML';
+                }
+                updateSeoUI();
+            });
+
+            var richEditor = document.getElementById('blogContentEditor');
+            if (richEditor) richEditor.addEventListener('input', function () { syncSourceFromEditor(); updateSeoUI(); });
+
+            ['blogTitle','blogSlug','blogFocusKeyword','blogMetaDescription'].forEach(function (id) {
+                var f = document.getElementById(id);
+                if (f) f.addEventListener('input', function () {
+                    if (id === 'blogTitle' && !editingId) {
+                        var sf = document.getElementById('blogSlug');
+                        if (!sf.dataset.touched) sf.value = slugify(f.value);
+                    }
+                    if (id === 'blogSlug') f.dataset.touched = f.value.trim() ? '1' : '';
+                    updateSeoUI();
+                });
+            });
+
+            var blogImageAlt = document.getElementById('blogImageAlt');
+            if (blogImageAlt) blogImageAlt.addEventListener('input', function () {
+                updateImagePreview(currentImageData || imageUrlInput.value.trim());
+            });
+
+            if (blogForm) {
+                blogForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    if (htmlEditingMode) syncHtmlEditorFromSource();
+                    var title = document.getElementById('blogTitle').value.trim();
+                    var slug = slugify(document.getElementById('blogSlug').value.trim() || title);
+                    var excerpt = document.getElementById('blogExcerpt').value.trim();
+                    var date = document.getElementById('blogDate').value;
+                    var content = sanitizeHtml(document.getElementById('blogContentHtml').value || document.getElementById('blogContentEditor').innerHTML);
+                    var image = currentImageData || imageUrlInput.value.trim();
+                    var alt = document.getElementById('blogImageAlt').value.trim();
+                    var status = document.getElementById('blogStatus').value;
+
+                    if (!title || !slug || !excerpt || !content || !date || !alt) {
+                        alert('Completa título, slug, extracto, contenido, fecha y texto alternativo de la imagen.');
+                        return;
+                    }
+                    if (!/^([a-z0-9]+-)*[a-z0-9]+$/.test(slug)) {
+                        alert('El slug debe contener únicamente minúsculas, números y guiones.');
+                        return;
+                    }
+
+                    var article = {
+                        id: editingId || 'local-' + Date.now(),
+                        title: title, slug: slug,
+                        category: document.getElementById('blogCategory').value,
+                        tags: parseTags(document.getElementById('blogTags').value),
+                        excerpt: excerpt, content: content, image: image, alt: alt,
+                        date: date, status: status,
+                        focusKeyword: document.getElementById('blogFocusKeyword').value.trim(),
+                        metaDescription: document.getElementById('blogMetaDescription').value.trim().slice(0, 160),
+                        default: false
+                    };
+
+                    var custom = safeStorageGet();
+                    if (editingId) custom = custom.map(function (i) { return i.id === editingId ? article : i; });
+                    else custom.push(article);
+
+                    if (safeStorageSet(custom)) {
+                        renderBlog(); renderAdminList();
+                        alert(editingId ? 'Artículo actualizado correctamente.'
+                            : (status === 'draft' ? 'Borrador guardado correctamente.' : 'Artículo publicado correctamente.'));
+                        clearArticleForm();
+                    }
+                });
+            }
+
+            var adminList = document.getElementById('adminArticleList');
+            if (adminList) {
+                adminList.addEventListener('click', function (e) {
+                    var t = e.target; if (!t) return;
+                    var editId = t.getAttribute('data-admin-edit-id');
+                    var toggleId = t.getAttribute('data-admin-toggle-id');
+                    var deleteId = t.getAttribute('data-admin-delete-id');
+
+                    if (editId) {
+                        var a = safeStorageGet().find(function (i) { return i.id === editId; });
+                        if (a) populateArticleForm(a);
+                        return;
+                    }
+                    if (toggleId) {
+                        var items = safeStorageGet().map(function (i) {
+                            if (i.id === toggleId) i.status = i.status === 'draft' ? 'published' : 'draft';
+                            return i;
+                        });
+                        if (safeStorageSet(items)) { renderBlog(); renderAdminList(); }
+                        return;
+                    }
+                    if (deleteId) {
+                        if (confirm('¿Eliminar definitivamente este artículo? Esta acción no se puede deshacer.')) {
+                            var remaining = safeStorageGet().filter(function (i) { return i.id !== deleteId; });
+                            if (safeStorageSet(remaining)) {
+                                renderBlog(); renderAdminList();
+                                if (editingId === deleteId) clearArticleForm();
+                            }
+                        }
+                    }
+                });
+            }
+
+            var newArticleBtn = document.getElementById('newArticleBtn');
+            if (newArticleBtn) newArticleBtn.addEventListener('click', clearArticleForm);
+            var resetBlogForm = document.getElementById('resetBlogForm');
+            if (resetBlogForm) resetBlogForm.addEventListener('click', clearArticleForm);
+
+            // Contact form
+            var contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    if (!document.getElementById('habeasData').checked) {
+                        alert('Debe autorizar el tratamiento de datos personales para continuar.');
+                        return;
+                    }
+                    alert('Gracias por escribirnos. Un abogado de nuestro equipo se pondrá en contacto con usted en menos de 24 horas hábiles.');
+                    contactForm.reset();
+                });
+            }
+
+            // Init
+            migrateLegacyStorage();
+            initializeStorage();
+            clearArticleForm();
+            renderBlog();
+            renderAdminList();
+        })();
+    </script>
+</body>
+</html>
