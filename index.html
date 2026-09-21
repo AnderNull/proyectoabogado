@@ -340,13 +340,16 @@
         .feature-card h3 { font-size: 1.15rem; color: var(--primary); margin-bottom: 10px; }
         .feature-card p { font-size: 0.92rem; color: var(--text-muted); }
 
-        /* Practice Areas */
+        /* ============================================
+           PRACTICE AREAS — TARJETAS OPTIMIZADAS
+           ============================================ */
         .services-section { padding: 90px 0; }
 
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
             gap: 30px;
+            align-items: stretch;
         }
 
         .service-card {
@@ -357,34 +360,76 @@
             transition: var(--transition);
             display: flex;
             flex-direction: column;
+            height: 100%;
+            min-height: 100%;
         }
 
         .service-card:hover { box-shadow: var(--shadow-lg); border-color: var(--accent); }
 
-        .service-header { background: var(--primary); color: #ffffff; padding: 25px 20px; }
-        .service-header h3 { font-size: 1.25rem; color: var(--accent); }
-
-        .service-body {
-            padding: 25px 20px;
-            flex-grow: 1;
+        /* Encabezado: altura uniforme, sin estirarse */
+        .service-header {
+            background: var(--primary);
+            color: #ffffff;
+            padding: 22px 22px;
+            flex-shrink: 0;
             display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            align-items: center;
         }
 
-        .service-list { margin-bottom: 20px; }
+        .service-header h3 {
+            font-size: 1.2rem;
+            color: var(--accent);
+            line-height: 1.3;
+            margin: 0;
+        }
+
+        /* Cuerpo: crece para llenar la tarjeta, distribuye el contenido */
+        .service-body {
+            padding: 22px;
+            flex: 1 1 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            min-height: 0;
+        }
+
+        .service-body > p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.55;
+            margin: 0;
+            flex-shrink: 0;
+        }
+
+        /* Lista: ocupa el espacio restante y distribuye verticalmente los ítems */
+        .service-list {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            flex: 1 1 auto;
+        }
 
         .service-list li {
-            padding: 6px 0;
-            font-size: 0.9rem;
+            padding: 9px 0;
+            font-size: 0.88rem;
             color: var(--text-dark);
             border-bottom: 1px dashed var(--border-color);
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 8px;
+            line-height: 1.5;
         }
 
-        .service-list li:last-child { border-bottom: none; }
+        .service-list li:last-child { border-bottom: none; padding-bottom: 0; }
+
+        /* Pie de tarjeta (espacio reservado para CTA futuro) */
+        .service-footer {
+            margin-top: auto;
+            padding-top: 8px;
+            display: flex;
+            align-items: center;
+            min-height: 0;
+        }
 
         .service-link {
             color: var(--accent);
@@ -393,6 +438,108 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
+        }
+
+        /* ============================================
+           SERVICES CAROUSEL
+           ============================================ */
+        .services-carousel-wrap {
+            position: relative;
+            padding: 0 4px;
+        }
+
+        .services-carousel {
+            display: flex;
+            gap: 30px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            padding: 8px 4px 18px;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(197, 160, 89, 0.5) transparent;
+            align-items: stretch;
+        }
+
+        .services-carousel::-webkit-scrollbar { height: 8px; }
+        .services-carousel::-webkit-scrollbar-track { background: transparent; }
+        .services-carousel::-webkit-scrollbar-thumb {
+            background: rgba(197, 160, 89, 0.5);
+            border-radius: 999px;
+        }
+
+        .services-carousel .service-card {
+            flex: 0 0 calc((100% - 60px) / 3);  /* 3 visibles en desktop */
+            scroll-snap-align: start;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            height: auto;
+            align-self: stretch;
+        }
+
+        .services-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            border: 1px solid rgba(197,160,89,.75);
+            background: rgba(10,25,47,.92);
+            color: var(--accent);
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 4;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            user-select: none;
+            line-height: 1;
+        }
+
+        .services-arrow:hover:not(:disabled) {
+            background: var(--accent);
+            color: var(--primary);
+            transform: translateY(-50%) scale(1.06);
+        }
+
+        .services-arrow:disabled {
+            opacity: .35;
+            cursor: not-allowed;
+        }
+
+        .services-arrow.prev { left: -22px; }
+        .services-arrow.next { right: -22px; }
+
+        .services-dots {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin-top: 22px;
+        }
+
+        .services-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: 0;
+            padding: 0;
+            background: rgba(10, 25, 47, 0.2);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .services-dot:hover { background: rgba(197, 160, 89, 0.7); }
+
+        .services-dot.active {
+            background: var(--accent);
+            width: 28px;
+            border-radius: 999px;
         }
 
         /* Team Section */
@@ -1123,6 +1270,13 @@
             .carousel-control.prev { left: 6px; }
             .carousel-control.next { right: 6px; }
             .navbar { padding-top: 46px; }
+
+            /* Services carousel: 2 tarjetas visibles */
+            .services-carousel .service-card {
+                flex: 0 0 calc((100% - 30px) / 2);
+            }
+            .services-arrow.prev { left: -8px; }
+            .services-arrow.next { right: -8px; }
         }
 
         @media (max-width: 900px) { .seo-layout { grid-template-columns: 1fr; } }
@@ -1136,6 +1290,26 @@
             .logo-text h2 { font-size: 1rem; }
             .logo-text span { font-size: 0.65rem; letter-spacing: 1px; }
             .logo-icon { width: 48px; height: 48px; }
+
+            /* Services carousel: 1 tarjeta visible */
+            .services-carousel {
+                gap: 18px;
+            }
+            .services-carousel .service-card {
+                flex: 0 0 100%;
+            }
+            .services-arrow {
+                width: 38px;
+                height: 38px;
+                font-size: 1.2rem;
+            }
+            .services-arrow.prev { left: -4px; }
+            .services-arrow.next { right: -4px; }
+
+            .service-header { padding: 18px 18px; }
+            .service-header h3 { font-size: 1.1rem; }
+            .service-body { padding: 18px; gap: 12px; }
+            .service-list li { padding: 8px 0; font-size: 0.85rem; }
         }
     </style>
 
@@ -1304,73 +1478,96 @@
         </div>
     </section>
 
-    <!-- PRACTICE AREAS -->
+    <!-- PRACTICE AREAS (CARRUSEL) -->
     <section class="services-section" id="servicios">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">Nuestra Especialización</span>
-                <h2 class="section-title">Áreas de Práctica Jurídica</h2>
-                <p class="section-subtitle">Defendemos su patrimonio, su empresa y el bienestar de su familia con total cobertura legal.</p>
+                <span class="section-tag">Nuestras Especialidades Jurídicas</span>
+                <h2 class="section-title">Áreas de Práctica Jurídica y Litigios en Medellín y Colombia</h2>
+                <p class="section-subtitle">Combinamos más de 20 años de experiencia en estrados judiciales con rigor investigativo para la elaboración de contratos y representación procesal de personas, familias y empresas.</p>
             </div>
-            <div class="services-grid">
 
-                <div class="service-card">
-                    <div class="service-header"><h3>Derecho de Familia</h3></div>
-                    <div class="service-body">
-                        <ul class="service-list">
-                            <li>✓ Divorcios notariales y judiciales</li>
-                            <li>✓ Liquidación de sociedad conyugal</li>
-                            <li>✓ Custodia y régimen de visitas</li>
-                            <li>✓ Fijación y aumento de alimentos</li>
-                            <li>✓ Procesos de sucesión y herencias</li>
-                        </ul>
-                        <a href="#contacto" class="service-link">Consultar caso de familia →</a>
+            <div class="services-carousel-wrap">
+                <button class="services-arrow prev" id="servicesPrev" type="button" aria-label="Servicios anteriores">‹</button>
+
+                <div class="services-carousel" id="servicesCarousel" aria-live="polite">
+
+                    <div class="service-card">
+                        <div class="service-header"><h3>Derecho de Familia y Sustracción Internacional</h3></div>
+                        <div class="service-body">
+                            <p>Protegemos la estabilidad patrimonial y el bienestar de su núcleo familiar mediante representación litigiosa y soluciones legales de alto rigor técnico en el ámbito nacional e internacional.</p>
+                            <ul class="service-list">
+                                <li>✓ Divorcios por mutuo acuerdo ante Notario y divorcios contenciosos ante Jueces de Familia.</li>
+                                <li>✓ Liquidación judicial y notarial de sociedad conyugal y patrimonial de hecho.</li>
+                                <li>✓ Fijación, aumento, exoneración y proceso ejecutivo de cuota alimentaria.</li>
+                                <li>✓ Regulación de custodia, cuidado personal y régimen de visitas.</li>
+                                <li>✓ Litigio en Restitución Internacional de Menores (Convenio de La Haya de 1980) y permisos de salida del país.</li>
+                                <li>✓ Procesos de sucesión, liquidación notarial de herencias y testamentos.</li>
+                            </ul>
+                            <!-- Enlace deshabilitado temporalmente (URL aún no disponible)
+                            <a href="https://masabogados.com.co/abogados-derecho-familia-medellin" class="service-link">Ver Servicios de Familia →</a>
+                            -->
+                        </div>
                     </div>
+
+                    <div class="service-card">
+                        <div class="service-header"><h3>Derecho Civil, Contratos e Inmobiliario</h3></div>
+                        <div class="service-body">
+                            <p>Elaboramos y revisamos contratos con blindaje jurídico integral y representamos sus intereses en litigios civiles ante la jurisdicción ordinaria para proteger su patrimonio.</p>
+                            <ul class="service-list">
+                                <li>✓ Elaboración, revisión y auditoría legal de contratos, promesas de compraventa y escrituras públicas.</li>
+                                <li>✓ Litigio civil contencioso: Responsabilidad civil contractual y extracontractual (indemnizaciones).</li>
+                                <li>✓ Estudio minucioso de títulos de tradición (20 años) y análisis de riesgos contractuales.</li>
+                                <li>✓ Redacción y negociación de contratos civiles (arrendamiento, permuta, comodato, usufructo, mutuo y garantías).</li>
+                                <li>✓ Procesos de pertenencia (prescripción adquisitiva de dominio - art. 375 CGP).</li>
+                                <li>✓ Litigio ejecutivo y cobro judicial de títulos valores (pagarés, letras, cheques y facturas).</li>
+                            </ul>
+                            <!-- Enlace deshabilitado temporalmente (URL aún no disponible)
+                            <a href="https://masabogados.com.co/abogados-derecho-civil-medellin" class="service-link">Ver Servicios Civiles e Inmobiliarios →</a>
+                            -->
+                        </div>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-header"><h3>Derecho Corporativo, Societario y Minero-Ambiental</h3></div>
+                        <div class="service-body">
+                            <p>Acompañamos a empresarios e inversionistas en la redacción de contratos mercantiles, gobierno corporativo, gestión de títulos mineros y procesos ambientales en Colombia.</p>
+                            <ul class="service-list">
+                                <li>✓ Asesoría permanente a empresas (Derecho laboral, comercial y contractual) y constitución de SAS (Ley 1258).</li>
+                                <li>✓ Redacción y negociación de contratos comerciales (suministro, distribución, agencia comercial y servicios).</li>
+                                <li>✓ Litigios societarios ante la Superintendencia de Sociedades y reorganización empresarial (Ley 1116).</li>
+                                <li>✓ Gestión, debida diligencia (Due Diligence) y contratos de concesión minera ante la ANM (Ley 2250 / Ley 685).</li>
+                                <li>✓ Formalización minera, servidumbres judiciales (Ley 1274) y reclamación de perjuicios patrimoniales.</li>
+                                <li>✓ Trámites ambientales (Licencias, EIA, PMA, ICA) e impugnación de decisiones ante ANLA, ANM y CARs.</li>
+                            </ul>
+                            <!-- Enlace deshabilitado temporalmente (URL aún no disponible)
+                            <a href="https://masabogados.com.co/abogados-derecho-corporativo-societario-medellin" class="service-link">Ver Consultoría Empresarial y Minera →</a>
+                            -->
+                        </div>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-header"><h3>Derecho Penal y Defensa en Juicio</h3></div>
+                        <div class="service-body">
+                            <p>Representación y defensa técnica en estrados judiciales dentro del Sistema Penal Acusatorio (Ley 906 de 2004), velando por la libertad y la protección de víctimas y procesados.</p>
+                            <ul class="service-list">
+                                <li>✓ Defensa técnica penal para personas naturales y representación judicial de víctimas en procesos penales.</li>
+                                <li>✓ Penal económico y corporativo (estafa, abuso de confianza, fraude procesal, delitos financieros y anticorrupción).</li>
+                                <li>✓ Representación en audiencias preliminares (legalización de captura, imputación y medida de aseguramiento).</li>
+                                <li>✓ Acompañamiento en audiencia preparatoria, juicio oral y formulación de denuncias ante la Fiscalía.</li>
+                            </ul>
+                            <!-- Enlace deshabilitado temporalmente (URL aún no disponible)
+                            <a href="https://masabogados.com.co/abogados-derecho-penal-medellin" class="service-link">Ver Especialización Penal →</a>
+                            -->
+                        </div>
+                    </div>
+
                 </div>
 
-                <div class="service-card">
-                    <div class="service-header"><h3>Derecho Civil</h3></div>
-                    <div class="service-body">
-                        <ul class="service-list">
-                            <li>✓ Elaboración y revisión de contratos</li>
-                            <li>✓ Responsabilidad civil contractual</li>
-                            <li>✓ Cobro persuasivo y coactivo de cartera</li>
-                            <li>✓ Procesos ejecutivos y de restitución</li>
-                            <li>✓ Indemnización de perjuicios</li>
-                        </ul>
-                        <a href="#contacto" class="service-link">Consultar caso civil →</a>
-                    </div>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-header"><h3>Derecho Inmobiliario</h3></div>
-                    <div class="service-body">
-                        <ul class="service-list">
-                            <li>✓ Estudio técnico de títulos</li>
-                            <li>✓ Promesas de compraventa seguras</li>
-                            <li>✓ Asesoría en arrendamientos urbanos</li>
-                            <li>✓ Saneamiento de propiedades</li>
-                            <li>✓ Acompañamiento en notaría</li>
-                        </ul>
-                        <a href="#contacto" class="service-link">Consultar caso inmobiliario →</a>
-                    </div>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-header"><h3>Consultoría Empresarial</h3></div>
-                    <div class="service-body">
-                        <ul class="service-list">
-                            <li>✓ Constitución de sociedades (S.A.S.)</li>
-                            <li>✓ Asesoría laboral patronal preventiva</li>
-                            <li>✓ Registro de marcas y propiedad intelectual</li>
-                            <li>✓ Gobierno corporativo y pacto de socios</li>
-                            <li>✓ Reorganización e insolvencia</li>
-                        </ul>
-                        <a href="#contacto" class="service-link">Consultar caso empresarial →</a>
-                    </div>
-                </div>
-
+                <button class="services-arrow next" id="servicesNext" type="button" aria-label="Servicios siguientes">›</button>
             </div>
+
+            <div class="services-dots" id="servicesDots" role="tablist" aria-label="Paginación de áreas de práctica"></div>
         </div>
     </section>
 
@@ -1380,7 +1577,7 @@
             <div class="section-header">
                 <span class="section-tag">Respaldos Verificables</span>
                 <h2 class="section-title">Nuestro Equipo Legal</h2>
-                <p class="section-subtitle">10 abogados con perfiles especializados para acompañar asuntos civiles, familiares, penales, corporativos, inmobiliarios, laborales y minero-ambientales.</p>
+                <p class="section-subtitle">Abogados con perfiles especializados para acompañar asuntos civiles, familiares, penales, corporativos, inmobiliarios, laborales y minero-ambientales.</p>
             </div>
 
             <div class="team-carousel-wrap">
@@ -2008,6 +2205,146 @@
                 });
             });
 
+            // ============ Services Carousel ============
+            (function () {
+                var carousel = document.getElementById('servicesCarousel');
+                var prevBtn = document.getElementById('servicesPrev');
+                var nextBtn = document.getElementById('servicesNext');
+                var dotsContainer = document.getElementById('servicesDots');
+                if (!carousel || !prevBtn || !nextBtn || !dotsContainer) return;
+
+                var dots = [];
+
+                function getVisibleCount() {
+                    var w = window.innerWidth;
+                    if (w <= 640) return 1;
+                    if (w <= 992) return 2;
+                    return 3;
+                }
+
+                function getGap() {
+                    return parseFloat(getComputedStyle(carousel).gap) || 30;
+                }
+
+                function getStep() {
+                    var card = carousel.querySelector('.service-card');
+                    if (!card) return 360;
+                    return card.getBoundingClientRect().width + getGap();
+                }
+
+                function getMaxScrollIndex() {
+                    var cards = carousel.querySelectorAll('.service-card');
+                    return Math.max(0, cards.length - getVisibleCount());
+                }
+
+                function buildDots() {
+                    var total = getMaxScrollIndex() + 1;
+                    dotsContainer.innerHTML = '';
+                    dots = [];
+                    for (var i = 0; i < total; i++) {
+                        var dot = document.createElement('button');
+                        dot.type = 'button';
+                        dot.className = 'services-dot';
+                        dot.setAttribute('data-index', i);
+                        dot.setAttribute('role', 'tab');
+                        dot.setAttribute('aria-label', 'Ir al grupo ' + (i + 1) + ' de tarjetas');
+                        dotsContainer.appendChild(dot);
+                        dots.push(dot);
+                    }
+                    updateActiveDot();
+                }
+
+                function updateActiveDot() {
+                    var step = getStep();
+                    if (step <= 0) return;
+                    var index = Math.round(carousel.scrollLeft / step);
+                    var max = getMaxScrollIndex();
+                    if (index > max) index = max;
+                    if (index < 0) index = 0;
+                    dots.forEach(function (dot, i) {
+                        dot.classList.toggle('active', i === index);
+                        dot.setAttribute('aria-selected', i === index ? 'true' : 'false');
+                    });
+
+                    prevBtn.disabled = carousel.scrollLeft <= 2;
+                    nextBtn.disabled = carousel.scrollLeft >= (carousel.scrollWidth - carousel.clientWidth - 2);
+                }
+
+                function scrollToIndex(index) {
+                    var step = getStep();
+                    var maxIndex = getMaxScrollIndex();
+                    if (index < 0) index = 0;
+                    if (index > maxIndex) index = maxIndex;
+                    carousel.scrollTo({ left: index * step, behavior: 'smooth' });
+                }
+
+                prevBtn.addEventListener('click', function () {
+                    carousel.scrollBy({ left: -getStep(), behavior: 'smooth' });
+                });
+
+                nextBtn.addEventListener('click', function () {
+                    carousel.scrollBy({ left: getStep(), behavior: 'smooth' });
+                });
+
+                dotsContainer.addEventListener('click', function (e) {
+                    var t = e.target;
+                    if (!t.classList.contains('services-dot')) return;
+                    var idx = parseInt(t.getAttribute('data-index'), 10);
+                    if (isNaN(idx)) return;
+                    scrollToIndex(idx);
+                });
+
+                carousel.addEventListener('scroll', function () {
+                    window.requestAnimationFrame(updateActiveDot);
+                });
+
+                window.addEventListener('resize', function () {
+                    buildDots();
+                });
+
+                var isDown = false, startX = 0, startScroll = 0, moved = false;
+
+                carousel.addEventListener('pointerdown', function (e) {
+                    if (e.pointerType === 'mouse' && e.button !== 0) return;
+                    isDown = true; moved = false;
+                    startX = e.clientX; startScroll = carousel.scrollLeft;
+                    carousel.style.scrollBehavior = 'auto';
+                    try { carousel.setPointerCapture(e.pointerId); } catch (err) {}
+                });
+
+                carousel.addEventListener('pointermove', function (e) {
+                    if (!isDown) return;
+                    var delta = e.clientX - startX;
+                    if (Math.abs(delta) > 4) moved = true;
+                    carousel.scrollLeft = startScroll - delta;
+                });
+
+                function endDrag(e) {
+                    if (!isDown) return;
+                    isDown = false;
+                    carousel.style.scrollBehavior = 'smooth';
+                    if (e && e.pointerId !== undefined) {
+                        try { carousel.releasePointerCapture(e.pointerId); } catch (err) {}
+                    }
+                    var step = getStep();
+                    if (step > 0) {
+                        var index = Math.round(carousel.scrollLeft / step);
+                        scrollToIndex(index);
+                    }
+                }
+
+                carousel.addEventListener('pointerup', endDrag);
+                carousel.addEventListener('pointercancel', endDrag);
+                carousel.addEventListener('pointerleave', function () { if (isDown) endDrag(); });
+
+                carousel.addEventListener('click', function (e) {
+                    if (moved) { e.preventDefault(); e.stopPropagation(); }
+                }, true);
+
+                buildDots();
+                setTimeout(function () { buildDots(); updateActiveDot(); }, 100);
+            })();
+
             // Team carousel
             var carousel = document.getElementById('teamCarousel');
             var prevBtn = document.querySelector('.carousel-control.prev');
@@ -2125,7 +2462,6 @@
                 }
             ];
 
-            // -------- Utils --------
             function escapeHtml(v) {
                 return String(v == null ? '' : v).replace(/[&<>"']/g, function (c) {
                     return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[c];
@@ -2707,7 +3043,6 @@
             var resetBlogForm = document.getElementById('resetBlogForm');
             if (resetBlogForm) resetBlogForm.addEventListener('click', clearArticleForm);
 
-            // Contact form
             var contactForm = document.getElementById('contactForm');
             if (contactForm) {
                 contactForm.addEventListener('submit', function (e) {
@@ -2721,7 +3056,6 @@
                 });
             }
 
-            // Init
             migrateLegacyStorage();
             initializeStorage();
             clearArticleForm();
