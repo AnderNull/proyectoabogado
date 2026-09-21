@@ -6,12 +6,13 @@
     <meta name="description" content="Martínez & Asociados - MÁS Abogados | Firma jurídica en Medellín con atención en Colombia.">
     <title>Martínez & Asociados - MÁS Abogados | Firma Jurídica en Medellín</title>
 
-    <!-- Bilingual: alternates para SEO -->
+    <!-- Progressive enhancement flag -->
+    <script>document.documentElement.classList.add('js');</script>
+
     <link rel="alternate" hreflang="es-co" href="https://masabogados.com.co/">
     <link rel="alternate" hreflang="en" href="https://masabogados.com.co/en/">
     <link rel="alternate" hreflang="x-default" href="https://masabogados.com.co/">
 
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -30,8 +31,33 @@
             --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
             --shadow-lg: 0 20px 30px -10px rgba(10, 25, 47, 0.12);
             --radius: 8px;
-            --transition: all 0.3s ease;
+
+            /* ============================================
+               MOTION SYSTEM (del Audit Report sección 4.1)
+               ============================================ */
+            --ease-entrance: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-exit: cubic-bezier(0.4, 0, 1, 1);
+            --ease-interactive: cubic-bezier(0.34, 1.2, 0.64, 1);
+            --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+
+            --dur-micro: 120ms;
+            --dur-interactive: 220ms;
+            --dur-component: 320ms;
+            --dur-overlay-in: 380ms;
+            --dur-overlay-out: 220ms;
+            --dur-reveal: 500ms;
+
+            /* Transition shorthand con propiedades explícitas (no "all") */
+            --transition:
+                transform var(--dur-interactive) var(--ease-interactive),
+                opacity var(--dur-interactive) var(--ease-standard),
+                background-color var(--dur-micro) var(--ease-standard),
+                border-color var(--dur-micro) var(--ease-standard),
+                color var(--dur-micro) var(--ease-standard),
+                box-shadow var(--dur-interactive) var(--ease-standard);
         }
+
+        html { scroll-behavior: smooth; }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -40,6 +66,7 @@
             color: var(--text-dark);
             background-color: var(--bg-white);
             line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
         }
 
         h1, h2, h3, h4, .brand-font {
@@ -57,7 +84,36 @@
             padding: 0 24px;
         }
 
-        /* Header / Navbar */
+        /* ============================================
+           FOCUS-VISIBLE
+           ============================================ */
+        :where(a, button, input, select, textarea, [tabindex]):focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 3px;
+            border-radius: 6px;
+        }
+
+        /* ============================================
+           REVEAL SYSTEM
+           ============================================ */
+        html.js .reveal-item {
+            opacity: 0;
+            transform: translate3d(0, 16px, 0);
+            transition:
+                opacity var(--dur-reveal) var(--ease-entrance),
+                transform var(--dur-reveal) var(--ease-entrance);
+            transition-delay: var(--reveal-delay, 0ms);
+            will-change: opacity, transform;
+        }
+        html.js .reveal-item.is-visible {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+            will-change: auto;
+        }
+
+        /* ============================================
+           HEADER / NAVBAR
+           ============================================ */
         header {
             background-color: var(--bg-white);
             position: sticky;
@@ -74,6 +130,17 @@
             padding: 42px 0 18px 0;
             gap: 18px;
             flex-wrap: nowrap;
+            transition:
+                padding var(--dur-component) var(--ease-standard),
+                box-shadow var(--dur-component) var(--ease-standard);
+        }
+
+        header.is-scrolled .navbar {
+            padding: 22px 0 14px 0;
+        }
+
+        header.is-scrolled {
+            box-shadow: var(--shadow-md);
         }
 
         .logo-container {
@@ -81,7 +148,10 @@
             align-items: center;
             gap: 12px;
             flex-shrink: 0;
+            transition: transform var(--dur-interactive) var(--ease-interactive);
         }
+        .logo-container:hover { transform: translate3d(0, -1px, 0); }
+        .logo-container:active { transform: scale(0.98); transition-duration: var(--dur-micro); }
 
         .logo-icon {
             width: 60px;
@@ -137,9 +207,29 @@
             line-height: 1.3;
             padding: 4px 0;
             flex-shrink: 0;
+            transition: color var(--dur-micro) var(--ease-standard);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 1.5px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transform-origin: right center;
+            transition: transform var(--dur-component) var(--ease-entrance);
         }
 
         .nav-links a:hover { color: var(--accent); }
+        .nav-links a:hover::after,
+        .nav-links a:focus-visible::after {
+            transform: scaleX(1);
+            transform-origin: left center;
+        }
+        .nav-links a:active { transform: scale(0.96); transition-duration: var(--dur-micro); }
 
         .navbar > .btn {
             flex-shrink: 0;
@@ -164,6 +254,11 @@
             background: var(--bg-white);
             z-index: 2;
             white-space: nowrap;
+            transition: top var(--dur-component) var(--ease-standard);
+        }
+
+        header.is-scrolled .lang-switch {
+            top: 4px;
         }
 
         .lang-switch a {
@@ -171,6 +266,10 @@
             border-radius: 999px;
             color: var(--text-muted);
             white-space: nowrap;
+            transition:
+                color var(--dur-micro) var(--ease-standard),
+                background-color var(--dur-component) var(--ease-entrance),
+                transform var(--dur-interactive) var(--ease-interactive);
         }
 
         .lang-switch a.active {
@@ -179,8 +278,13 @@
         }
 
         .lang-switch a:hover { color: var(--accent); }
+        .lang-switch a:active { transform: scale(0.9); transition-duration: var(--dur-micro); }
 
+        /* ============================================
+           BUTTONS (spring press + loading states)
+           ============================================ */
         .btn {
+            position: relative;
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -193,13 +297,14 @@
             font-size: 0.95rem;
             border: none;
             white-space: nowrap;
+            will-change: transform;
         }
 
         .btn-accent { background-color: var(--accent); color: #ffffff; }
         .btn-accent:hover {
             background-color: var(--accent-hover);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
+            transform: translate3d(0, -2px, 0) scale(1.02);
+            box-shadow: 0 12px 24px -8px rgba(197, 160, 89, 0.45);
         }
 
         .btn-outline {
@@ -207,11 +312,53 @@
             color: var(--primary);
             border: 2px solid var(--primary);
         }
-        .btn-outline:hover { background: var(--primary); color: #ffffff; }
+        .btn-outline:hover {
+            background: var(--primary);
+            color: #ffffff;
+            transform: translate3d(0, -2px, 0);
+            box-shadow: 0 12px 24px -8px rgba(10, 25, 47, 0.35);
+        }
 
-        /* Hero Section */
+        .btn:active {
+            transform: scale(0.97) translate3d(0, 0, 0);
+            box-shadow: none;
+            transition-duration: var(--dur-micro);
+        }
+
+        /* Button loading / success states */
+        .btn[data-state="loading"],
+        .btn[data-state="success"] {
+            pointer-events: none;
+        }
+        .btn[data-state="loading"] .btn-label { opacity: 0; }
+        .btn[data-state="loading"]::after {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255,255,255,.4);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: btnSpin 0.7s linear infinite;
+        }
+        .btn[data-state="success"] {
+            background-color: #16a34a !important;
+            color: #fff !important;
+        }
+
+        .btn-label {
+            transition: opacity var(--dur-interactive) var(--ease-standard);
+        }
+
+        @keyframes btnSpin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* ============================================
+           HERO
+           ============================================ */
         .hero {
-            background: linear-gradient(135deg, rgba(10,25,47,0.94) 0%, rgba(23,42,69,0.88) 100%), 
+            background: linear-gradient(135deg, rgba(10,25,47,0.94) 0%, rgba(23,42,69,0.88) 100%),
                         url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80') center/cover;
             color: #ffffff;
             padding: 90px 0 110px 0;
@@ -224,6 +371,17 @@
             gap: 50px;
             align-items: center;
         }
+
+        @keyframes heroRevealUp {
+            from { opacity: 0; transform: translate3d(0, 24px, 0); }
+            to   { opacity: 1; transform: translate3d(0, 0, 0); }
+        }
+
+        .hero .hero-badge    { animation: heroRevealUp 700ms var(--ease-entrance) 60ms both; }
+        .hero .hero-title    { animation: heroRevealUp 700ms var(--ease-entrance) 180ms both; }
+        .hero .hero-subtitle { animation: heroRevealUp 700ms var(--ease-entrance) 300ms both; }
+        .hero .hero-cta      { animation: heroRevealUp 700ms var(--ease-entrance) 420ms both; }
+        .hero .hero-card     { animation: heroRevealUp 700ms var(--ease-entrance) 300ms both; }
 
         .hero-badge {
             display: inline-flex;
@@ -260,6 +418,13 @@
             border: 1px solid rgba(255, 255, 255, 0.15);
             padding: 30px;
             border-radius: var(--radius);
+            transition:
+                transform var(--dur-component) var(--ease-entrance),
+                border-color var(--dur-component) var(--ease-standard);
+        }
+        .hero-card:hover {
+            transform: translate3d(0, -4px, 0);
+            border-color: rgba(197, 160, 89, 0.6);
         }
 
         .hero-card h3 { color: var(--accent); font-size: 1.3rem; margin-bottom: 15px; }
@@ -272,7 +437,9 @@
             gap: 10px;
             font-size: 0.95rem;
             color: rgba(255, 255, 255, 0.9);
+            transition: transform var(--dur-interactive) var(--ease-interactive);
         }
+        .hero-feature-list li:hover { transform: translate3d(4px, 0, 0); }
 
         .hero-feature-list li svg {
             color: var(--accent);
@@ -300,7 +467,7 @@
         .section-title { font-size: 2.2rem; color: var(--primary); margin-bottom: 15px; }
         .section-subtitle { color: var(--text-muted); font-size: 1.05rem; }
 
-        /* Trust & Key Features */
+        /* Features */
         .features-section { padding: 80px 0; background-color: var(--bg-light); }
 
         .features-grid {
@@ -310,19 +477,34 @@
         }
 
         .feature-card {
+            position: relative;
             background: var(--bg-white);
             padding: 30px;
             border-radius: var(--radius);
-            box-shadow: var(--shadow-sm);
             border: 1px solid var(--border-color);
-            transition: var(--transition);
+            transition:
+                transform var(--dur-component) var(--ease-entrance),
+                border-color var(--dur-component) var(--ease-standard);
+            will-change: transform;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            box-shadow: var(--shadow-md);
+            opacity: 0;
+            transition: opacity var(--dur-component) var(--ease-standard);
+            pointer-events: none;
+            z-index: -1;
         }
 
         .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-md);
+            transform: translate3d(0, -6px, 0);
             border-color: var(--accent);
         }
+        .feature-card:hover::before { opacity: 1; }
 
         .feature-icon {
             width: 50px;
@@ -335,38 +517,57 @@
             justify-content: center;
             margin-bottom: 20px;
             font-size: 1.4rem;
+            transition:
+                transform var(--dur-interactive) var(--ease-interactive),
+                background-color var(--dur-interactive) var(--ease-standard);
+        }
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1) rotate(-4deg);
+            background: rgba(197, 160, 89, 0.22);
         }
 
         .feature-card h3 { font-size: 1.15rem; color: var(--primary); margin-bottom: 10px; }
         .feature-card p { font-size: 0.92rem; color: var(--text-muted); }
 
         /* ============================================
-           PRACTICE AREAS — TARJETAS OPTIMIZADAS
+           PRACTICE AREAS
            ============================================ */
         .services-section { padding: 90px 0; }
 
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-            gap: 30px;
-            align-items: stretch;
-        }
-
         .service-card {
+            position: relative;
             background: var(--bg-white);
             border: 1px solid var(--border-color);
             border-radius: var(--radius);
             overflow: hidden;
-            transition: var(--transition);
+            transition:
+                transform var(--dur-component) var(--ease-entrance),
+                border-color var(--dur-component) var(--ease-standard);
             display: flex;
             flex-direction: column;
             height: 100%;
             min-height: 100%;
+            will-change: transform;
         }
 
-        .service-card:hover { box-shadow: var(--shadow-lg); border-color: var(--accent); }
+        .service-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            box-shadow: var(--shadow-lg);
+            opacity: 0;
+            transition: opacity var(--dur-component) var(--ease-standard);
+            pointer-events: none;
+            z-index: -1;
+        }
 
-        /* Encabezado: altura uniforme, sin estirarse */
+        .service-card:hover {
+            transform: translate3d(0, -6px, 0);
+            border-color: var(--accent);
+        }
+        .service-card:hover::before { opacity: 1; }
+
         .service-header {
             background: var(--primary);
             color: #ffffff;
@@ -383,7 +584,6 @@
             margin: 0;
         }
 
-        /* Cuerpo: crece para llenar la tarjeta, distribuye el contenido */
         .service-body {
             padding: 22px;
             flex: 1 1 auto;
@@ -401,7 +601,6 @@
             flex-shrink: 0;
         }
 
-        /* Lista: ocupa el espacio restante y distribuye verticalmente los ítems */
         .service-list {
             margin: 0;
             display: flex;
@@ -418,18 +617,11 @@
             align-items: flex-start;
             gap: 8px;
             line-height: 1.5;
+            transition: color var(--dur-micro) var(--ease-standard);
         }
+        .service-card:hover .service-list li { color: var(--primary); }
 
         .service-list li:last-child { border-bottom: none; padding-bottom: 0; }
-
-        /* Pie de tarjeta (espacio reservado para CTA futuro) */
-        .service-footer {
-            margin-top: auto;
-            padding-top: 8px;
-            display: flex;
-            align-items: center;
-            min-height: 0;
-        }
 
         .service-link {
             color: var(--accent);
@@ -440,9 +632,7 @@
             gap: 6px;
         }
 
-        /* ============================================
-           SERVICES CAROUSEL
-           ============================================ */
+        /* Services carousel */
         .services-carousel-wrap {
             position: relative;
             padding: 0 4px;
@@ -470,7 +660,7 @@
         }
 
         .services-carousel .service-card {
-            flex: 0 0 calc((100% - 60px) / 3);  /* 3 visibles en desktop */
+            flex: 0 0 calc((100% - 60px) / 3);
             scroll-snap-align: start;
             min-width: 0;
             display: flex;
@@ -496,15 +686,25 @@
             cursor: pointer;
             z-index: 4;
             box-shadow: var(--shadow-md);
-            transition: var(--transition);
+            transition:
+                background-color var(--dur-micro) var(--ease-standard),
+                color var(--dur-micro) var(--ease-standard),
+                transform var(--dur-interactive) var(--ease-interactive),
+                opacity var(--dur-component) var(--ease-standard);
             user-select: none;
             line-height: 1;
+            will-change: transform;
         }
 
         .services-arrow:hover:not(:disabled) {
             background: var(--accent);
             color: var(--primary);
-            transform: translateY(-50%) scale(1.06);
+            transform: translateY(-50%) scale(1.08);
+        }
+
+        .services-arrow:active:not(:disabled) {
+            transform: translateY(-50%) scale(0.94);
+            transition-duration: var(--dur-micro);
         }
 
         .services-arrow:disabled {
@@ -531,10 +731,14 @@
             padding: 0;
             background: rgba(10, 25, 47, 0.2);
             cursor: pointer;
-            transition: var(--transition);
+            transition:
+                background-color var(--dur-component) var(--ease-standard),
+                width var(--dur-component) var(--ease-entrance),
+                transform var(--dur-interactive) var(--ease-interactive);
         }
 
-        .services-dot:hover { background: rgba(197, 160, 89, 0.7); }
+        .services-dot:hover { background: rgba(197, 160, 89, 0.7); transform: scale(1.2); }
+        .services-dot:active { transform: scale(0.85); }
 
         .services-dot.active {
             background: var(--accent);
@@ -542,19 +746,34 @@
             border-radius: 999px;
         }
 
-        /* Team Section */
+        /* Team */
         .team-section { padding: 90px 0; background-color: var(--bg-light); }
 
         .team-card {
+            position: relative;
             background: var(--bg-white);
             border-radius: var(--radius);
             overflow: hidden;
-            box-shadow: var(--shadow-sm);
             border: 1px solid var(--border-color);
-            transition: var(--transition);
+            transition:
+                transform var(--dur-component) var(--ease-entrance),
+                border-color var(--dur-component) var(--ease-standard);
+            will-change: transform;
         }
 
-        .team-card:hover { box-shadow: var(--shadow-md); }
+        .team-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            box-shadow: var(--shadow-md);
+            opacity: 0;
+            transition: opacity var(--dur-component) var(--ease-standard);
+            pointer-events: none;
+            z-index: -1;
+        }
+        .team-card:hover { transform: translate3d(0, -6px, 0); border-color: var(--accent); }
+        .team-card:hover::before { opacity: 1; }
 
         .tp-badge {
             position: absolute;
@@ -582,7 +801,7 @@
             border-left: 3px solid var(--accent);
         }
 
-        /* Real Metrics & Reviews */
+        /* Metrics */
         .stats-reviews-section { padding: 80px 0; background: var(--primary); color: #ffffff; }
 
         .stats-grid {
@@ -593,7 +812,15 @@
             text-align: center;
         }
 
-        .stat-item h3 { font-size: 2.8rem; color: var(--accent); line-height: 1; margin-bottom: 8px; }
+        .stat-item h3 {
+            font-size: 2.8rem;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 8px;
+            transition: transform var(--dur-interactive) var(--ease-interactive);
+        }
+        .stat-item:hover h3 { transform: scale(1.08); }
+
         .stat-item p { font-size: 0.95rem; color: rgba(255, 255, 255, 0.8); }
 
         .google-reviews-box {
@@ -625,11 +852,18 @@
             padding: 20px;
             border-radius: 6px;
             font-size: 0.9rem;
+            transition:
+                transform var(--dur-component) var(--ease-entrance),
+                background-color var(--dur-component) var(--ease-standard);
+        }
+        .review-card:hover {
+            transform: translate3d(0, -4px, 0);
+            background: rgba(255, 255, 255, 0.12);
         }
 
         .review-author { font-weight: 600; color: var(--accent); margin-top: 10px; font-size: 0.85rem; }
 
-        /* Fee Transparency Section */
+        /* Fees */
         .fees-section { padding: 80px 0; background-color: var(--bg-white); }
 
         .fee-steps {
@@ -645,6 +879,13 @@
             border-radius: var(--radius);
             position: relative;
             background: var(--bg-light);
+            transition:
+                transform var(--dur-component) var(--ease-entrance),
+                border-color var(--dur-component) var(--ease-standard);
+        }
+        .fee-step-card:hover {
+            transform: translate3d(0, -4px, 0);
+            border-color: var(--accent);
         }
 
         .step-num {
@@ -660,12 +901,14 @@
             align-items: center;
             justify-content: center;
             font-weight: 700;
+            transition: transform var(--dur-interactive) var(--ease-interactive);
         }
+        .fee-step-card:hover .step-num { transform: scale(1.15) rotate(-8deg); }
 
         .fee-step-card h3 { margin-top: 10px; margin-bottom: 10px; color: var(--primary); font-size: 1.15rem; }
         .fee-step-card p { font-size: .9rem; color: var(--text-dark); }
 
-        /* Blog Section */
+        /* Blog */
         .blog-section { padding: 90px 0; background-color: var(--bg-light); }
 
         .blog-grid {
@@ -683,8 +926,25 @@
             border-radius: var(--radius);
             overflow: hidden;
             border: 1px solid var(--border-color);
-            box-shadow: var(--shadow-sm);
+            transition:
+                transform var(--dur-component) var(--ease-entrance),
+                border-color var(--dur-component) var(--ease-standard);
+            will-change: transform;
         }
+
+        .blog-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            box-shadow: var(--shadow-md);
+            opacity: 0;
+            transition: opacity var(--dur-component) var(--ease-standard);
+            pointer-events: none;
+            z-index: -1;
+        }
+        .blog-card:hover { transform: translate3d(0, -6px, 0); border-color: var(--accent); }
+        .blog-card:hover::before { opacity: 1; }
 
         .blog-img {
             height: 180px;
@@ -694,7 +954,9 @@
             font-size: 0.85rem;
             background-size: cover;
             background-position: center;
+            transition: transform var(--dur-reveal) var(--ease-entrance);
         }
+        .blog-card:hover .blog-img { transform: scale(1.04); }
 
         .blog-content { padding: 20px; flex: 1; display: flex; flex-direction: column; }
 
@@ -721,9 +983,15 @@
             font: inherit;
             color: var(--accent);
             font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: gap var(--dur-interactive) var(--ease-interactive);
         }
+        .blog-read-btn:hover { gap: 10px; }
+        .blog-read-btn:active { transform: scale(0.96); transition-duration: var(--dur-micro); }
 
-        /* Contact & Map */
+        /* Contact */
         .contact-section { padding: 90px 0; background-color: var(--bg-white); }
 
         .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
@@ -752,7 +1020,9 @@
             border-radius: 6px;
             font-family: inherit;
             font-size: 0.95rem;
-            transition: var(--transition);
+            transition:
+                border-color var(--dur-micro) var(--ease-standard),
+                box-shadow var(--dur-component) var(--ease-standard);
         }
 
         .form-control:focus {
@@ -771,7 +1041,7 @@
 
         .map-container iframe { width: 100%; height: 100%; border: 0; }
 
-        /* FAQ */
+        /* FAQ — grid-template-rows pattern */
         .faq-section { padding: 80px 0; background-color: var(--bg-light); }
 
         .faq-accordion {
@@ -787,7 +1057,12 @@
             border: 1px solid var(--border-color);
             border-radius: var(--radius);
             overflow: hidden;
+            transition:
+                border-color var(--dur-micro) var(--ease-standard),
+                box-shadow var(--dur-component) var(--ease-standard);
         }
+        .faq-item:hover { border-color: rgba(197, 160, 89, 0.45); }
+        .faq-item.active { border-color: var(--accent); }
 
         .faq-question {
             padding: 20px;
@@ -798,18 +1073,44 @@
             justify-content: space-between;
             align-items: center;
             gap: 12px;
+            transition: color var(--dur-micro) var(--ease-standard);
+        }
+        .faq-question:active { transform: scale(0.995); }
+
+        .faq-toggle {
+            display: inline-block;
+            transition: transform var(--dur-interactive) var(--ease-interactive);
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+        .faq-item.active .faq-toggle { transform: rotate(180deg); }
+
+        .faq-answer-wrap {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows var(--dur-component) var(--ease-entrance);
+        }
+        .faq-item.active .faq-answer-wrap {
+            grid-template-rows: 1fr;
         }
 
         .faq-answer {
+            overflow: hidden;
+            min-height: 0;
             padding: 0 20px 20px 20px;
             font-size: 0.92rem;
             color: var(--text-dark);
-            display: none;
             line-height: 1.7;
+            opacity: 0;
+            transform: translate3d(0, -8px, 0);
+            transition:
+                opacity var(--dur-component) var(--ease-standard) 80ms,
+                transform var(--dur-component) var(--ease-entrance) 80ms;
         }
-
-        .faq-item.active .faq-answer { display: block; }
-        .faq-item.active .faq-toggle { transform: rotate(180deg); }
+        .faq-item.active .faq-answer {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
 
         /* Footer */
         footer {
@@ -841,10 +1142,18 @@
             width: 30px;
             height: 2px;
             background: var(--accent);
+            transition: width var(--dur-component) var(--ease-entrance);
         }
+        .footer-col:hover h4::after { width: 55px; }
 
         .footer-links li { margin-bottom: 10px; }
-        .footer-links a:hover { color: var(--accent); }
+        .footer-links a {
+            transition:
+                color var(--dur-micro) var(--ease-standard),
+                transform var(--dur-interactive) var(--ease-interactive);
+            display: inline-block;
+        }
+        .footer-links a:hover { color: var(--accent); transform: translate3d(4px, 0, 0); }
 
         .footer-bottom {
             border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -877,7 +1186,7 @@
             border-radius: 999px;
         }
 
-        .team-card {
+        .team-carousel .team-card {
             flex: 0 0 min(360px, 82vw);
             scroll-snap-align: start;
             display: flex;
@@ -903,7 +1212,9 @@
             object-fit: cover;
             object-position: center top;
             display: block;
+            transition: transform var(--dur-reveal) var(--ease-entrance);
         }
+        .team-card:hover .team-photo { transform: scale(1.05); }
 
         .team-fallback {
             display: none;
@@ -937,13 +1248,20 @@
             cursor: pointer;
             z-index: 4;
             box-shadow: var(--shadow-md);
-            transition: var(--transition);
+            transition:
+                background-color var(--dur-micro) var(--ease-standard),
+                color var(--dur-micro) var(--ease-standard),
+                transform var(--dur-interactive) var(--ease-interactive);
         }
 
         .carousel-control:hover {
             background: var(--accent);
             color: var(--primary);
-            transform: translateY(-50%) scale(1.06);
+            transform: translateY(-50%) scale(1.08);
+        }
+        .carousel-control:active {
+            transform: translateY(-50%) scale(0.94);
+            transition-duration: var(--dur-micro);
         }
 
         .carousel-control.prev { left: -22px; }
@@ -967,27 +1285,55 @@
             border: 1px dashed var(--border-color);
             border-radius: 999px;
             cursor: pointer;
-            transition: var(--transition);
+            transition:
+                color var(--dur-micro) var(--ease-standard),
+                border-color var(--dur-micro) var(--ease-standard),
+                background-color var(--dur-micro) var(--ease-standard),
+                transform var(--dur-interactive) var(--ease-interactive);
         }
 
         .admin-btn:hover {
             color: var(--primary);
             border-color: var(--accent);
             background: rgba(197,160,89,.08);
+            transform: translate3d(0, -1px, 0);
         }
+        .admin-btn:active { transform: scale(0.96); transition-duration: var(--dur-micro); }
 
+        /* ============================================
+           MODALS — visibility + opacity + scale
+           ============================================ */
         .blog-modal, .article-modal {
             position: fixed;
             inset: 0;
             background: rgba(2, 12, 27, .72);
-            display: none;
+            display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
             z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            backdrop-filter: blur(0px);
+            -webkit-backdrop-filter: blur(0px);
+            transition:
+                opacity var(--dur-overlay-out) var(--ease-exit),
+                backdrop-filter var(--dur-overlay-out) var(--ease-exit),
+                visibility 0s linear var(--dur-overlay-out);
         }
 
-        .blog-modal.open, .article-modal.open { display: flex; }
+        .blog-modal.open, .article-modal.open {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            transition:
+                opacity var(--dur-overlay-in) var(--ease-entrance),
+                backdrop-filter var(--dur-overlay-in) var(--ease-entrance),
+                visibility 0s linear 0s;
+        }
 
         .modal-dialog {
             width: min(760px, 100%);
@@ -998,6 +1344,19 @@
             box-shadow: var(--shadow-lg);
             border: 1px solid var(--border-color);
             position: relative;
+            transform: scale(0.96) translate3d(0, 8px, 0);
+            opacity: 0;
+            transition:
+                transform var(--dur-overlay-in) var(--ease-entrance),
+                opacity var(--dur-overlay-in) var(--ease-entrance);
+            will-change: transform, opacity;
+        }
+
+        .blog-modal.open .modal-dialog,
+        .article-modal.open .modal-dialog {
+            transform: scale(1) translate3d(0, 0, 0);
+            opacity: 1;
+            will-change: auto;
         }
 
         .modal-header {
@@ -1017,7 +1376,12 @@
             font-size: 1.5rem;
             color: var(--text-muted);
             cursor: pointer;
+            transition:
+                color var(--dur-micro) var(--ease-standard),
+                transform var(--dur-interactive) var(--ease-interactive);
         }
+        .modal-close:hover { color: var(--primary); transform: rotate(90deg); }
+        .modal-close:active { transform: rotate(90deg) scale(0.85); transition-duration: var(--dur-micro); }
 
         .modal-body { padding: 24px 28px 30px; }
 
@@ -1086,9 +1450,14 @@
             height: 32px;
             cursor: pointer;
             font: 600 .8rem 'Inter', sans-serif;
+            transition:
+                color var(--dur-micro) var(--ease-standard),
+                border-color var(--dur-micro) var(--ease-standard),
+                transform var(--dur-interactive) var(--ease-interactive);
         }
 
         .rich-toolbar button:hover { border-color: var(--accent); color: var(--accent); }
+        .rich-toolbar button:active { transform: scale(0.94); transition-duration: var(--dur-micro); }
 
         .rich-editor {
             width: 100%;
@@ -1152,7 +1521,16 @@
 
         .seo-score { display: flex; align-items: center; gap: 9px; margin: 14px 0 10px; font-weight: 700; color: var(--primary); }
 
-        .seo-light { width: 14px; height: 14px; border-radius: 50%; background: #94a3b8; box-shadow: 0 0 0 4px rgba(148,163,184,.12); }
+        .seo-light {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #94a3b8;
+            box-shadow: 0 0 0 4px rgba(148,163,184,.12);
+            transition:
+                background-color var(--dur-component) var(--ease-standard),
+                box-shadow var(--dur-component) var(--ease-standard);
+        }
         .seo-light.red { background: #dc2626; box-shadow: 0 0 0 4px rgba(220,38,38,.12); }
         .seo-light.yellow { background: #f59e0b; box-shadow: 0 0 0 4px rgba(245,158,11,.12); }
         .seo-light.green { background: #16a34a; box-shadow: 0 0 0 4px rgba(22,163,74,.12); }
@@ -1168,9 +1546,13 @@
             background: var(--bg-light);
             font-size: .82rem;
             color: var(--text-dark);
+            transition: background-color var(--dur-component) var(--ease-standard);
         }
 
-        .seo-check .dot { width: 9px; height: 9px; border-radius: 50%; background: #94a3b8; flex: 0 0 auto; }
+        .seo-check .dot {
+            width: 9px; height: 9px; border-radius: 50%; background: #94a3b8; flex: 0 0 auto;
+            transition: background-color var(--dur-component) var(--ease-standard);
+        }
         .seo-check.ok .dot { background: #16a34a; }
         .seo-check.fail .dot { background: #dc2626; }
 
@@ -1194,7 +1576,9 @@
             gap: 12px;
             padding: 12px 0;
             border-bottom: 1px solid var(--border-color);
+            transition: background-color var(--dur-micro) var(--ease-standard);
         }
+        .admin-row:hover { background: rgba(197, 160, 89, 0.04); }
 
         .admin-row:last-child { border-bottom: 0; }
         .admin-row-info { min-width: 0; }
@@ -1211,9 +1595,15 @@
             cursor: pointer;
             font-size: .78rem;
             font-weight: 600;
+            transition:
+                color var(--dur-micro) var(--ease-standard),
+                border-color var(--dur-micro) var(--ease-standard),
+                background-color var(--dur-micro) var(--ease-standard),
+                transform var(--dur-interactive) var(--ease-interactive);
         }
 
         .admin-mini-btn:hover { border-color: var(--accent); color: var(--accent); }
+        .admin-mini-btn:active { transform: scale(0.94); transition-duration: var(--dur-micro); }
         .admin-mini-btn.danger { color: #b91c1c; }
 
         #blogLoginModal .modal-dialog { width: min(420px, 100%); }
@@ -1229,7 +1619,18 @@
             margin-bottom: 14px;
         }
 
-        .login-error.show { display: block; }
+        .login-error.show {
+            display: block;
+            animation: shakeX var(--dur-component) var(--ease-interactive);
+        }
+
+        @keyframes shakeX {
+            0%, 100% { transform: translate3d(0, 0, 0); }
+            20% { transform: translate3d(-8px, 0, 0); }
+            40% { transform: translate3d(6px, 0, 0); }
+            60% { transform: translate3d(-4px, 0, 0); }
+            80% { transform: translate3d(2px, 0, 0); }
+        }
 
         .article-content-wrap { display: grid; gap: 16px; }
         .article-content-wrap .article-featured {
@@ -1257,6 +1658,57 @@
         .article-body-rich ul, .article-body-rich ol { margin: 0 0 16px 22px; }
         .article-body-rich a { color: var(--accent); text-decoration: underline; }
 
+        /* ============================================
+           TOAST
+           ============================================ */
+        .toast-container {
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            z-index: 3000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 380px;
+            pointer-events: none;
+        }
+
+        .toast {
+            background: var(--primary);
+            color: #fff;
+            padding: 14px 18px;
+            border-radius: 10px;
+            border-left: 4px solid var(--accent);
+            box-shadow: 0 12px 30px -8px rgba(10,25,47,.4);
+            font-size: .9rem;
+            font-family: 'Inter', sans-serif;
+            pointer-events: auto;
+            opacity: 0;
+            transform: translate3d(20px, 0, 0) scale(0.96);
+            transition:
+                opacity var(--dur-component) var(--ease-entrance),
+                transform var(--dur-component) var(--ease-entrance);
+            will-change: opacity, transform;
+        }
+
+        .toast.toast-success { border-left-color: #16a34a; }
+        .toast.toast-error { border-left-color: #dc2626; }
+
+        .toast.show {
+            opacity: 1;
+            transform: translate3d(0, 0, 0) scale(1);
+        }
+
+        .toast.hide {
+            opacity: 0;
+            transform: translate3d(20px, 0, 0) scale(0.96);
+            transition-duration: var(--dur-overlay-out);
+            transition-timing-function: var(--ease-exit);
+        }
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
         @media (max-width: 1100px) {
             .nav-links { gap: 14px; }
             .nav-links a { font-size: 0.85rem; }
@@ -1270,11 +1722,9 @@
             .carousel-control.prev { left: 6px; }
             .carousel-control.next { right: 6px; }
             .navbar { padding-top: 46px; }
+            header.is-scrolled .navbar { padding-top: 24px; }
 
-            /* Services carousel: 2 tarjetas visibles */
-            .services-carousel .service-card {
-                flex: 0 0 calc((100% - 30px) / 2);
-            }
+            .services-carousel .service-card { flex: 0 0 calc((100% - 30px) / 2); }
             .services-arrow.prev { left: -8px; }
             .services-arrow.next { right: -8px; }
         }
@@ -1282,7 +1732,7 @@
         @media (max-width: 900px) { .seo-layout { grid-template-columns: 1fr; } }
 
         @media (max-width: 640px) {
-            .team-card { flex-basis: 88vw; }
+            .team-carousel .team-card { flex-basis: 88vw; }
             .admin-form-grid { grid-template-columns: 1fr; }
             .admin-form-grid .full { grid-column: auto; }
             .modal-header, .modal-body { padding-left: 18px; padding-right: 18px; }
@@ -1291,18 +1741,9 @@
             .logo-text span { font-size: 0.65rem; letter-spacing: 1px; }
             .logo-icon { width: 48px; height: 48px; }
 
-            /* Services carousel: 1 tarjeta visible */
-            .services-carousel {
-                gap: 18px;
-            }
-            .services-carousel .service-card {
-                flex: 0 0 100%;
-            }
-            .services-arrow {
-                width: 38px;
-                height: 38px;
-                font-size: 1.2rem;
-            }
+            .services-carousel { gap: 18px; }
+            .services-carousel .service-card { flex: 0 0 100%; }
+            .services-arrow { width: 38px; height: 38px; font-size: 1.2rem; }
             .services-arrow.prev { left: -4px; }
             .services-arrow.next { right: -4px; }
 
@@ -1310,10 +1751,47 @@
             .service-header h3 { font-size: 1.1rem; }
             .service-body { padding: 18px; gap: 12px; }
             .service-list li { padding: 8px 0; font-size: 0.85rem; }
+
+            .toast-container { left: 16px; right: 16px; max-width: none; }
+        }
+
+        /* ============================================
+           REDUCED MOTION
+           ============================================ */
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                transition-delay: 0ms !important;
+                scroll-behavior: auto !important;
+            }
+
+            html.js .reveal-item,
+            html.js .reveal-item.is-visible {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+                will-change: auto !important;
+            }
+
+            .hero .hero-badge,
+            .hero .hero-title,
+            .hero .hero-subtitle,
+            .hero .hero-cta,
+            .hero .hero-card { animation: none !important; }
+
+            .services-carousel,
+            .team-carousel { scroll-snap-type: none !important; }
+
+            .services-carousel { scroll-behavior: auto !important; }
+            .team-carousel { scroll-behavior: auto !important; }
         }
     </style>
 
-    <!-- FAQPage structured data for SEO/GEO -->
+    <!-- FAQPage structured data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -1370,14 +1848,12 @@
 </head>
 <body>
 
-    <!-- HEADER / NAVIGATION -->
-    <header>
+    <!-- HEADER -->
+    <header id="siteHeader">
         <div class="container navbar">
             <a href="#" class="logo-container">
                 <div class="logo-icon">
-                    <img src="https://masabogados.com.co/wp-content/uploads/2025/01/logo-e1736541582609.webp"
-                         width="100" height="45"
-                         alt="MÁS Abogados - Martínez & Asociados">
+                    <img src="https://masabogados.com.co/wp-content/uploads/2025/01/logo-e1736541582609.webp" width="100" height="45" alt="MÁS Abogados - Martínez & Asociados">
                 </div>
                 <div class="logo-text">
                     <h2>MARTÍNEZ & ASOCIADOS</h2>
@@ -1397,7 +1873,6 @@
 
             <a href="#contacto" class="btn btn-accent">Solicitar Consulta</a>
 
-            <!-- Selector de idioma reubicado en la esquina superior derecha -->
             <div class="lang-switch" role="group" aria-label="Cambiar idioma">
                 <a href="#" class="active" hreflang="es" aria-current="true">ES</a>
                 <a href="/en/" hreflang="en">EN</a>
@@ -1405,7 +1880,7 @@
         </div>
     </header>
 
-    <!-- HERO SECTION -->
+    <!-- HERO -->
     <section class="hero" id="inicio">
         <div class="container hero-grid">
             <div>
@@ -1445,31 +1920,31 @@
         </div>
     </section>
 
-    <!-- KEY FEATURES SECTION -->
+    <!-- FEATURES -->
     <section class="features-section" id="nosotros">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header reveal-item">
                 <span class="section-tag">Por Qué Elegirnos</span>
                 <h2 class="section-title">Compromiso Ético y Rigor Jurídico</h2>
                 <p class="section-subtitle">Diseñamos estrategias a la medida de sus necesidades particulares o empresariales.</p>
             </div>
             <div class="features-grid">
-                <div class="feature-card">
+                <div class="feature-card reveal-item">
                     <div class="feature-icon">🔍</div>
                     <h3>Rigor Investigativo</h3>
                     <p>Profundizamos en los antecedentes y elementos probatorios de cada caso para construir conceptos y defensas jurídicas sólidas.</p>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card reveal-item">
                     <div class="feature-icon">🤝</div>
                     <h3>Atención Personalizada</h3>
                     <p>Su proceso no se delega en personal sin experiencia. Es gestionado directamente por abogados especialistas dedicados.</p>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card reveal-item">
                     <div class="feature-icon">📊</div>
                     <h3>Honorarios Transparentes</h3>
                     <p>Cotizaciones claras y por escrito desde el primer día. Facilidad de pagos por etapas del proceso procesal.</p>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card reveal-item">
                     <div class="feature-icon">⚡</div>
                     <h3>Comunicación Constante</h3>
                     <p>Le mantenemos informado del estado de sus actuaciones notariales y judiciales de forma continua y oportuna.</p>
@@ -1478,10 +1953,10 @@
         </div>
     </section>
 
-    <!-- PRACTICE AREAS (CARRUSEL) -->
+    <!-- SERVICES -->
     <section class="services-section" id="servicios">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header reveal-item">
                 <span class="section-tag">Nuestras Especialidades Jurídicas</span>
                 <h2 class="section-title">Áreas de Práctica Jurídica y Litigios en Medellín y Colombia</h2>
                 <p class="section-subtitle">Combinamos más de 20 años de experiencia en estrados judiciales con rigor investigativo para la elaboración de contratos y representación procesal de personas, familias y empresas.</p>
@@ -1492,7 +1967,7 @@
 
                 <div class="services-carousel" id="servicesCarousel" aria-live="polite">
 
-                    <div class="service-card">
+                    <div class="service-card reveal-item">
                         <div class="service-header"><h3>Derecho de Familia y Sustracción Internacional</h3></div>
                         <div class="service-body">
                             <p>Protegemos la estabilidad patrimonial y el bienestar de su núcleo familiar mediante representación litigiosa y soluciones legales de alto rigor técnico en el ámbito nacional e internacional.</p>
@@ -1510,7 +1985,7 @@
                         </div>
                     </div>
 
-                    <div class="service-card">
+                    <div class="service-card reveal-item">
                         <div class="service-header"><h3>Derecho Civil, Contratos e Inmobiliario</h3></div>
                         <div class="service-body">
                             <p>Elaboramos y revisamos contratos con blindaje jurídico integral y representamos sus intereses en litigios civiles ante la jurisdicción ordinaria para proteger su patrimonio.</p>
@@ -1528,7 +2003,7 @@
                         </div>
                     </div>
 
-                    <div class="service-card">
+                    <div class="service-card reveal-item">
                         <div class="service-header"><h3>Derecho Corporativo, Societario y Minero-Ambiental</h3></div>
                         <div class="service-body">
                             <p>Acompañamos a empresarios e inversionistas en la redacción de contratos mercantiles, gobierno corporativo, gestión de títulos mineros y procesos ambientales en Colombia.</p>
@@ -1546,7 +2021,7 @@
                         </div>
                     </div>
 
-                    <div class="service-card">
+                    <div class="service-card reveal-item">
                         <div class="service-header"><h3>Derecho Penal y Defensa en Juicio</h3></div>
                         <div class="service-body">
                             <p>Representación y defensa técnica en estrados judiciales dentro del Sistema Penal Acusatorio (Ley 906 de 2004), velando por la libertad y la protección de víctimas y procesados.</p>
@@ -1571,10 +2046,10 @@
         </div>
     </section>
 
-    <!-- TEAM SECTION -->
+    <!-- TEAM -->
     <section class="team-section" id="equipo">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header reveal-item">
                 <span class="section-tag">Respaldos Verificables</span>
                 <h2 class="section-title">Nuestro Equipo Legal</h2>
                 <p class="section-subtitle">Abogados con perfiles especializados para acompañar asuntos civiles, familiares, penales, corporativos, inmobiliarios, laborales y minero-ambientales.</p>
@@ -1584,7 +2059,7 @@
                 <button class="carousel-control prev" type="button" aria-label="Abogados anteriores">‹</button>
                 <div class="team-carousel" id="teamCarousel">
 
-                    <article class="team-card">
+                    <article class="team-card reveal-item">
                         <div class="team-photo-wrap">
                             <img class="team-photo" src="Andres_Martinez.jpg" alt="Dr. Andres Felipe Martínez Arredondo" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('image-fallback');">
                             <span class="team-fallback">AM</span>
@@ -1598,7 +2073,7 @@
                         </div>
                     </article>
 
-                    <article class="team-card">
+                    <article class="team-card reveal-item">
                         <div class="team-photo-wrap">
                             <img class="team-photo" src="Patricia_Montoya.jpg" alt="Dra. Patricia Montoya Ruiz" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('image-fallback');">
                             <span class="team-fallback">PM</span>
@@ -1612,7 +2087,7 @@
                         </div>
                     </article>
 
-                    <article class="team-card">
+                    <article class="team-card reveal-item">
                         <div class="team-photo-wrap">
                             <img class="team-photo" src="Feerney_Montoya.jpg" alt="Dr. Ferney Montoya" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('image-fallback');">
                             <span class="team-fallback">FM</span>
@@ -1626,7 +2101,7 @@
                         </div>
                     </article>
 
-                    <article class="team-card">
+                    <article class="team-card reveal-item">
                         <div class="team-photo-wrap">
                             <img class="team-photo" src="Alberto Zapata.jpg" alt="Dr. Alberto Zapata" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('image-fallback');">
                             <span class="team-fallback">AZ</span>
@@ -1640,7 +2115,7 @@
                         </div>
                     </article>
 
-                    <article class="team-card">
+                    <article class="team-card reveal-item">
                         <div class="team-photo-wrap">
                             <img class="team-photo" src="VAlentina_Hernandez.jpg" alt="Dra. Valentina Hernández" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('image-fallback');">
                             <span class="team-fallback">VH</span>
@@ -1654,7 +2129,7 @@
                         </div>
                     </article>
 
-                    <article class="team-card">
+                    <article class="team-card reveal-item">
                         <div class="team-photo-wrap">
                             <img class="team-photo" src="santiago_sierra.jpg" alt="Dr. Santiago Sierra Echavarría" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('image-fallback');">
                             <span class="team-fallback">SS</span>
@@ -1668,7 +2143,7 @@
                         </div>
                     </article>
 
-                    <article class="team-card">
+                    <article class="team-card reveal-item">
                         <div class="team-photo-wrap">
                             <img class="team-photo" src="maria_camila_londono.jpg" alt="Dra. María Camila Londoño Gutiérrez" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('image-fallback');">
                             <span class="team-fallback">ML</span>
@@ -1682,7 +2157,7 @@
                         </div>
                     </article>
 
-                    <article class="team-card">
+                    <article class="team-card reveal-item">
                         <div class="team-photo-wrap">
                             <img class="team-photo" src="mateo_uribe.jpg" alt="Dr. Mateo Uribe Villegas" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('image-fallback');">
                             <span class="team-fallback">MU</span>
@@ -1696,7 +2171,7 @@
                         </div>
                     </article>
 
-                    <article class="team-card">
+                    <article class="team-card reveal-item">
                         <div class="team-photo-wrap">
                             <img class="team-photo" src="daniela_gaviria.jpg" alt="Dra. Daniela Gaviria Vélez" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('image-fallback');">
                             <span class="team-fallback">DG</span>
@@ -1710,7 +2185,7 @@
                         </div>
                     </article>
 
-                    <article class="team-card">
+                    <article class="team-card reveal-item">
                         <div class="team-photo-wrap">
                             <img class="team-photo" src="alejandro_jaramillo.jpg" alt="Dr. Alejandro Jaramillo Correa" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('image-fallback');">
                             <span class="team-fallback">AJ</span>
@@ -1731,29 +2206,29 @@
         </div>
     </section>
 
-    <!-- METRICS & GOOGLE REVIEWS -->
+    <!-- METRICS -->
     <section class="stats-reviews-section">
         <div class="container">
             <div class="stats-grid">
-                <div class="stat-item">
+                <div class="stat-item reveal-item">
                     <h3>16+</h3>
                     <p>Años de Experiencia en Medellín</p>
                 </div>
-                <div class="stat-item">
+                <div class="stat-item reveal-item">
                     <h3>+850</h3>
                     <p>Procesos Judiciales y Notariales Exitosos</p>
                 </div>
-                <div class="stat-item">
+                <div class="stat-item reveal-item">
                     <h3>+90%</h3>
                     <p>Satisfacción de Nuestros Clientes</p>
                 </div>
-                <div class="stat-item">
+                <div class="stat-item reveal-item">
                     <h3>&lt; 24h</h3>
                     <p>Tiempo de Respuesta Inicial</p>
                 </div>
             </div>
 
-            <div class="google-reviews-box">
+            <div class="google-reviews-box reveal-item">
                 <div class="google-header">
                     <div>
                         <h3 style="font-size: 1.4rem; color: #fff;">Opiniones Reales de Nuestros Clientes</h3>
@@ -1768,15 +2243,15 @@
                     </div>
                 </div>
                 <div class="reviews-grid">
-                    <div class="review-card">
+                    <div class="review-card reveal-item">
                         <p>"Excelente servicio en la revisión de la compra de mi apartamento en El Poblado. El estudio de títulos fue impecable y nos evitaron una estafa."</p>
                         <div class="review-author">— Mauricio G. (Cliente Inmobiliario)</div>
                     </div>
-                    <div class="review-card">
+                    <div class="review-card reveal-item">
                         <p>"Manejo de mi proceso de divorcio notarial de manera humana y súper ágil. Todo quedó resuelto con claridad de honorarios desde el día uno."</p>
                         <div class="review-author">— Patricia R. (Cliente Derecho de Familia)</div>
                     </div>
-                    <div class="review-card">
+                    <div class="review-card reveal-item">
                         <p>"Asesoría constante para nuestra empresa en contratos laborales y marcas. Respuestas oportunas y un trato verdaderamente profesional."</p>
                         <div class="review-author">— Innova Tech S.A.S. (Consultoría Empresarial)</div>
                     </div>
@@ -1785,31 +2260,31 @@
         </div>
     </section>
 
-    <!-- FEE TRANSPARENCY SECTION -->
+    <!-- FEES -->
     <section class="fees-section" id="honorarios">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header reveal-item">
                 <span class="section-tag">Claridad Financiera</span>
                 <h2 class="section-title">Nuestra Política de Honorarios Transparentes</h2>
                 <p class="section-subtitle">Sin cobros sorpresa ni letras pequeñas. Trabajamos con tarifas estructuradas y planes adaptados.</p>
             </div>
             <div class="fee-steps">
-                <div class="fee-step-card">
+                <div class="fee-step-card reveal-item">
                     <div class="step-num">1</div>
                     <h3>Diagnóstico Estratégico de Viabilidad</h3>
                     <p>Analizamos los antecedentes documentales y normativos de su caso. Le entregamos un concepto jurídico honesto sobre la viabilidad real del proceso antes de que realice cualquier inversión económica.</p>
                 </div>
-                <div class="fee-step-card">
+                <div class="fee-step-card reveal-item">
                     <div class="step-num">2</div>
                     <h3>Propuesta Económica Clara (Fija o Cuota de Litis)</h3>
                     <p>Reciba una cotización por escrito con tarifas fijas claras o bajo la modalidad de cuota de litis (porcentaje sobre el valor recuperado o ganado en los procesos que legalmente aplique).</p>
                 </div>
-                <div class="fee-step-card">
+                <div class="fee-step-card reveal-item">
                     <div class="step-num">3</div>
                     <h3>Contrato Escrito y Desglose de Expensas</h3>
                     <p>Suscribimos un Contrato de Prestación de Servicios Jurídicos donde se diferencian claramente los honorarios de los abogados y los términos y condiciones para ambas partes.</p>
                 </div>
-                <div class="fee-step-card">
+                <div class="fee-step-card reveal-item">
                     <div class="step-num">4</div>
                     <h3>Planes de Pagos por Hitos Procesales</h3>
                     <p>Ofrecemos facilidades de pago diferidas según el avance efectivo de cada etapa del trámite (radicación, audiencias, fallos judiciales o escrituración notarial).</p>
@@ -1818,10 +2293,10 @@
         </div>
     </section>
 
-    <!-- BLOG SECTION -->
+    <!-- BLOG -->
     <section class="blog-section" id="blog">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header reveal-item">
                 <span class="section-tag">Actualidad Jurídica</span>
                 <h2 class="section-title">Blog Legal y Guías Prácticas</h2>
                 <p class="section-subtitle">Manténgase informado sobre las leyes y normativas en Colombia.</p>
@@ -1854,7 +2329,7 @@
                         <input type="password" id="loginPass" class="form-control" autocomplete="current-password" required>
                     </div>
                     <div class="login-error" id="loginError" role="alert"></div>
-                    <button type="submit" class="btn btn-accent" style="width:100%;">Iniciar Sesión</button>
+                    <button type="submit" class="btn btn-accent" style="width:100%;"><span class="btn-label">Iniciar Sesión</span></button>
                 </form>
             </div>
         </div>
@@ -2008,7 +2483,7 @@
 
                         <div style="display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap;">
                             <button class="btn btn-outline" id="resetBlogForm" type="button">Limpiar</button>
-                            <button class="btn btn-accent" id="blogSubmitBtn" type="submit">Publicar Artículo</button>
+                            <button class="btn btn-accent" id="blogSubmitBtn" type="submit"><span class="btn-label">Publicar Artículo</span></button>
                         </div>
                     </div>
                 </form>
@@ -2027,75 +2502,93 @@
         </div>
     </div>
 
-    <!-- FAQ SECTION -->
+    <!-- FAQ -->
     <section class="faq-section" id="faq">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header reveal-item">
                 <span class="section-tag">Resolvamos sus Dudas</span>
                 <h2 class="section-title">Preguntas Frecuentes</h2>
                 <p class="section-subtitle">Información práctica sobre atención, cobertura, tiempos, honorarios y áreas especializadas.</p>
             </div>
             <div class="faq-accordion">
 
-                <div class="faq-item active">
+                <div class="faq-item active reveal-item">
                     <div class="faq-question">¿Puedo realizar un proceso legal en Colombia si vivo en el exterior o soy extranjero?<span class="faq-toggle">▼</span></div>
-                    <div class="faq-answer">Sí, <strong>100% remoto</strong>. Representamos a ciudadanos extranjeros y colombianos residentes en el exterior (EE. UU., Europa, Latinoamérica) sin necesidad de que viajen a Colombia. Mediante poderes especiales otorgados ante consulados o apostillados, e implementando las normas de justicia digital (Ley 2213 de 2022), gestionamos trámites notariales, audiencias virtuales y pleitos judiciales en todo el territorio colombiano.</div>
+                    <div class="faq-answer-wrap">
+                        <div class="faq-answer">Sí, <strong>100% remoto</strong>. Representamos a ciudadanos extranjeros y colombianos residentes en el exterior (EE. UU., Europa, Latinoamérica) sin necesidad de que viajen a Colombia. Mediante poderes especiales otorgados ante consulados o apostillados, e implementando las normas de justicia digital (Ley 2213 de 2022), gestionamos trámites notariales, audiencias virtuales y pleitos judiciales en todo el territorio colombiano.</div>
+                    </div>
                 </div>
 
-                <div class="faq-item">
+                <div class="faq-item reveal-item">
                     <div class="faq-question">¿Cómo es la modalidad de la primera consulta jurídica?<span class="faq-toggle">▼</span></div>
-                    <div class="faq-answer">Ofrecemos <strong>consultas presenciales</strong> en nuestra sede principal ubicada en <strong>El Poblado (Calle 10 #42-45, Medellín)</strong> y <strong>consultas virtuales</strong> vía videollamada para clientes en cualquier ciudad de Colombia o en el extranjero. En esta sesión analítica evaluamos la documentación previa y trazamos la hoja de ruta estratégica del caso.</div>
+                    <div class="faq-answer-wrap">
+                        <div class="faq-answer">Ofrecemos <strong>consultas presenciales</strong> en nuestra sede principal ubicada en <strong>El Poblado (Calle 10 #42-45, Medellín)</strong> y <strong>consultas virtuales</strong> vía videollamada para clientes en cualquier ciudad de Colombia o en el extranjero. En esta sesión analítica evaluamos la documentación previa y trazamos la hoja de ruta estratégica del caso.</div>
+                    </div>
                 </div>
 
-                <div class="faq-item">
+                <div class="faq-item reveal-item">
                     <div class="faq-question">¿En qué ciudades y regiones representan casos judiciales?<span class="faq-toggle">▼</span></div>
-                    <div class="faq-answer">Asumimos <strong>representación judicial en toda Colombia</strong>. Nuestra sede principal se encuentra en Medellín (con presencia constante en el Valle de Aburrá y Oriente Antioqueño), y mediante litigio digital y apoderamiento operamos directamente ante juzgados, tribunales de todo el país.</div>
+                    <div class="faq-answer-wrap">
+                        <div class="faq-answer">Asumimos <strong>representación judicial en toda Colombia</strong>. Nuestra sede principal se encuentra en Medellín (con presencia constante en el Valle de Aburrá y Oriente Antioqueño), y mediante litigio digital y apoderamiento operamos directamente ante juzgados, tribunales de todo el país.</div>
+                    </div>
                 </div>
 
-                <div class="faq-item">
+                <div class="faq-item reveal-item">
                     <div class="faq-question">¿Cómo se maneja la Restitución Internacional de Menores bajo el Convenio de La Haya?<span class="faq-toggle">▼</span></div>
-                    <div class="faq-answer">La sustracción o retención ilícita de un menor exige actuación inmediata. Aplicamos el <strong>Convenio de La Haya de 1980</strong> en coordinación con el Instituto Colombiano de Bienestar Familiar (ICBF) y los Juzgados de Familia para procurar el retorno seguro del menor a su país de residencia habitual, analizando de forma rigurosa las <strong>excepciones legales previstas en el mismo convenio</strong> (tales como riesgo grave, integración o negativa fundamentada del menor).</div>
+                    <div class="faq-answer-wrap">
+                        <div class="faq-answer">La sustracción o retención ilícita de un menor exige actuación inmediata. Aplicamos el <strong>Convenio de La Haya de 1980</strong> en coordinación con el Instituto Colombiano de Bienestar Familiar (ICBF) y los Juzgados de Familia para procurar el retorno seguro del menor a su país de residencia habitual, analizando de forma rigurosa las <strong>excepciones legales previstas en el mismo convenio</strong> (tales como riesgo grave, integración o negativa fundamentada del menor).</div>
+                    </div>
                 </div>
 
-                <div class="faq-item">
+                <div class="faq-item reveal-item">
                     <div class="faq-question">¿Cuánto tiempo demora la resolución de un proceso legal en Colombia?<span class="faq-toggle">▼</span></div>
-                    <div class="faq-answer">Los tiempos varían según la vía e instancia legal: los trámites notariales por mutuo acuerdo (divorcios o sucesiones) suelen resolverse en un promedio de <strong>15 a 45 días hábiles</strong>, dependiendo de la carga de trabajo y tiempos de respuesta de la notaría asignada. Los litigios contenciosos ante Jueces de la República dependen de la carga procesal del juzgado, la práctica de pruebas y el desarrollo de audiencias del Código General del Proceso.</div>
+                    <div class="faq-answer-wrap">
+                        <div class="faq-answer">Los tiempos varían según la vía e instancia legal: los trámites notariales por mutuo acuerdo (divorcios o sucesiones) suelen resolverse en un promedio de <strong>15 a 45 días hábiles</strong>, dependiendo de la carga de trabajo y tiempos de respuesta de la notaría asignada. Los litigios contenciosos ante Jueces de la República dependen de la carga procesal del juzgado, la práctica de pruebas y el desarrollo de audiencias del Código General del Proceso.</div>
+                    </div>
                 </div>
 
-                <div class="faq-item">
+                <div class="faq-item reveal-item">
                     <div class="faq-question">¿Qué blindaje legal ofrecen para la compra de propiedades e inversión inmobiliaria?<span class="faq-toggle">▼</span></div>
-                    <div class="faq-answer">Realizamos <strong>estudios minuciosos de títulos de tradición (20 años)</strong>, verificación de gravámenes, embargos o limitaciones al dominio, y redactamos o auditamos la promesa de compraventa. Protegemos el capital de compradores e inversionistas antes de que realicen cualquier desembolso o firma de escritura pública.</div>
+                    <div class="faq-answer-wrap">
+                        <div class="faq-answer">Realizamos <strong>estudios minuciosos de títulos de tradición (20 años)</strong>, verificación de gravámenes, embargos o limitaciones al dominio, y redactamos o auditamos la promesa de compraventa. Protegemos el capital de compradores e inversionistas antes de que realicen cualquier desembolso o firma de escritura pública.</div>
+                    </div>
                 </div>
 
-                <div class="faq-item">
+                <div class="faq-item reveal-item">
                     <div class="faq-question">¿Cómo se estructuran los honorarios y qué facilidades de pago ofrecen?<span class="faq-toggle">▼</span></div>
-                    <div class="faq-answer">Operamos bajo una <strong>Política de Honorarios Transparentes y Cero Costos Ocultos</strong>. Entregamos cotizaciones por escrito con tarifas fijas o esquema de cuota de litis (porcentaje sobre resultados en los casos que legalmente aplique). Aceptamos transferencias bancarias locales y giros internacionales para clientes en el exterior.</div>
+                    <div class="faq-answer-wrap">
+                        <div class="faq-answer">Operamos bajo una <strong>Política de Honorarios Transparentes y Cero Costos Ocultos</strong>. Entregamos cotizaciones por escrito con tarifas fijas o esquema de cuota de litis (porcentaje sobre resultados en los casos que legalmente aplique). Aceptamos transferencias bancarias locales y giros internacionales para clientes en el exterior.</div>
+                    </div>
                 </div>
 
-                <div class="faq-item">
+                <div class="faq-item reveal-item">
                     <div class="faq-question">¿Qué garantía tengo de que mi caso es viable antes de iniciar una demanda?<span class="faq-toggle">▼</span></div>
-                    <div class="faq-answer">En el <strong>Diagnóstico Estratégico Inicial</strong> evaluamos los antecedentes y la jurisprudencia aplicable. Si su caso carece de viabilidad jurídica o los riesgos económicos superan los beneficios, se lo indicaremos con absoluta honestidad ética antes de que incurra en gastos judiciales o contractuales.</div>
+                    <div class="faq-answer-wrap">
+                        <div class="faq-answer">En el <strong>Diagnóstico Estratégico Inicial</strong> evaluamos los antecedentes y la jurisprudencia aplicable. Si su caso carece de viabilidad jurídica o los riesgos económicos superan los beneficios, se lo indicaremos con absoluta honestidad ética antes de que incurra en gastos judiciales o contractuales.</div>
+                    </div>
                 </div>
 
-                <div class="faq-item">
+                <div class="faq-item reveal-item">
                     <div class="faq-question">¿Brindan asesoría jurídica permanente a empresas en Colombia?<span class="faq-toggle">▼</span></div>
-                    <div class="faq-answer">Sí. Ofrecemos <strong>asesoría permanente a empresas en Colombia en asuntos laborales, contractuales, societarios y corporativos</strong>. Acompañamos el cumplimiento normativo diario, redacción de contratos mercantiles, estructuración de acuerdos de socios y representación en litigios ante la jurisdicción ordinaria y la Superintendencia de Sociedades.</div>
+                    <div class="faq-answer-wrap">
+                        <div class="faq-answer">Sí. Ofrecemos <strong>asesoría permanente a empresas en Colombia en asuntos laborales, contractuales, societarios y corporativos</strong>. Acompañamos el cumplimiento normativo diario, redacción de contratos mercantiles, estructuración de acuerdos de socios y representación en litigios ante la jurisdicción ordinaria y la Superintendencia de Sociedades.</div>
+                    </div>
                 </div>
 
             </div>
         </div>
     </section>
 
-    <!-- CONTACT & MAP SECTION -->
+    <!-- CONTACT -->
     <section class="contact-section" id="contacto">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header reveal-item">
                 <span class="section-tag">Atención Directa</span>
                 <h2 class="section-title">Agende su Asesoría Jurídica</h2>
                 <p class="section-subtitle">Déjenos sus datos y un abogado especialista se pondrá en contacto en menos de 24 horas.</p>
             </div>
             <div class="contact-grid">
-                <form class="contact-form" id="contactForm" novalidate>
+                <form class="contact-form reveal-item" id="contactForm" novalidate>
                     <div class="form-group">
                         <label for="name">Nombre Completo *</label>
                         <input type="text" id="name" class="form-control" placeholder="Ej. Juan Pérez" required>
@@ -2122,7 +2615,6 @@
                         <label for="message">Resumen breve de su consulta *</label>
                         <textarea id="message" rows="4" class="form-control" placeholder="Describa brevemente su situación..." required></textarea>
                     </div>
-                    <!-- Ley 1581 de 2012: consentimiento informado -->
                     <div class="form-group" style="display:flex; gap:10px; align-items:flex-start; font-size:.82rem; color:var(--text-muted);">
                         <input type="checkbox" id="habeasData" required style="margin-top:4px;">
                         <label for="habeasData" style="font-weight:400; margin:0;">
@@ -2133,13 +2625,13 @@
                             (Ley 1581 de 2012).
                         </label>
                     </div>
-                    <button type="submit" class="btn btn-accent" style="width: 100%;">Enviar Consulta Confidencial</button>
+                    <button type="submit" class="btn btn-accent" style="width: 100%;"><span class="btn-label">Enviar Consulta Confidencial</span></button>
                     <p style="font-size:.75rem;color:var(--text-muted);margin-top:10px;text-align:center;">
                         📧 Los envíos llegarán a los correos receptores definidos por la firma.
                     </p>
                 </form>
 
-                <div class="map-container">
+                <div class="map-container reveal-item">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.4026250172915!2d-75.57264260748039!3d6.210509487737422!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e4429fb4b779a4b%3A0xcce5ce9afb84a305!2sMAS%20ABOGADOS%20-%20Mart%C3%ADnez%20%26%20Asociados%20Abogados!5e0!3m2!1ses!2sco!4v1789099339952!5m2!1ses!2sco" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 </div>
             </div>
@@ -2193,19 +2685,138 @@
         </div>
     </footer>
 
-    <!-- INTERACTIVE SCRIPT -->
+    <!-- TOAST CONTAINER -->
+    <div class="toast-container" id="toastContainer" aria-live="polite" aria-atomic="true"></div>
+
+    <!-- SCRIPT -->
     <script>
         (function () {
             'use strict';
 
-            // FAQ Accordion
+            // ============================================
+            // TOAST HELPER (audit section 3.3)
+            // ============================================
+            function showToast(message, type) {
+                var container = document.getElementById('toastContainer');
+                if (!container) return;
+                var toast = document.createElement('div');
+                toast.className = 'toast' + (type ? ' toast-' + type : '');
+                toast.setAttribute('role', 'status');
+                toast.textContent = message;
+                container.appendChild(toast);
+                requestAnimationFrame(function () {
+                    toast.classList.add('show');
+                });
+                setTimeout(function () {
+                    toast.classList.remove('show');
+                    toast.classList.add('hide');
+                    setTimeout(function () {
+                        if (toast.parentNode) toast.parentNode.removeChild(toast);
+                    }, 320);
+                }, 3800);
+            }
+
+            // ============================================
+            // BUTTON STATE HELPER (audit section 4.5)
+            // ============================================
+            function setBtnState(btn, state) {
+                if (!btn) return;
+                var label = btn.querySelector('.btn-label');
+                if (state === 'default') {
+                    btn.removeAttribute('data-state');
+                    if (label && label.dataset.original) {
+                        label.textContent = label.dataset.original;
+                    }
+                } else {
+                    if (label && !label.dataset.original) {
+                        label.dataset.original = label.textContent;
+                    }
+                    btn.setAttribute('data-state', state);
+                    if (state === 'success' && label) {
+                        label.textContent = '✓ Enviado correctamente';
+                    }
+                }
+            }
+
+            // ============================================
+            // HEADER SCROLL (audit section 3.1)
+            // ============================================
+            var siteHeader = document.getElementById('siteHeader');
+            if (siteHeader) {
+                var scrollRaf = null;
+                var onScroll = function () {
+                    if (scrollRaf) return;
+                    scrollRaf = requestAnimationFrame(function () {
+                        if (window.scrollY > 24) siteHeader.classList.add('is-scrolled');
+                        else siteHeader.classList.remove('is-scrolled');
+                        scrollRaf = null;
+                    });
+                };
+                window.addEventListener('scroll', onScroll, { passive: true });
+                onScroll();
+            }
+
+            // ============================================
+            // REVEAL SYSTEM (audit section 4.4)
+            // ============================================
+            var revealObserver = null;
+            var prefersReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            function initRevealObserver() {
+                if (prefersReduce || !('IntersectionObserver' in window)) return null;
+                return new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry) {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-visible');
+                            revealObserver.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.15 });
+            }
+
+            function observeReveals() {
+                if (!revealObserver) return;
+                var els = document.querySelectorAll('.reveal-item:not(.is-visible)');
+                els.forEach(function (el) {
+                    // Auto-stagger: index within parent's reveal-item siblings
+                    var parent = el.parentElement;
+                    var idx = 0;
+                    if (parent) {
+                        var siblings = parent.querySelectorAll(':scope > .reveal-item');
+                        idx = Array.prototype.indexOf.call(siblings, el);
+                    }
+                    if (idx > 0) {
+                        el.style.setProperty('--reveal-delay', Math.min(idx, 8) * 70 + 'ms');
+                    }
+                    revealObserver.observe(el);
+                });
+            }
+
+            function applyRevealFallback() {
+                document.querySelectorAll('.reveal-item').forEach(function (el) {
+                    el.classList.add('is-visible');
+                });
+            }
+
+            if (prefersReduce || !('IntersectionObserver' in window)) {
+                applyRevealFallback();
+            } else {
+                revealObserver = initRevealObserver();
+                observeReveals();
+            }
+
+            // ============================================
+            // FAQ ACCORDION
+            // ============================================
             document.querySelectorAll('.faq-question').forEach(function (item) {
                 item.addEventListener('click', function () {
                     item.parentElement.classList.toggle('active');
                 });
             });
 
-            // ============ Services Carousel ============
+            // ============================================
+            // SERVICES CAROUSEL
+            // ============================================
             (function () {
                 var carousel = document.getElementById('servicesCarousel');
                 var prevBtn = document.getElementById('servicesPrev');
@@ -2265,7 +2876,6 @@
                         dot.classList.toggle('active', i === index);
                         dot.setAttribute('aria-selected', i === index ? 'true' : 'false');
                     });
-
                     prevBtn.disabled = carousel.scrollLeft <= 2;
                     nextBtn.disabled = carousel.scrollLeft >= (carousel.scrollWidth - carousel.clientWidth - 2);
                 }
@@ -2294,13 +2904,16 @@
                     scrollToIndex(idx);
                 });
 
+                var scrollRaf = null;
                 carousel.addEventListener('scroll', function () {
-                    window.requestAnimationFrame(updateActiveDot);
+                    if (scrollRaf) return;
+                    scrollRaf = requestAnimationFrame(function () {
+                        updateActiveDot();
+                        scrollRaf = null;
+                    });
                 });
 
-                window.addEventListener('resize', function () {
-                    buildDots();
-                });
+                window.addEventListener('resize', function () { buildDots(); });
 
                 var isDown = false, startX = 0, startScroll = 0, moved = false;
 
@@ -2345,59 +2958,63 @@
                 setTimeout(function () { buildDots(); updateActiveDot(); }, 100);
             })();
 
-            // Team carousel
-            var carousel = document.getElementById('teamCarousel');
-            var prevBtn = document.querySelector('.carousel-control.prev');
-            var nextBtn = document.querySelector('.carousel-control.next');
+            // ============================================
+            // TEAM CAROUSEL
+            // ============================================
+            var teamCarousel = document.getElementById('teamCarousel');
+            var teamPrevBtn = document.querySelector('.carousel-control.prev');
+            var teamNextBtn = document.querySelector('.carousel-control.next');
 
-            function getScrollAmount() {
-                var card = carousel ? carousel.querySelector('.team-card') : null;
+            function getTeamScrollAmount() {
+                var card = teamCarousel ? teamCarousel.querySelector('.team-card') : null;
                 if (!card) return 360;
-                var gap = parseFloat(getComputedStyle(carousel).gap) || 24;
+                var gap = parseFloat(getComputedStyle(teamCarousel).gap) || 24;
                 return card.getBoundingClientRect().width + gap;
             }
 
-            if (carousel && prevBtn && nextBtn) {
-                prevBtn.addEventListener('click', function () {
-                    carousel.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+            if (teamCarousel && teamPrevBtn && teamNextBtn) {
+                teamPrevBtn.addEventListener('click', function () {
+                    teamCarousel.scrollBy({ left: -getTeamScrollAmount(), behavior: 'smooth' });
                 });
-                nextBtn.addEventListener('click', function () {
-                    carousel.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+                teamNextBtn.addEventListener('click', function () {
+                    teamCarousel.scrollBy({ left: getTeamScrollAmount(), behavior: 'smooth' });
                 });
 
                 var isDragging = false, startX = 0, startScroll = 0, moved = false;
 
-                carousel.addEventListener('pointerdown', function (e) {
+                teamCarousel.addEventListener('pointerdown', function (e) {
                     isDragging = true; moved = false;
-                    startX = e.clientX; startScroll = carousel.scrollLeft;
-                    try { carousel.setPointerCapture(e.pointerId); } catch (err) {}
+                    startX = e.clientX; startScroll = teamCarousel.scrollLeft;
+                    try { teamCarousel.setPointerCapture(e.pointerId); } catch (err) {}
                 });
 
-                carousel.addEventListener('pointermove', function (e) {
+                teamCarousel.addEventListener('pointermove', function (e) {
                     if (!isDragging) return;
                     var delta = e.clientX - startX;
                     if (Math.abs(delta) > 4) moved = true;
-                    carousel.scrollLeft = startScroll - delta;
+                    teamCarousel.scrollLeft = startScroll - delta;
                 });
 
-                function endDrag(e) {
+                function endTeamDrag(e) {
                     if (!isDragging) return;
                     isDragging = false;
                     if (e && e.pointerId !== undefined) {
-                        try { carousel.releasePointerCapture(e.pointerId); } catch (err) {}
+                        try { teamCarousel.releasePointerCapture(e.pointerId); } catch (err) {}
                     }
                 }
 
-                carousel.addEventListener('pointerup', endDrag);
-                carousel.addEventListener('pointercancel', endDrag);
-                carousel.addEventListener('pointerleave', function () { isDragging = false; });
+                teamCarousel.addEventListener('pointerup', endTeamDrag);
+                teamCarousel.addEventListener('pointercancel', endTeamDrag);
+                teamCarousel.addEventListener('pointerleave', function () { isDragging = false; });
 
-                carousel.addEventListener('click', function (e) {
+                teamCarousel.addEventListener('click', function (e) {
                     if (moved) { e.preventDefault(); e.stopPropagation(); }
                 }, true);
             }
 
-            // ============ Blog ============
+            // ============================================
+            // BLOG SYSTEM (state logic unchanged)
+            // ============================================
             var STORAGE_KEY = 'masAbogadosBlogArticlesV2';
             var LEGACY_KEY  = 'masAbogadosBlogArticlesV1';
             var INIT_KEY    = 'masAbogadosBlogInitializedV3';
@@ -2507,7 +3124,7 @@
                     localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
                     return true;
                 } catch (e) {
-                    alert('No fue posible guardar los cambios. La imagen local puede superar el límite de almacenamiento del navegador.');
+                    showToast('No fue posible guardar los cambios. La imagen local puede superar el límite de almacenamiento del navegador.', 'error');
                     return false;
                 }
             }
@@ -2604,7 +3221,7 @@
                     var image = article.image ?
                         'background-image: linear-gradient(rgba(0,0,0,.34), rgba(0,0,0,.34)), url("' + escapeCssUrl(article.image) + '");' :
                         'background-image: linear-gradient(135deg,#172A45,#0A192F);';
-                    return '<article class="blog-card">' +
+                    return '<article class="blog-card reveal-item">' +
                         '<div class="blog-img" style="' + image + ' color:#fff; font-weight:600;" role="img" aria-label="' + escapeHtml(article.alt || article.title) + '">' + escapeHtml(article.category) + '</div>' +
                         '<div class="blog-content">' +
                             '<div class="blog-meta"><span>' + escapeHtml(article.category) + '</span><span>' + escapeHtml(formatDate(article.date)) + '</span></div>' +
@@ -2616,6 +3233,9 @@
                         '</div>' +
                     '</article>';
                 }).join('');
+
+                if (revealObserver) observeReveals();
+                else applyRevealFallback();
             }
 
             function renderAdminList() {
@@ -2726,7 +3346,11 @@
                 document.getElementById('blogSlug').value = '';
                 document.getElementById('blogContentEditor').innerHTML = '<p></p>';
                 document.getElementById('blogContentHtml').value = '';
-                document.getElementById('blogSubmitBtn').textContent = 'Publicar Artículo';
+                var submitBtn = document.getElementById('blogSubmitBtn');
+                var label = submitBtn.querySelector('.btn-label');
+                if (label) label.textContent = 'Publicar Artículo';
+                delete label.dataset.original;
+                submitBtn.removeAttribute('data-state');
                 document.getElementById('blogImagePreview').textContent = 'Vista previa de la imagen destacada';
                 updateSeoUI();
             }
@@ -2746,7 +3370,13 @@
                 currentImageData = article.image && !/^https?:/i.test(article.image) ? article.image : '';
                 document.getElementById('blogContentEditor').innerHTML = sanitizeHtml(article.content || '<p></p>');
                 document.getElementById('blogContentHtml').value = sanitizeHtml(article.content || '');
-                document.getElementById('blogSubmitBtn').textContent = 'Guardar cambios';
+                var submitBtn = document.getElementById('blogSubmitBtn');
+                var label = submitBtn.querySelector('.btn-label');
+                if (label) {
+                    label.textContent = 'Guardar cambios';
+                    delete label.dataset.original;
+                }
+                submitBtn.removeAttribute('data-state');
                 updateImagePreview(currentImageData || document.getElementById('blogImageUrl').value.trim());
                 updateSeoUI();
             }
@@ -2857,6 +3487,8 @@
                         openAdminModal();
                     } else {
                         loginError.textContent = 'Usuario o contraseña incorrectos. Verifica tus credenciales e inténtalo de nuevo.';
+                        loginError.classList.remove('show');
+                        void loginError.offsetWidth; // force reflow to restart shake
                         loginError.classList.add('show');
                     }
                 });
@@ -2867,7 +3499,7 @@
                 logoutBtn.addEventListener('click', function () {
                     endSession();
                     closeAdminModal();
-                    alert('Sesión cerrada correctamente.');
+                    showToast('Sesión cerrada correctamente.', 'success');
                 });
             }
 
@@ -2972,11 +3604,11 @@
                     var status = document.getElementById('blogStatus').value;
 
                     if (!title || !slug || !excerpt || !content || !date || !alt) {
-                        alert('Completa título, slug, extracto, contenido, fecha y texto alternativo de la imagen.');
+                        showToast('Completa título, slug, extracto, contenido, fecha y texto alternativo de la imagen.', 'error');
                         return;
                     }
                     if (!/^([a-z0-9]+-)*[a-z0-9]+$/.test(slug)) {
-                        alert('El slug debe contener únicamente minúsculas, números y guiones.');
+                        showToast('El slug debe contener únicamente minúsculas, números y guiones.', 'error');
                         return;
                     }
 
@@ -2996,12 +3628,26 @@
                     if (editingId) custom = custom.map(function (i) { return i.id === editingId ? article : i; });
                     else custom.push(article);
 
-                    if (safeStorageSet(custom)) {
-                        renderBlog(); renderAdminList();
-                        alert(editingId ? 'Artículo actualizado correctamente.'
-                            : (status === 'draft' ? 'Borrador guardado correctamente.' : 'Artículo publicado correctamente.'));
-                        clearArticleForm();
-                    }
+                    var submitBtn = document.getElementById('blogSubmitBtn');
+                    setBtnState(submitBtn, 'loading');
+
+                    setTimeout(function () {
+                        if (safeStorageSet(custom)) {
+                            setBtnState(submitBtn, 'success');
+                            renderBlog(); renderAdminList();
+                            showToast(
+                                editingId ? 'Artículo actualizado correctamente.'
+                                    : (status === 'draft' ? 'Borrador guardado correctamente.' : 'Artículo publicado correctamente.'),
+                                'success'
+                            );
+                            setTimeout(function () {
+                                setBtnState(submitBtn, 'default');
+                                clearArticleForm();
+                            }, 1200);
+                        } else {
+                            setBtnState(submitBtn, 'default');
+                        }
+                    }, 600);
                 });
             }
 
@@ -3023,7 +3669,10 @@
                             if (i.id === toggleId) i.status = i.status === 'draft' ? 'published' : 'draft';
                             return i;
                         });
-                        if (safeStorageSet(items)) { renderBlog(); renderAdminList(); }
+                        if (safeStorageSet(items)) {
+                            renderBlog(); renderAdminList();
+                            showToast('Estado del artículo actualizado.', 'success');
+                        }
                         return;
                     }
                     if (deleteId) {
@@ -3032,6 +3681,7 @@
                             if (safeStorageSet(remaining)) {
                                 renderBlog(); renderAdminList();
                                 if (editingId === deleteId) clearArticleForm();
+                                showToast('Artículo eliminado.', 'success');
                             }
                         }
                     }
@@ -3043,19 +3693,31 @@
             var resetBlogForm = document.getElementById('resetBlogForm');
             if (resetBlogForm) resetBlogForm.addEventListener('click', clearArticleForm);
 
+            // ============================================
+            // CONTACT FORM (loading + success states)
+            // ============================================
             var contactForm = document.getElementById('contactForm');
             if (contactForm) {
                 contactForm.addEventListener('submit', function (e) {
                     e.preventDefault();
                     if (!document.getElementById('habeasData').checked) {
-                        alert('Debe autorizar el tratamiento de datos personales para continuar.');
+                        showToast('Debe autorizar el tratamiento de datos personales para continuar.', 'error');
                         return;
                     }
-                    alert('Gracias por escribirnos. Un abogado de nuestro equipo se pondrá en contacto con usted en menos de 24 horas hábiles.');
-                    contactForm.reset();
+                    var submitBtn = contactForm.querySelector('button[type="submit"]');
+                    setBtnState(submitBtn, 'loading');
+                    setTimeout(function () {
+                        setBtnState(submitBtn, 'success');
+                        showToast('Gracias por escribirnos. Un abogado se pondrá en contacto en menos de 24 horas hábiles.', 'success');
+                        setTimeout(function () {
+                            setBtnState(submitBtn, 'default');
+                            contactForm.reset();
+                        }, 1600);
+                    }, 1100);
                 });
             }
 
+            // Init
             migrateLegacyStorage();
             initializeStorage();
             clearArticleForm();
