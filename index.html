@@ -1873,9 +1873,10 @@
 
             <a href="#contacto" class="btn btn-accent">Solicitar Consulta</a>
 
+            <!-- ✅ LANG-SWITCH MODIFICADO -->
             <div class="lang-switch" role="group" aria-label="Cambiar idioma">
-                <a href="#" class="active" hreflang="es" aria-current="true">ES</a>
-                <a href="/en/" hreflang="en">EN</a>
+                <a href="/" hreflang="es" class="active" aria-current="true" data-lang="es">ES</a>
+                <a href="/en/" hreflang="en" data-lang="en">EN</a>
             </div>
         </div>
     </header>
@@ -2716,6 +2717,48 @@
             'use strict';
 
             // ============================================
+            // LANGUAGE SWITCHER (hash preservation + local dev)
+            // ============================================
+            (function () {
+                var isLocalFile = window.location.protocol === 'file:';
+                var langLinks = document.querySelectorAll('.lang-switch a[data-lang]');
+
+                // --- 1. Ajustar rutas para pruebas locales (file://) ---
+                if (isLocalFile) {
+                    langLinks.forEach(function (link) {
+                        var lang = link.getAttribute('data-lang');
+                        if (lang === 'en') link.setAttribute('href', 'index EN.html');
+                        if (lang === 'es') link.setAttribute('href', 'index.html');
+                    });
+                }
+
+                // --- 2. Interceptar clic para preservar el hash ---
+                langLinks.forEach(function (link) {
+                    link.addEventListener('click', function (e) {
+                        var target = link.getAttribute('href');
+
+                        // Si es el idioma activo, no navegar
+                        if (!target || target === '#' || link.classList.contains('active')) {
+                            e.preventDefault();
+                            return;
+                        }
+
+                        var currentHash = window.location.hash;
+                        if (currentHash) {
+                            e.preventDefault();
+                            try {
+                                var url = new URL(target, window.location.href);
+                                url.hash = currentHash;
+                                window.location.href = url.toString();
+                            } catch (err) {
+                                window.location.href = target + currentHash;
+                            }
+                        }
+                    });
+                });
+            })();
+
+            // ============================================
             // TOAST HELPER (audit section 3.3)
             // ============================================
             function showToast(message, type) {
@@ -2800,7 +2843,6 @@
                 if (!revealObserver) return;
                 var els = document.querySelectorAll('.reveal-item:not(.is-visible)');
                 els.forEach(function (el) {
-                    // Auto-stagger: index within parent's reveal-item siblings
                     var parent = el.parentElement;
                     var idx = 0;
                     if (parent) {
@@ -3510,7 +3552,7 @@
                     } else {
                         loginError.textContent = 'Usuario o contraseña incorrectos. Verifica tus credenciales e inténtalo de nuevo.';
                         loginError.classList.remove('show');
-                        void loginError.offsetWidth; // force reflow to restart shake
+                        void loginError.offsetWidth;
                         loginError.classList.add('show');
                     }
                 });
