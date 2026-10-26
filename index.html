@@ -1796,7 +1796,20 @@
         .footer-col p a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
         .footer-col p a:hover { color: var(--accent); }
 
+        /* Evita que cualquier elemento ensanche la página en móvil (eso desplazaba el botón flotante) */
+        html, body { overflow-x: clip; }
+
+        @media (max-width: 992px) {
+            /* La columna del hero no debe crecer más que la pantalla por textos largos */
+            .hero-grid { grid-template-columns: minmax(0, 1fr); }
+        }
+
         @media (max-width: 640px) {
+            /* Botones del hero: el texto largo pasa a dos líneas en vez de salirse */
+            .hero-cta .btn { white-space: normal; text-align: center; }
+            /* En celular el botón "Solicitar Consulta" del encabezado no cabe junto al logo;
+               el contacto queda cubierto por el botón flotante de WhatsApp y el botón del hero */
+            .navbar > .btn { display: none; }
             .whatsapp-float { width: 54px; height: 54px; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); }
             .whatsapp-float svg { width: 27px; height: 27px; }
         }
@@ -2074,12 +2087,12 @@
 
                     <article class="team-card reveal-item">
                         <div class="team-photo-wrap">
-                            <img class="team-photo" src="Andres_Martinez.jpg" alt="Andres Felipe Martínez Arredondo" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('image-fallback');">
+                            <img class="team-photo" src="Andres_Martinez.jpg" alt="Andrés Felipe Martínez Arredondo" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('image-fallback');">
                             <span class="team-fallback">AM</span>
                             <span class="tp-badge">T.P. vigente · C.S.J.</span>
                         </div>
                         <div class="team-info">
-                            <h3 class="team-name">Andres Felipe Martínez Arredondo</h3>
+                            <h3 class="team-name">Andrés Felipe Martínez Arredondo</h3>
                             <span class="team-role">Socio Director - Abogado</span>
                             <p class="team-desc">Especialista en Derecho Procesal y Técnicas de Litigación – Derecho de Familia – Derecho Civil.</p>
                             <div class="team-credentials">⚖️ Procesal · Familia · Civil</div>
